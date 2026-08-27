@@ -1,0 +1,35 @@
+/node_modules
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+
+# Laravel Storage & Cache
+/storage/*.key
+/storage/app/backups/*
+!/storage/app/backups/.gitkeep
+/storage/framework/cache/*
+!/storage/framework/cache/.gitkeep
+/storage/framework/cache/data/*
+!/storage/framework/cache/data/.gitkeep
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/testing/*
+!/storage/framework/testing/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+/public/storage
+
+# IDE & Temporary Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+/scratch

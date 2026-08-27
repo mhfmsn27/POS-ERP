@@ -1,0 +1,92 @@
+@extends('layouts.admin')
+@section('content')
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('assets/vendors/dropify/css/dropify.min.css')}}">
+<link rel="stylesheet" href="{{asset('ecommerce/css/tab.css')}}">
+@endsection
+<div class="content-page">
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <!-- Component -->
+            <x-ecommerce-tab-setting-component></x-ecommerce-tab-setting-component>
+            <x-admin.validation-component></x-admin.validation-component>
+            <!-- End Component -->
+
+            <div class="col-md-12 col-12">
+                <div class="card card-block card-stretch card-height">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">{{$page}}</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form id="uKurir" method="POST" enctype="multipart/form-data" class="form form-horizontal">
+                            @csrf
+                            <div class="form-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label>Nama *</label>
+                                    </div>
+                                    <div class="col-md-8 form-group">
+                                        <input type="hidden" id="idKurir" value="{{$curir->id}}">
+                                        <input type="text" class="form-control" name="name" value="{{$curir->name}}" id="name" required placeholder="Masukkan Nama">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label>Kode </label>
+                                    </div>
+                                    <div class="col-md-8 form-group">
+                                        <input type="text" class="form-control" required value="{{$curir->code}}" name="code" id="code" placeholder="Masukkan Kode">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label>Status </label>
+                                    </div>
+                                    <div class="col-md-8 form-group">
+                                        <select class="form-control" name="status">
+                                            <option value="yes" @if($curir->status == 'yes') selected @endif > Aktif</option>
+                                            <option value="no" @if($curir->status == 'no') selected @endif>Tidak</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label>{{__('general.upload_image')}}</label>
+                                    </div>
+                                    <div class="col-md-8 form-group">
+                                        <input class="dropify" type="file" id="image" name="logo" data-default-file="{{asset($curir->logo)}}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 d-flex justify-content-end">
+                                    <button class="btn btn-info me-1 mb-1 mr-2">{{__('general.add')}}</button>
+                                    <button type="reset" class="btn btn-secondary ml-1 mb-1">{{ __('general.reset') }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section('scripts')
+<script src="{{ asset('assets/vendors/dropify/js/dropify.min.js')}}"></script>
+<script src="{{ asset('ecommerce/js/admin.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        $('.dropify').dropify();
+    });
+</script>
+@endsection
+@endsection

@@ -1,0 +1,31 @@
+<?php
+
+namespace Poshub\Ecommerce\Components;
+
+use App\Models\Admin\Setting;
+use App\Models\Admin\Store;
+use Illuminate\View\Component;
+
+class MenuComponent extends Component
+{
+      /**
+       * Create a new component instance.
+       *
+       * @return void
+       */
+      public function __construct()
+      {
+            //
+      }
+
+      /**
+       * Get the view / contents that represent the component.
+       *
+       * @return \Illuminate\Contracts\View\View|\Closure|string
+       */
+      public function render()
+      {
+            $setting    = Store::where("id",session()->get('dfstore'))->first(['phone', 'name']);
+            return view('ecommerce::component.menu-component', compact('setting'));
+      }
+}

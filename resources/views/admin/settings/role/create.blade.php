@@ -1,0 +1,80 @@
+@extends('layouts.admin')
+@section('content')
+<div class="content-page">
+    <div class="container-fluid">
+        <x-admin.validation-component></x-admin.validation-component>
+        <div class="row">
+            <div class="col-md-12 col-12">
+
+                <div class="col-12 mb-3">
+                    <nav aria-label="breadcrumb mt-4">
+                        <ol class="breadcrumb iq-bg-primary">
+                            <li class="breadcrumb-item">
+                                <a href="#"><i class="ri-home-4-line mr-1 float-left"></i>Pengaturan</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                Tambah Group Pengguna
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="card card-block card-stretch card-height">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">{{$page}}</h4>
+                        </div>
+                        <div>
+                            <a href="{{route('role.index')}}" class="btn btn-info">Daftar Akses Group</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ route('role.store', 'create') }}" method="POST" enctype="multipart/form-data" class="form form-horizontal">
+                            @csrf
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>{{__('user.role_name')}} *</label>
+                                    </div>
+                                    <div class="col-md-8 form-group">
+                                        <input type="text" class="form-control" name="name" value="" id="name" required>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table table" id="table-1">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{__('user.permission_name')}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($permission as $p)
+                                                <tr class="">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="form-check-input form-check-primary" name="permission_id[]" value="{{ $p->id }}" id="permission_id">
+                                                                <label class="form-check-label" for="permission_id">{{ $p->name }}</label>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-sm-12 d-flex justify-content-end">
+                                        <button type="submit" id="send" class="btn btn-info mr-3 mb-1">{{ __('save') }}</button>
+                                        <button type="reset" class="btn btn-secondary ml-1 mb-1">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

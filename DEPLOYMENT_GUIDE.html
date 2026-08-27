@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Deployment POSHUB ACCOUNTING Enterprise</title>
+    <link rel="shortcut icon" href="public/assets/images/icon.png" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #1f57db;
+            --primary-hover: #1742a8;
+            --primary-light: #eff4ff;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-body: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --code-bg: #0d1117;
+            --code-text: #e6edf3;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* LAYOUT */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: #ffffff;
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 24px 20px;
+            z-index: 100;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-logo {
+            width: 38px;
+            height: 38px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .brand-title h2 {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--bg-dark);
+            line-height: 1.2;
+        }
+
+        .brand-title p {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-list li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-list li a:hover,
+        .nav-list li a.active {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .nav-list li a i {
+            font-size: 16px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 40px 60px;
+            max-width: 1200px;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1f57db 100%);
+            border-radius: 16px;
+            padding: 36px 40px;
+            color: #ffffff;
+            margin-bottom: 36px;
+            box-shadow: 0 10px 25px -5px rgba(31, 87, 219, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .hero-banner p {
+            font-size: 15px;
+            opacity: 0.9;
+            max-width: 650px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* TABS */
+        .tab-switcher {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 2px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CARD & SECTIONS */
+        .doc-section {
+            background: #ffffff;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            padding: 28px 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .section-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .section-header h2 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--bg-dark);
+        }
+
+        /* STEP ITEM */
+        .step-item {
+            position: relative;
+            padding-left: 48px;
+            margin-bottom: 28px;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--bg-dark);
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: #475569;
+            margin-bottom: 12px;
+        }
+
+        /* CODE BLOCK */
+        .code-wrapper {
+            position: relative;
+            margin: 12px 0 18px 0;
+        }
+
+        .code-header {
+            background: #161b22;
+            color: #8b949e;
+            padding: 8px 16px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .copy-btn {
+            background: #21262d;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 11px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #30363d;
+            color: #fff;
+        }
+
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 16px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* ALERTS */
+        .alert-box {
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin: 16px 0;
+            display: flex;
+            gap: 12px;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .alert-box.info {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            color: #1e40af;
+        }
+
+        .alert-box.warning {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            color: #92400e;
+        }
+
+        .alert-box.success {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            color: #065f46;
+        }
+
+        .alert-icon {
+            font-size: 18px;
+            margin-top: 1px;
+        }
+
+        /* TABLE */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 13.5px;
+        }
+
+        .spec-table th, .spec-table td {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .spec-table th {
+            background: #f8fafc;
+            font-weight: 700;
+            color: var(--bg-dark);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand-header">
+            <div class="brand-logo"><i class="ri-store-2-fill"></i></div>
+            <div class="brand-title">
+                <h2>POSHUB</h2>
+                <p>Enterprise Deployment</p>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-title">Menu Cepat</div>
+            <ul class="nav-list">
+                <li><a href="#vps" class="tab-link active" onclick="switchTab('vps')"><i class="ri-server-line"></i> VPS Deployment</a></li>
+                <li><a href="#cpanel" class="tab-link" onclick="switchTab('cpanel')"><i class="ri-cloud-line"></i> Shared Hosting</a></li>
+                <li><a href="#worker" class="tab-link" onclick="switchTab('worker')"><i class="ri-cpu-line"></i> Queue & Cron Worker</a></li>
+                <li><a href="#troubleshooting" class="tab-link" onclick="switchTab('troubleshooting')"><i class="ri-tools-line"></i> Troubleshooting</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-title">Kebutuhan Inti</div>
+            <div style="font-size: 12px; color: #64748b; padding-left: 10px;">
+                <p>⚡ <strong>PHP:</strong> 8.0 / 8.1</p>
+                <p>🗄️ <strong>MySQL:</strong> 5.7+ / 8.0+</p>
+                <p>🌐 <strong>Web:</strong> Nginx / Apache</p>
+                <p>🚀 <strong>Status:</strong> Standalone</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <div class="hero-banner">
+            <span class="hero-badge">🚀 Production Deployment Manual</span>
+            <h1>Panduan Deployment POSHUB ACCOUNTING</h1>
+            <p>Panduan terperinci deployment mandiri (*standalone enterprise*) untuk infrastruktur VPS Linux (Ubuntu / Nginx) dan Shared Hosting (cPanel / DirectAdmin).</p>
+        </div>
+
+        <!-- TAB BUTTONS -->
+        <div class="tab-switcher">
+            <button class="tab-btn active" onclick="switchTab('vps')"><i class="ri-ubuntu-fill"></i> 1. VPS Ubuntu & Nginx</button>
+            <button class="tab-btn" onclick="switchTab('cpanel')"><i class="ri-dashboard-3-line"></i> 2. Shared Hosting (cPanel)</button>
+            <button class="tab-btn" onclick="switchTab('worker')"><i class="ri-timer-line"></i> 3. Supervisor & Cron</button>
+            <button class="tab-btn" onclick="switchTab('troubleshooting')"><i class="ri-alarm-warning-line"></i> 4. Troubleshooting</button>
+        </div>
+
+        <!-- ================= TAB 1: VPS DEPLOYMENT ================= -->
+        <div id="pane-vps" class="tab-pane active">
+
+            <div class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="ri-server-line"></i></div>
+                    <h2>Spesifikasi Minimum VPS</h2>
+                </div>
+                <table class="spec-table">
+                    <tr><th>Komponen</th><th>Minimum</th><th>Rekomendasi Enterprise</th></tr>
+                    <tr><td><strong>OS</strong></td><td>Ubuntu 20.04 LTS</td><td>Ubuntu 22.04 / 24.04 LTS</td></tr>
+                    <tr><td><strong>CPU & RAM</strong></td><td>1 vCPU / 1 GB RAM (+ Swap 2GB)</td><td>2 vCPU / 4 GB RAM</td></tr>
+                    <tr><td><strong>Storage</strong></td><td>15 GB SSD</td><td>30 GB+ NVMe SSD</td></tr>
+                    <tr><td><strong>PHP Version</strong></td><td>PHP 8.0</td><td><strong>PHP 8.1 (Disarankan)</strong></td></tr>
+                </table>
+            </div>
+
+            <div class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="ri-terminal-box-line"></i></div>
+                    <h2>Langkah Demi Langkah Deployment VPS</h2>
+                </div>
+
+                <!-- Step 1 -->
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Perbarui Server & Pasang Paket Dasar</div>
+                    <div class="step-desc">Masuk ke terminal SSH VPS sebagai root/sudoer:</div>
+                    <div class="code-wrapper">
+                        <div class="code-header"><span>Bash Terminal</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                        <pre><code>sudo apt update && sudo apt upgrade -y
+sudo apt install -y software-properties-common curl git unzip zip nginx supervisor certbot python3-certbot-nginx</code></pre>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Instal PHP 8.1 & Seluruh Ekstensi</div>
+                    <div class="step-desc">Tambahkan repositori PPA Ondrej PHP dan instal PHP 8.1 FPM:</div>
+                    <div class="code-wrapper">
+                        <div class="code-header"><span>Bash Terminal</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                        <pre><code>sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+sudo apt install -y php8.1-fpm php8.1-cli php8.1-common php8.1-mysql php8.1-zip \
+                    php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath
+
+# Instal Composer Global
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer</code></pre>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Setup Basis Data MySQL</div>
+                    <div class="step-desc">Buat basis data baru dan berikan hak akses penuh ke user lokal:</div>
+                    <div class="code-wrapper">
+                        <div class="code-header"><span>MySQL Console</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                        <pre><code>sudo mysql -u root -p
+
+-- Di dalam console MySQL:
+CREATE DATABASE poshub_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'poshub_user'@'localhost' IDENTIFIED BY 'PasswordKuatAnda_123!';
+GRANT ALL PRIVILEGES ON poshub_db.* TO 'poshub_user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Unggah Source Code & Konfigurasi .env</div>
+                    <div class="step-desc">Letakkan source code pada direktori <code>/var/www/poshub</code>:</div>
+                    <div class="code-wrapper">
+                        <div class="code-header"><span>Bash Terminal</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                        <pre><code>cd /var/www/poshub
+cp .env.example .env
+nano .env</code></pre>
+                    </div>
+                    <div class="alert-box info">
+                        <i class="ri-information-line alert-icon"></i>
+                        <div>Pastikan mengubah <code>APP_ENV=production</code>, <code>APP_DEBUG=false</code>, <code>APP_URL=https://poshub.domainanda.com</code>, serta parameter <code>DB_*</code> sesuai kredensial di Langkah 3.</div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Instal Dependensi, Migrasi & Permissions</div>
+                    <div class="code-wrapper">
+                        <div class="code-header"><span>Bash Terminal</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                        <pre><code># 1. Instal vendor Composer (Mode Produksi)
+composer install --no-dev --optimize-autoloader
+
+# 2. Generate App Key & Symlink Storage
+php artisan key:generate --force
+php artisan storage:link
+
+# 3. Jalankan Migrasi & Enterprise Master Seeder
+php artisan migrate --seed --force
+
+# 4. Atur Hak Akses Direktori
+sudo chown -R www-data:www-data /var/www/poshub
+sudo find /var/www/poshub -type f -exec chmod 644 {} \;
+sudo find /var/www/poshub -type d -exec chmod 755 {} \;
+sudo chmod -R 775 /var/www/poshub/storage /var/www/poshub/bootstrap/cache</code></pre>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step-item">
+                    <div class="step-number">6</div>
+                    <div class="step-title">Konfigurasi Virtual Host Nginx & SSL Let's Encrypt</div>
+                    <div class="code-wrapper">
+                        <div class="code-header"><span>/etc/nginx/sites-available/poshub.conf</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                        <pre><code>server {
+    listen 80;
+    server_name poshub.domainanda.com;
+    root /var/www/poshub/public;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+    index index.php index.html;
+    charset utf-8;
+
+    client_max_body_size 50M;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+        fastcgi_hide_header X-Powered-By;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}</code></pre>
+                    </div>
+                    <div class="step-desc">Aktifkan Virtual Host dan pasang SSL otomatis:</div>
+                    <div class="code-wrapper">
+                        <div class="code-header"><span>Bash Terminal</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                        <pre><code>sudo ln -s /etc/nginx/sites-available/poshub.conf /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+
+# Pasang SSL Otomatis
+sudo certbot --nginx -d poshub.domainanda.com</code></pre>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= TAB 2: SHARED HOSTING ================= -->
+        <div id="pane-cpanel" class="tab-pane">
+            <div class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="ri-cloud-line"></i></div>
+                    <h2>Struktur Direktori Aman di Shared Hosting (cPanel)</h2>
+                </div>
+                <p style="margin-bottom: 14px;">Untuk keamanan maksimal, letakkan source code inti di <strong>luar</strong> <code>public_html</code>:</p>
+                <div class="code-wrapper">
+                    <div class="code-header"><span>Struktur Folder cPanel</span></div>
+                    <pre><code>/home/username/
+├── poshub/              <--- Letakkan seluruh berkas proyek di sini (kecuali folder public)
+│   ├── app/
+│   ├── config/
+│   ├── database/
+│   ├── .env
+│   └── ...
+└── public_html/         <--- Letakkan ISI folder public di sini
+    ├── index.php
+    ├── css/
+    ├── js/
+    ├── assets/
+    └── .htaccess</code></pre>
+                </div>
+
+                <div class="step-item" style="margin-top: 24px;">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Pilih PHP 8.1 di cPanel</div>
+                    <div class="step-desc">Buka menu <strong>Select PHP Version</strong> di cPanel, pilih PHP 8.1 dan aktifkan ekstensi: <code>bcmath, fileinfo, gd, intl, mbstring, mysqli, openssl, pdo_mysql, zip</code>.</div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Buat Database MySQL di cPanel</div>
+                    <div class="step-desc">Masuk ke menu <strong>MySQL Databases</strong>, buat database dan user baru, lalu berikan hak akses <em>ALL PRIVILEGES</em>.</div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Unggah File & Sesuaikan index.php</div>
+                    <div class="step-desc">Buka file <code>public_html/index.php</code>, ubah path bootstrap menjadi:</div>
+                    <div class="code-wrapper">
+                        <div class="code-header"><span>public_html/index.php</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                        <pre><code>require __DIR__.'/../poshub/vendor/autoload.php';
+$app = require_once __DIR__.'/../poshub/bootstrap/app.php';</code></pre>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Jalankan Migrasi & Symlink Storage</div>
+                    <div class="step-desc">Jika cPanel memiliki akses <strong>Terminal / SSH</strong>:</div>
+                    <div class="code-wrapper">
+                        <div class="code-header"><span>cPanel Terminal</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                        <pre><code>cd /home/username/poshub
+php artisan migrate --seed --force
+php artisan storage:link</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 3: WORKER & CRON ================= -->
+        <div id="pane-worker" class="tab-pane">
+            <div class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="ri-timer-line"></i></div>
+                    <h2>Supervisor (Antrean Background WhatsApp & Invoice)</h2>
+                </div>
+                <p style="margin-bottom: 12px;">Supervisor memastikan proses pengiriman WhatsApp digital receipt dan laporan shift Z-Report berjalan seketika di background tanpa membebani browser kasir.</p>
+                <div class="code-wrapper">
+                    <div class="code-header"><span>/etc/supervisor/conf.d/poshub-worker.conf</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                    <pre><code>[program:poshub-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/poshub/artisan queue:work database --sleep=3 --tries=3 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=www-data
+numprocs=2
+redirect_stderr=true
+stdout_logfile=/var/www/poshub/storage/logs/worker.log
+stopwaitsecs=3600</code></pre>
+                </div>
+                <div class="code-wrapper">
+                    <div class="code-header"><span>Perintah Reload Supervisor</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                    <pre><code>sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start poshub-worker:*</code></pre>
+                </div>
+            </div>
+
+            <div class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="ri-calendar-todo-line"></i></div>
+                    <h2>Task Scheduler (Cron Job)</h2>
+                </div>
+                <p style="margin-bottom: 12px;">Diperlukan untuk auto-pruning cadangan database lama (>30 hari) dan auto-reorder PO:</p>
+                <div class="code-wrapper">
+                    <div class="code-header"><span>Crontab VPS (sudo crontab -u www-data -e) atau Menu Cron Job cPanel</span><button class="copy-btn" onclick="copyCode(this)">Salin</button></div>
+                    <pre><code>* * * * * cd /var/www/poshub && php artisan schedule:run >> /dev/null 2>&1</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 4: TROUBLESHOOTING ================= -->
+        <div id="pane-troubleshooting" class="tab-pane">
+            <div class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="ri-bug-line"></i></div>
+                    <h2>Solusi Masalah Umum (Troubleshooting)</h2>
+                </div>
+
+                <div class="alert-box warning">
+                    <i class="ri-alert-line alert-icon"></i>
+                    <div>
+                        <strong>1. Halaman Putih Kosong (500 Error):</strong><br>
+                        Jalankan <code>chmod -R 775 storage bootstrap/cache</code> dan <code>chown -R www-data:www-data storage bootstrap/cache</code>.
+                    </div>
+                </div>
+
+                <div class="alert-box warning">
+                    <i class="ri-image-line alert-icon"></i>
+                    <div>
+                        <strong>2. Gambar Logo & Produk 404 Not Found:</strong><br>
+                        Pastikan symlink storage terhubung dengan menjalankan <code>php artisan storage:link</code>.
+                    </div>
+                </div>
+
+                <div class="alert-box info">
+                    <i class="ri-flashlight-line alert-icon"></i>
+                    <div>
+                        <strong>3. Akselerasi Performa Produksi:</strong><br>
+                        Jalankan perintah berikut setelah deploy selesai:<br>
+                        <code>php artisan config:cache && php artisan route:cache && php artisan view:cache</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+        document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
+
+        const targetPane = document.getElementById('pane-' + tabId);
+        if (targetPane) targetPane.classList.add('active');
+
+        const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+        if (activeBtn) activeBtn.classList.add('active');
+
+        const activeLink = Array.from(document.querySelectorAll('.tab-link')).find(l => l.getAttribute('onclick').includes(tabId));
+        if (activeLink) activeLink.classList.add('active');
+    }
+
+    function copyCode(btn) {
+        const pre = btn.parentElement.nextElementSibling;
+        const code = pre.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            btn.innerHTML = '<i class="ri-check-line"></i> Tersalin!';
+            btn.style.color = '#10b981';
+            setTimeout(() => {
+                btn.innerHTML = 'Salin';
+                btn.style.color = '#c9d1d9';
+            }, 2000);
+        });
+    }
+</script>
+
+</body>
+</html>

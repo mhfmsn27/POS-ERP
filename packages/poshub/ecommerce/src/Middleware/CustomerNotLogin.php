@@ -1,0 +1,26 @@
+<?php
+
+namespace Poshub\Ecommerce\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class CustomerNotLogin
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
+     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     */
+    public function handle(Request $request, Closure $next)
+    {
+        if (Auth::guard('customers')->check() == true) {
+            return redirect()->route('ecommerce.dashboard');
+        } else {
+            return $next($request);
+        }
+    }
+}

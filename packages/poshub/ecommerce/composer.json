@@ -1,0 +1,28 @@
+{
+    "name": "poshub/ecommerce",
+    "description": "\"Package POSHUB Ecommerce Plugins\"",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Poshub\\Ecommerce\\": "src/",
+            "Poshub\\Ecommerce\\Models\\": "src/Models/"
+        },
+        "files": [
+            "src/Helpers/functions.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Poshub\\Ecommerce\\Providers\\PoshubEcommerceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "POSHUB Team",
+            "email": "admin@poshub.id"
+        }
+    ], 
+    "require": {}
+}
