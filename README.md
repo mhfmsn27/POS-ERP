@@ -1,27 +1,30 @@
 <div align="center">
 
 <!-- PROJECT LOGO & HEADER -->
-<img src="public/images/logo.png" alt="POSHUB Logo" width="220" style="margin-bottom: 12px;"/>
+<img src="public/images/logo.png" alt="POSHUB Logo" width="250" style="margin-bottom: 12px;"/>
 
 # 🏬 POSHUB ACCOUNTING
-### *The Ultimate All-in-One Enterprise ERP, Omnichannel POS & Financial Accounting Platform*
+### *Next-Gen Enterprise ERP, Omnichannel POS & Financial Accounting Platform*
 
 [![Laravel](https://img.shields.io/badge/Laravel-v8.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![Vue.js](https://img.shields.io/badge/Vue.js-v3.x-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)](https://vuejs.org)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org)
 [![PHP Version](https://img.shields.io/badge/PHP-8.0%20%7C%208.1-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 [![MySQL Support](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
+[![Docker Ready](https://img.shields.io/badge/Docker-Containerized-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docker.com)
 [![Architecture](https://img.shields.io/badge/Architecture-Standalone%20Enterprise-10b981?style=for-the-badge&logo=serverfault&logoColor=white)](https://poshub.id)
 [![License](https://img.shields.io/badge/License-Lifetime%20Unlimited-1f57db?style=for-the-badge&logo=open-source-initiative&logoColor=white)](https://poshub.id)
 [![WhatsApp Gateway](https://img.shields.io/badge/CRMHUB-WhatsApp%20Omnichannel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://poshub.id)
 
 <p align="center">
-  <strong>Platform Terintegrasi Standar Enterprise untuk Retail, Grosir, Minimarket, F&B (Resto/Kafe), Apotek, Elektronik, Manufaktur, Jasa, dan E-Commerce.</strong><br>
-  Dirancang 100% mandiri (<em>Self-Hosted On-Premise / Cloud VPS</em>), bebas biaya sewa bulanan (<em>No SaaS Fees</em>), dan mendukung banyak cabang tanpa batasan (<em>Unlimited Multi-Store</em>).
+  <strong>Solusi Lengkap ERP Terpadu untuk Retail, Grosir, Minimarket, F&B (Resto/Kafe), Apotek, Elektronik, Manufaktur, Jasa, dan E-Commerce.</strong><br>
+  Dirancang 100% mandiri (<em>Self-Hosted Standalone</em>) dengan arsitektur modern (<strong>Laravel + Vue.js 3 + Docker Ready</strong>), bebas sewa bulanan, dan mendukung banyak cabang tanpa batasan.
 </p>
 
 ---
 
 ### ⚡ Navigasi Cepat Dokumentasi
-[✨ Keunggulan Utama](#-mengapa-memilih-poshub-accounting) • [🏛️ Arsitektur Sistem](#-arsitektur-ekosistem-poshub) • [📦 Modul & Fitur Lengkap](#-ekosistem-10-modul-fitur-enterprise) • [⚡ Hotkeys Kasir](#-pintasan-keyboard-kasir-pos-hotkeys) • [🚀 Panduan Instalasi](#-panduan-instalasi-cepat-quick-start) • [🌐 Panduan Deploy](#-panduan-deployment-server-produksi)
+[✨ Keunggulan Utama](#-mengapa-memilih-poshub-accounting) • [🛠️ Tech Stack](#-arsitektur-teknologi--stack) • [🏛️ Arsitektur Sistem](#-arsitektur-ekosistem-poshub) • [📦 10 Modul Lengkap](#-ekosistem-10-modul-fitur-enterprise) • [🐳 Docker Quickstart](#-instalasi-instan-menggunakan-docker) • [⚡ Hotkeys Kasir](#-pintasan-keyboard-kasir-pos-hotkeys) • [🚀 Panduan Instalasi Standar](#-panduan-instalasi-standar-tanpa-docker) • [🌐 Panduan Deploy](#-panduan-deployment-server-produksi)
 
 ---
 
@@ -35,10 +38,34 @@
 | **Biaya Berlangganan** | **Rp 0 (Lifetime Unlimited)** | Beli Lisensi Kaku | Terus Membayar Tiap Bulan |
 | **Kedaulatan Data** | **Penuh (Tersimpan di Server Anda)** | Rentan Hilang (Lokal) | Disimpan di Server Pihak Ketiga |
 | **Batas Jumlah Cabang** | **Tanpa Batas (Unlimited Outlets)** | 1 Cabang Saja | Dikenakan Biaya per Cabang |
-| **Modul Akuntansi** | **Otomatis Berpasangan (PSAK)** | Terpisah / Tidak Ada | Sangat Terbatas (Hanya Kas Masuk/Keluar) |
-| **Otomasi WhatsApp** | **Terintegrasi CRMHUB Gateway** | Tidak Ada | Perlu Berlangganan Tambahan |
+| **Frontend Modern** | **Vue.js 3 + SPA Router (Reaktif)** | Monolitik Jadul / Desktop | Template Terkunci |
+| **Dukungan Kontainerisasi**| **Docker & Docker-Compose Siap Pakai**| Tidak Ada | Tidak Ada |
+| **Modul Akuntansi** | **Otomatis Berpasangan (PSAK)** | Terpisah / Tidak Ada | Terbatas (Hanya Kas Masuk/Keluar) |
+| **Otomasi WhatsApp** | **Terintegrasi CRMHUB Gateway** | Tidak Ada | Perlu Berlangganan Eksternal |
 | **Mode Antrean Offline** | **Ya (Resilient Sync)** | Hanya Offline | Harus Selalu Terhubung Internet |
 | **Dukungan Barcode & FEFO**| **Lengkap (SVG Maker + Expired)** | Terbatas | Tidak Mendukung Batch/IMEI |
+
+---
+
+## 🛠️ Arsitektur Teknologi & Stack
+
+Aplikasi ini dibangun menggunakan tumpukan teknologi (*technology stack*) modern berstandar enterprise:
+
+* **Backend Engine**:
+  * **Framework**: Laravel 8.x (PHP 8.0 / PHP 8.1)
+  * **ORM & Database**: Eloquent ORM, MySQL 8.0+ / MariaDB 10.6+
+  * **Background Queue & Caching**: Redis 7 & Supervisor Process Manager
+  * **Security**: Sanctum API Tokens, Role-Based Access Control (Spatie Permission)
+* **Frontend Reaktif**:
+  * **Framework**: **Vue.js 3** (Composition & Options API)
+  * **Routing & State**: **Vue Router 4** (Single Page App) & **Vuex 4**
+  * **UI Component Suite**: **PrimeVue 3**, **Bootstrap 5**, SweetAlert2, Chart.js 4
+  * **Logic & Networking**: **JavaScript (ES6+)**, Axios HTTP Client, Lodash, Moment.js
+  * **Asset Bundler**: Webpack 5 & Laravel Mix 6
+* **DevOps & Kontainerisasi**:
+  * **Docker Engine** & **Docker Compose (v3.8)**
+  * **Web Server**: Nginx Alpine Linux dengan reverse-proxy PHP-FPM
+  * **Certbot**: Let's Encrypt SSL/TLS Integration
 
 ---
 
@@ -46,21 +73,22 @@
 
 ```mermaid
 graph TD
-    subgraph "FRONT-OFFICE & SALES CHANNELS"
+    subgraph "FRONT-OFFICE & SALES (Vue.js 3 & Blade)"
         POS["🛒 Modern POS Kasir (Desktop/Mobile/Hotkeys)"]
         ECOMMERCE["🛍️ Toko Online (Poshub E-Commerce)"]
         RESTO["🍽️ Resto Table & Kitchen Display (KDS)"]
     end
 
-    subgraph "CORE BUSINESS LOGIC"
-        TRX_ENGINE["⚙️ Core Transaction Engine"]
+    subgraph "CORE TRANSACTION & PROMO ENGINE"
+        TRX_ENGINE["⚙️ Core Transaction Engine (Laravel)"]
         PROMO_ENGINE["🎁 Smart Promotion & Loyalty Engine"]
         INVENTORY["📦 Multi-Warehouse & FEFO Batch Engine"]
     end
 
-    subgraph "BACK-OFFICE & AUTOMATION"
+    subgraph "BACK-OFFICE & DEVOPS AUTOMATION"
         ACCOUNTING["📊 Double-Entry Accounting Engine (Jurnal/Neraca/Laba Rugi)"]
         CRM_WA["📱 CRMHUB WhatsApp Gateway (Struk & Z-Report)"]
+        DOCKER["🐳 Docker & Containerization Infrastructure"]
         BACKUP_SYS["🛡️ 1-Click Database Backup & Health Toolkit"]
     end
 
@@ -75,6 +103,7 @@ graph TD
 
     ACCOUNTING --> BACKUP_SYS
     INVENTORY --> BACKUP_SYS
+    TRX_ENGINE -.-> DOCKER
 ```
 
 ---
@@ -170,9 +199,34 @@ graph TD
 
 ---
 
+## 🐳 Instalasi Instan Menggunakan Docker
+
+POSHUB ACCOUNTING telah dilengkapi dengan konfigurasi **Docker & Docker Compose** multi-container siap pakai:
+
+```bash
+# 1. Clone repositori
+git clone https://github.com/username-anda/poshub-accounting.git
+cd poshub-accounting
+
+# 2. Siapkan file environment
+cp .env.example .env
+
+# 3. Jalankan container (App + Nginx + MySQL 8 + Redis 7 + Queue Worker)
+docker-compose up -d --build
+
+# 4. Generate Key & Inisialisasi Database di dalam container
+docker-compose exec app php artisan key:generate
+docker-compose exec app php artisan storage:link
+docker-compose exec app php artisan migrate --seed --force
+```
+
+Aplikasi langsung aktif di peramban Anda pada: **`http://localhost:8000`**
+
+---
+
 ## ⚡ Pintasan Keyboard Kasir (POS Hotkeys)
 
-Gunakan tombol pintasan keyboard berikut pada layar POS kasir untuk melayani pelanggan dengan cepat:
+Gunakan tombol pintasan keyboard berikut pada layar POS kasir untuk mempercepat transaksi:
 
 ```
 +---------------------------------------------------------------------------------------+
@@ -193,43 +247,20 @@ Gunakan tombol pintasan keyboard berikut pada layar POS kasir untuk melayani pel
 
 ---
 
-## 💻 Kebutuhan Sistem & Spesifikasi Server
+## 💻 Panduan Instalasi Standar (Tanpa Docker)
 
-### Spesifikasi Perangkat Keras:
-| Komponen | Lingkungan Minimum | Rekomendasi Enterprise (Produksi) |
-| :--- | :--- | :--- |
-| **Sistem Operasi** | Ubuntu 20.04 LTS / Windows Server | **Ubuntu 22.04 / 24.04 LTS** |
-| **CPU / Processor** | 1 vCPU Core | **2 vCPU Core atau lebih** |
-| **RAM / Memori** | 1 GB RAM (dengan Swap 2 GB) | **2 GB - 4 GB RAM** |
-| **Storage / Disk** | 10 GB SSD | **30 GB+ NVMe SSD** |
-| **Web Server** | Apache 2.4+ / Nginx | **Nginx 1.18+ (PHP-FPM)** |
-| **Versi PHP** | PHP 8.0 | **PHP 8.1 (Disarankan)** |
-| **Basis Data** | MySQL 5.7+ / MariaDB 10.3+ | **MySQL 8.0+ / MariaDB 10.6+** |
-
-### Ekstensi PHP yang Wajib Aktif:
-`bcmath`, `ctype`, `fileinfo`, `json`, `mbstring`, `openssl`, `pdo`, `pdo_mysql`, `tokenizer`, `xml`, `gd`, `curl`, `zip`
-
----
-
-## 🚀 Panduan Instalasi Cepat (Quick Start)
-
-### 1. Kloning Repositori
+### 1. Kloning Repositori & Pasang Dependensi
 ```bash
 git clone https://github.com/username-anda/poshub-accounting.git
 cd poshub-accounting
-```
-
-### 2. Pasang Dependensi Composer
-```bash
 composer install --no-dev --optimize-autoloader
 ```
 
-### 3. Konfigurasi File Lingkungan (`.env`)
-Salin file template `.env.example`:
+### 2. Konfigurasi File Lingkungan (`.env`)
 ```bash
 cp .env.example .env
 ```
-Buka file `.env` dan sesuaikan parameter database:
+Sesuaikan parameter koneksi database Anda di `.env`:
 ```ini
 APP_NAME="POSHUB ACCOUNTING"
 APP_ENV=production
@@ -239,40 +270,40 @@ APP_URL=http://localhost:8000
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=poshub_db
-DB_USERNAME=poshub_user
-DB_PASSWORD=PasswordDatabaseAnda
+DB_DATABASE=poshub_accounting
+DB_USERNAME=root
+DB_PASSWORD=
 ```
 
-### 4. Generate Application Key & Symlink Storage
+### 3. Generate Application Key & Symlink Storage
 ```bash
 php artisan key:generate
 php artisan storage:link
 ```
 
-### 5. Jalankan Migrasi & Enterprise Master Seeder
+### 4. Jalankan Migrasi & Enterprise Master Seeder
 ```bash
 php artisan migrate --seed
 ```
 
-### 6. Jalankan Server Aplikasi
+### 5. Jalankan Server Pengembangan Lokal
 ```bash
 php artisan serve
 ```
-Buka peramban Anda di: **`http://127.0.0.1:8000`**
+Buka di browser: **`http://127.0.0.1:8000`**
 
 ---
 
 ## 🔑 Akun & Kredensial Default Sistem
 
-Setelah menjalankan `php artisan migrate --seed`, akun default berikut siap digunakan:
+Setelah menjalankan proses seeding, akun default berikut siap digunakan:
 
-| Peran Pengguna | Email Login | Password Default | Tujuan URL Panel |
+| Peran Pengguna | Email Login | Password Default | Akses Panel |
 | :--- | :--- | :--- | :--- |
 | **👑 Super Administrator** | `admin@poshub.id` | `123456` | `/administrator` (Dashboard Pusat) |
 | **🏪 Store Manager & Kasir** | `admin@poshub.id` | `123456` | `/app` (Panel Operasional Cabang) |
 
-> 🔒 **CATATAN KEAMANAN**: Pastikan Anda segera mengubah kata sandi akun default ini di menu *Profil Pengguna* sebelum server digunakan pada lingkungan produksi!
+> 🔒 **CATATAN KEAMANAN**: Segera ubah kata sandi default ini pada menu profil pengguna sebelum digunakan pada lingkungan produksi!
 
 ---
 
@@ -288,17 +319,18 @@ Tersedia dua panduan komprehensif untuk mempublikasikan POSHUB ke server produks
 ## 🛠️ Perintah Berguna Pengembang (Cheat-Sheet CLI)
 
 ```bash
+# Kompilasi frontend Vue.js & asset (Development / Production)
+npm run dev
+npm run prod
+
 # Bersihkan dan segarkan seluruh cache aplikasi
 php artisan config:cache && php artisan route:cache && php artisan view:cache
 
-# Jalankan worker background job (WhatsApp & Email)
+# Jalankan worker background queue (WhatsApp & Email)
 php artisan queue:work database --sleep=3 --tries=3
 
-# Jalankan scheduler berkala
+# Jalankan scheduler tugas berkala
 php artisan schedule:run
-
-# Buat snapshot backup database via CLI
-php artisan backup:run (atau via Menu Web Pengaturan)
 ```
 
 ---

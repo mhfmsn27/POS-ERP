@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="row border-bottom">
                         <div class="col-lg-6">
-                            <img src="{{asset('assets/images/logo-faktur.webp')}}" style="max-width: 200px; height:auto" />
+                            <img src="{{asset('images/logo.png')}}" style="max-height: 50px; width:auto" alt="POSHUB Logo" />
                         </div>
                         <div class="col-lg-6 align-self-center text-right">
                             <h2 class="name">{{$transaction->store->name ?? ''}}</h2>

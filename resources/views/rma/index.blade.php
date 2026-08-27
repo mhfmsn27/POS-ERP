@@ -2,8 +2,8 @@
 @section('content')
 <div class="sign-in-from">
     <div class="text-center">
-        <img src="{{asset('assets/images/logo-faktur.webp')}}" class="mb-4" />
-        <h1 class="mb-0">Tracking Progress Rma</h1>
+        <img src="{{asset('images/logo.png')}}" style="max-height: 50px; width: auto;" class="mb-4" alt="POSHUB Logo" />
+        <h1 class="mb-0">Tracking Progress RMA</h1>
         <p>Silahkan Masukkan Kode Referensi layanan anda di bawah ini</p>
         <x-admin.validation-component></x-admin.validation-component>
     </div>

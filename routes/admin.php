@@ -44,7 +44,7 @@ Route::middleware(['auth', 'verified', 'is_merchant'])->group(function () {
         Route::middleware('package_active')->group(function () {
 
             Route::get('/{vue?}', function () {
-                return view('app', ["page" => "Faktur Online - Aplikasi Akuntansi Penjualan Online"]);
+                return view('app', ["page" => "POSHUB ACCOUNTING - Aplikasi ERP Akuntansi & Kasir Penjualan"]);
             })->where('vue', '^(?!setup|update|password).*$')->name("index");
 
         });
