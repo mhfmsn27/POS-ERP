@@ -54,7 +54,7 @@ if ($installed == false) {
         Route::get('/{vue?}', [PageController::class, 'starter'])->where('vue', '^(?!setup|update|password).*$')->name('page.starter');
     });
 
-    Route::prefix('pos')->group(function () {
+    Route::prefix('pos')->middleware(['check_license'])->group(function () {
         Route::get('/customer-display', function () {
             return view('pos.customer_display');
         })->name("pos.customer_display");
@@ -70,15 +70,17 @@ if ($installed == false) {
         })->where('vue', '^(?!setup|update|password).*$')->name("pos.module");
     });
 
-    Route::prefix('panel')->group(function () {
+    Route::prefix('panel')->middleware(['check_license'])->group(function () {
         Route::get('/{vue?}', [PageController::class, 'panel'])->where('vue', '^(?!setup|update|password).*$');
     });
 
-    Route::prefix('app')->group(function () {
+    Route::prefix('app')->middleware(['check_license'])->group(function () {
         Route::get('/{vue?}', [PageController::class, 'index'])->where('vue', '^(?!setup|update|password).*$')->name('page.home');
     });
 
 
+
+    Route::get('/license/locked', [\App\Http\Controllers\Admin\LicenseController::class, 'showLocked'])->name('license.locked');
 
     Route::prefix('rma')->group(function () {
         Route::get('/', [RmaController::class, 'index'])->name('rma');

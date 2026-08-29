@@ -298,6 +298,10 @@ DB_PORT=3306
 DB_DATABASE=poshub_accounting
 DB_USERNAME=root
 DB_PASSWORD=
+
+# LICENSE SERVER GOOGLE SHEETS
+LICENSE_SHEET_ID=
+ALLOW_ALL_LICENSE=false
 ```
 
 ### 3. Generate Application Key & Symlink Storage

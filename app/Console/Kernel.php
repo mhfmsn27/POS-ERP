@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\SystemIntegrityAuditCommand::class,
+        \App\Console\Commands\GenerateDomainLicenseCommand::class,
     ];
 
     /**

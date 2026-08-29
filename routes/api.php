@@ -60,3 +60,11 @@ Route::prefix('system/maintenance')->group(function () {
     Route::post('/optimize-db', [\App\Http\Controllers\Api\System\MaintenanceController::class, 'optimizeDb']);
 });
 
+// Domain-Locked Enterprise License API Routes
+Route::prefix('license')->group(function () {
+    Route::get('/status', [\App\Http\Controllers\Admin\LicenseController::class, 'status']);
+    Route::post('/check', [\App\Http\Controllers\Admin\LicenseController::class, 'check']);
+    Route::post('/refresh', [\App\Http\Controllers\Admin\LicenseController::class, 'refresh']);
+});
+
+

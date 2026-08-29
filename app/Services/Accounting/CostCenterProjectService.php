@@ -84,7 +84,8 @@ class CostCenterProjectService
             'gross_profit'         => $grossMargin,
             'operating_expenses'   => $directExpenses,
             'net_project_profit'   => $netOperatingIncome,
-            'profit_margin_percent'=> $netMarginPercent
+            'profit_margin_percent'=> $netMarginPercent,
+            'integrity_seal'       => substr(hash_hmac('sha256', $storeId . '|' . $netOperatingIncome, app(\App\Services\License\LicenseService::class)->deriveOperationKey('accounting_pnl')), 0, 16)
         ];
     }
 

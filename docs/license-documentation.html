@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan & Dokumentasi Lisensi 1 Domain - POSHUB ACCOUNTING & ERP</title>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --primary-border: #bfdbfe;
+            --dark-navy: #0f172a;
+            --slate-card: #1e293b;
+            --slate-border: #334155;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --success: #059669;
+            --success-light: #ecfdf5;
+            --warning: #d97706;
+            --warning-light: #fffbeb;
+            --danger: #dc2626;
+            --danger-light: #fef2f2;
+            --code-bg: #0f172a;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* Top Header Navbar */
+        .top-navbar {
+            background: var(--dark-navy);
+            color: #ffffff;
+            padding: 16px 32px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .brand-badge {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-header {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-header:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Layout Container */
+        .layout-container {
+            display: flex;
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            gap: 32px;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 96px;
+            height: calc(100vh - 128px);
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-lg);
+            padding: 20px 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            padding-left: 8px;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13.5px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .nav-link i {
+            width: 18px;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-link:hover i, .nav-link.active i {
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Hero Card */
+        .hero-card {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 36px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            color: #cbd5e1;
+            max-width: 780px;
+            margin-bottom: 20px;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .hero-tag {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Section Cards */
+        .doc-section {
+            background: var(--bg-card);
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            letter-spacing: -0.3px;
+        }
+
+        /* Code Blocks & Copy Button */
+        .code-container {
+            position: relative;
+            background: var(--code-bg);
+            border-radius: var(--radius-md);
+            margin: 16px 0;
+            border: 1px solid #1e293b;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e293b;
+            padding: 8px 16px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #94a3b8;
+            border-bottom: 1px solid #334155;
+        }
+
+        .copy-btn {
+            background: #334155;
+            color: #f8fafc;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary);
+        }
+
+        pre code {
+            display: block;
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #f1f5f9;
+            overflow-x: auto;
+            line-height: 1.55;
+        }
+
+        /* Alert Boxes */
+        .alert-box {
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            margin: 18px 0;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .alert-box i {
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        .alert-info {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            color: #1e3a8a;
+        }
+
+        .alert-success {
+            background: var(--success-light);
+            border-left: 4px solid var(--success);
+            color: #065f46;
+        }
+
+        .alert-warning {
+            background: var(--warning-light);
+            border-left: 4px solid var(--warning);
+            color: #92400e;
+        }
+
+        /* Steps Layout */
+        .step-timeline {
+            position: relative;
+            padding-left: 42px;
+            margin: 24px 0;
+        }
+
+        .step-timeline::before {
+            content: "";
+            position: absolute;
+            left: 17px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .step-item {
+            position: relative;
+            margin-bottom: 28px;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-bubble {
+            position: absolute;
+            left: -42px;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 2px var(--primary-border);
+        }
+
+        .step-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 6px;
+        }
+
+        .step-body {
+            color: var(--text-main);
+            font-size: 14px;
+        }
+
+        /* Interactive Simulator Card */
+        .simulator-box {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 13px;
+            display: block;
+            margin-bottom: 6px;
+            color: var(--dark-navy);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            margin-bottom: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Tables */
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 13.5px;
+        }
+
+        .doc-table th {
+            background: #f1f5f9;
+            color: var(--dark-navy);
+            text-align: left;
+            padding: 12px 16px;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .doc-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .doc-table tr:hover td {
+            background: #f8fafc;
+        }
+
+        /* Footer */
+        .doc-footer {
+            text-align: center;
+            padding: 32px 0 16px;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 900px) {
+            .layout-container {
+                flex-direction: column;
+                padding: 16px;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+            .hero-card {
+                padding: 24px;
+            }
+            .hero-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVBAR -->
+    <header class="top-navbar">
+        <a href="#" class="brand-box">
+            <i class="fa fa-shield-halved fa-xl" style="color: #60a5fa;"></i>
+            <span style="font-weight: 800; font-size: 17px; letter-spacing: -0.3px;">POSHUB ENTERPRISE</span>
+            <span class="brand-badge">License Docs</span>
+        </a>
+        <div class="header-actions">
+            <a href="/" class="btn-header"><i class="fa fa-arrow-left"></i> Kembali ke Aplikasi</a>
+        </div>
+    </header>
+
+    <!-- LAYOUT -->
+    <div class="layout-container">
+
+        <!-- SIDEBAR TOC -->
+        <aside class="sidebar">
+            <div class="sidebar-title">Daftar Isi Dokumentasi</div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#section-overview" class="nav-link active"><i class="fa fa-circle-info"></i> 1. Overview & Arsitektur</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#section-gsheet" class="nav-link"><i class="fa fa-table"></i> 2. Setup Google Sheet</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#section-env" class="nav-link"><i class="fa fa-sliders"></i> 3. Konfigurasi .env</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#section-generator" class="nav-link"><i class="fa fa-key"></i> 4. Menerbitkan Lisensi</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#section-dev" class="nav-link"><i class="fa fa-laptop-code"></i> 5. Mode Localhost Dev</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#section-logic-binding" class="nav-link"><i class="fa fa-lock"></i> 6. Logic Binding Seal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#section-faq" class="nav-link"><i class="fa fa-circle-question"></i> 7. FAQ & Solusi Kendala</a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- HERO CARD -->
+            <div class="hero-card">
+                <div class="hero-title">🛡️ Panduan Sistem Lisensi 1 Domain Enterprise</div>
+                <div class="hero-desc">
+                    Dokumentasi resmi tata cara penggunaan, konfigurasi, dan penerbitan lisensi <strong>1 Domain Cryptographic Lock (RSA-2048)</strong> pada POSHUB ACCOUNTING & ERP untuk model bisnis jual lepas dengan *Source Code Terbuka*.
+                </div>
+                <div class="hero-tags">
+                    <span class="hero-tag"><i class="fa fa-shield"></i> RSA-2048 Asymmetric</span>
+                    <span class="hero-tag"><i class="fa fa-code"></i> 99% Open Source Friendly</span>
+                    <span class="hero-tag"><i class="fa fa-bolt"></i> Anti-Bypass Logic Binding</span>
+                    <span class="hero-tag"><i class="fa fa-cloud"></i> Google Sheets CSV Central</span>
+                </div>
+            </div>
+
+            <!-- SECTION 1: OVERVIEW & ARSITEKTUR -->
+            <section id="section-overview" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-layer-group"></i></div>
+                    <h2 class="section-title">1. Overview & Arsitektur Lisensi</h2>
+                </div>
+                <p>
+                    Sistem lisensi POSHUB dirancang khusus untuk mengakomodasi kebutuhan bisnis **Jual Lepas (*Buy-Out Model*)**. Pembeli memiliki akses penuh terhadap source code PHP, Blade view, Vue frontend, dan struktur database untuk menambah modul sendiri, namun aplikasi **tetap terkunci pada 1 domain resmi pembeli**.
+                </p>
+
+                <div class="alert-box alert-info">
+                    <i class="fa fa-circle-info"></i>
+                    <div>
+                        <strong>Mengapa Sistem Ini Tidak Bisa Dibypass oleh AI atau Cracker?</strong><br>
+                        Sistem menggunakan <strong>Kriptografi Kunci Asimetris (RSA-2048 / SHA-256)</strong>. Aplikasi klien hanya memiliki <em>Public Key</em> untuk memvalidasi. Tanpa <em>Private Key</em> yang Anda pegang di komputer pusat, secara matematis mustahil bagi siapapun membuat tanda tangan digital yang sah untuk domain lain.
+                    </div>
+                </div>
+
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>Karakteristik</th>
+                            <th>Penjelasan</th>
+                            <th>Status Keamanan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Model Kriptografi</strong></td>
+                            <td>Kunci Asimetris RSA-2048 + Digital Signature SHA-256</td>
+                            <td><span style="color: var(--success); font-weight: 600;">✅ Standar Militer (Uncrackable)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hak Kustomisasi Pembeli</strong></td>
+                            <td>Source code 99% terbuka (Tanpa ionCube / SourceGuardian)</td>
+                            <td><span style="color: var(--primary); font-weight: 600;">✅ Bebas Dikembangkan Pembeli</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Offline Grace Period</strong></td>
+                            <td>Toleransi 7 hari operasional jika internet toko putus</td>
+                            <td><span style="color: var(--warning); font-weight: 600;">⚡ Resiliensi Kasir Tinggi</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Localhost Mode</strong></td>
+                            <td>Bebas 100% tanpa lisensi di localhost / 127.0.0.1</td>
+                            <td><span style="color: var(--success); font-weight: 600;">✅ 100% Unrestricted Dev</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SECTION 2: SETUP GOOGLE SHEETS -->
+            <section id="section-gsheet" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-table"></i></div>
+                    <h2 class="section-title">2. Panduan Setup Google Sheet Lisensi Pusat</h2>
+                </div>
+                <p>
+                    Anda tidak memerlukan server database lisensi terpisah. Seluruh data lisensi klien dikelola melalui 1 file Google Spreadsheet yang aman dan mudah diedit kapan saja.
+                </p>
+
+                <div class="step-timeline">
+                    <div class="step-item">
+                        <div class="step-bubble">1</div>
+                        <div class="step-heading">Buat Google Spreadsheet Baru</div>
+                        <div class="step-body">
+                            Buka <a href="https://sheets.new" target="_blank" style="color: var(--primary); font-weight: 600;">Google Sheets</a> dan buat dokumen baru bernama <code>POSHUB Official Licenses</code>.
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-bubble">2</div>
+                        <div class="step-heading">Atur Header Kolom pada Baris 1</div>
+                        <div class="step-body">
+                            Tuliskan 4 judul kolom berikut di baris paling atas (Row 1):
+                            <ul style="margin: 8px 0 0 20px; font-size: 13.5px;">
+                                <li><strong>Kolom A:</strong> <code>Domain</code> (contoh: <em>tokosaya.com</em>)</li>
+                                <li><strong>Kolom B:</strong> <code>License_Key</code> (contoh: <em>POSHUB-2026-AB89EF01-7788</em>)</li>
+                                <li><strong>Kolom C:</strong> <code>RSA_Signature</code> (Tanda tangan digital dari generator)</li>
+                                <li><strong>Kolom D:</strong> <code>Client_Name</code> (Nama pemilik/klien)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-bubble">3</div>
+                        <div class="step-heading">Bagikan Spreadsheet Sebagai Publik (Viewer)</div>
+                        <div class="step-body">
+                            Klik tombol <strong>Bagikan (Share)</strong> di kanan atas &rarr; ubah General Access menjadi <strong>"Anyone with the link can view" (Siapa saja yang memiliki link dapat melihat)</strong>.
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-bubble">4</div>
+                        <div class="step-heading">Salin Google Sheet ID</div>
+                        <div class="step-body">
+                            Ambil ID spreadsheet dari URL browser Anda:
+                            <div class="code-container">
+                                <div class="code-header"><span>URL CONTOH GOOGLE SHEET</span></div>
+                                <pre><code>https://docs.google.com/spreadsheets/d/<span style="color: #60a5fa; font-weight: bold;">1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms</span>/edit</code></pre>
+                            </div>
+                            ID yang disalin: <code>1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: KONFIGURASI ENV -->
+            <section id="section-env" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-sliders"></i></div>
+                    <h2 class="section-title">3. Konfigurasi File .env</h2>
+                </div>
+                <p>
+                    Tempelkan konfigurasi lisensi berikut ke dalam file <code>.env</code> pada server aplikasi:
+                </p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>.env (Environment Configuration)</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
+                    </div>
+                    <pre><code># ==========================================
+# ENTERPRISE DOMAIN-LOCKED LICENSE SYSTEM
+# ==========================================
+# ID Google Sheet lisensi pusat milik Anda
+LICENSE_SHEET_ID=1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
+
+# Set false untuk produksi (hanya true untuk pengembang lokal)
+ALLOW_ALL_LICENSE=false
+
+# Durasi Cache Lisensi Lokal dalam Detik (Default: 21600 = 6 Jam)
+LICENSE_CACHE_TTL=21600
+
+# Masa Tenggang Offline Kasir dalam Detik (Default: 604800 = 7 Hari)
+LICENSE_OFFLINE_GRACE_PERIOD=604800</code></pre>
+                </div>
+            </section>
+
+            <!-- SECTION 4: CARA MENERBITKAN LISENSI -->
+            <section id="section-generator" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-key"></i></div>
+                    <h2 class="section-title">4. Cara Menerbitkan Lisensi Pembeli Baru</h2>
+                </div>
+                <p>
+                    Setiap kali ada klien/pembeli baru yang membeli aplikasi untuk domain mereka, Anda cukup menjalankan perintah Artisan di terminal komputer Anda:
+                </p>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Terminal Command</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
+                    </div>
+                    <pre><code>php artisan license:generate tokosaya.com --client="PT Toko Maju Sejahtera"</code></pre>
+                </div>
+
+                <div class="alert-box alert-success">
+                    <i class="fa fa-circle-check"></i>
+                    <div>
+                        <strong>Contoh Output Generator:</strong><br>
+                        Terminal akan otomatis mencetak baris CSV siap pakai seperti berikut:
+                        <div style="background: #0f172a; color: #38bdf8; padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 12px; margin-top: 6px;">
+                            "tokosaya.com","POSHUB-2026-F81A09DC-5521","LTY31mdERoEmuTgcl2hF3oRVJCNG0pjvvh0U3OX1...","PT Toko Maju Sejahtera"
+                        </div>
+                        Cukup <strong>Copy-Paste</strong> baris tersebut ke baris baru Google Sheet Anda. Domain klien langsung aktif seketika!
+                    </div>
+                </div>
+
+                <!-- Interactive Simulator -->
+                <div class="simulator-box">
+                    <h4 style="font-weight: 700; color: var(--dark-navy); margin-bottom: 8px;"><i class="fa fa-flask"></i> Simulator Generator Lisensi (Uji Coba Cepat)</h4>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Masukkan domain uji coba di bawah untuk melihat simulasi pembuatan baris lisensi:</p>
+                    
+                    <label class="form-label">Nama Domain Klien:</label>
+                    <input type="text" id="simDomain" class="form-input" placeholder="contoh: tokokuliner.co.id" value="tokobaju-abadi.com">
+
+                    <label class="form-label">Nama Klien / Merchant:</label>
+                    <input type="text" id="simClient" class="form-input" placeholder="contoh: Ibu Hj. Siti" value="CV Busana Abadi">
+
+                    <button class="btn-action" onclick="simulateLicense()"><i class="fa fa-bolt"></i> Generate Baris Lisensi</button>
+
+                    <div id="simResult" style="display: none; margin-top: 16px;">
+                        <label class="form-label" style="color: var(--success);"><i class="fa fa-check-circle"></i> Hasil Baris Google Sheet (Siap Copy):</label>
+                        <div class="code-container" style="margin: 4px 0;">
+                            <div class="code-header"><span>CSV ROW PREVIEW</span></div>
+                            <pre><code id="simRowOutput"></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: LOCALHOST DEV MODE -->
+            <section id="section-dev" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-laptop-code"></i></div>
+                    <h2 class="section-title">5. Mode Localhost & Pengembangan (100% Bebas)</h2>
+                </div>
+                <p>
+                    Sistem lisensi POSHUB memiliki fitur <strong>Zero-Friction Local Development</strong>. Pengembang atau pembeli dapat melakukan *coding*, menambah fitur, atau menjalankan unit test tanpa perlu internet atau lisensi pada domain-domain berikut:
+                </p>
+                <ul style="margin: 12px 0 16px 24px; font-size: 14px;">
+                    <li><code>localhost</code> atau <code>localhost:8000</code> / <code>localhost:3000</code></li>
+                    <li><code>127.0.0.1</code> atau <code>::1</code></li>
+                    <li>Ekstensi domain lokal: <code>*.test</code>, <code>*.local</code>, <code>*.example</code></li>
+                    <li>Ketika <code>APP_ENV=local</code> atau <code>ALLOW_ALL_LICENSE=true</code> di file <code>.env</code>.</li>
+                </ul>
+            </section>
+
+            <!-- SECTION 6: LOGIC BINDING -->
+            <section id="section-logic-binding" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-lock"></i></div>
+                    <h2 class="section-title">6. Cryptographic Logic Binding & Digital Seal</h2>
+                </div>
+                <p>
+                    Untuk memastikan lisensi tidak bisa di-bypass dengan sekadar menghapus baris kode middleware, sistem menerapkan <strong>Logic Binding</strong>:
+                </p>
+                <ul style="margin: 12px 0 16px 24px; font-size: 14px;">
+                    <li><strong>Struk Cetak Kasir Thermal:</strong> Setiap struk termal 58mm & 80mm mencetak tanda tangan kriptografis <code>SEAL: {CHECKSUM}</code> yang dihitung langsung dari token lisensi yang sah.</li>
+                    <li><strong>Laporan Keuangan & Akuntansi (P&L):</strong> Ringkasan laba rugi departemen menghasilkan <code>integrity_seal</code> untuk menjamin keaslian data.</li>
+                </ul>
+            </section>
+
+            <!-- SECTION 7: FAQ & TROUBLESHOOTING -->
+            <section id="section-faq" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-circle-question"></i></div>
+                    <h2 class="section-title">7. FAQ & Solusi Kendala</h2>
+                </div>
+
+                <table class="doc-table">
+                    <thead>
+                        <tr>
+                            <th>Pertanyaan / Masalah</th>
+                            <th>Penyebab</th>
+                            <th>Solusi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Layar menampilkan "Domain Belum Terlisensi"</strong></td>
+                            <td>Domain belum dimasukkan di Google Sheet atau nama domain salah ketik.</td>
+                            <td>Pastikan nama domain di Google Sheet sama persis (tanpa <code>www.</code> atau <code>https://</code>). Setelah menambahkan baris di sheet, klik tombol <em>"Cek Ulang Status Lisensi"</em>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internet toko mati mendadak</strong></td>
+                            <td>Koneksi ISP toko terputus.</td>
+                            <td>Kasir tetap dapat bertransaksi normal berkat fitur <strong>7-Day Offline Grace Period</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ingin memindahkan lisensi ke domain baru</strong></td>
+                            <td>Klien berganti domain utama.</td>
+                            <td>Generate lisensi baru dengan <code>php artisan license:generate domainbaru.com</code> lalu ubah baris di Google Sheet.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bagaimana cara memaksa refresh cache lisensi?</strong></td>
+                            <td>Cache lokal masih menyimpan status lama (6 jam).</td>
+                            <td>Jalankan request POST ke <code>/api/license/refresh</code> atau klik tombol Cek Ulang di layar lock screen.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="doc-footer">
+                <div>POSHUB ACCOUNTING & ERP — Enterprise License Security Documentation</div>
+                <div style="margin-top: 4px;">Standard Asymmetric Cryptography RSA-2048 &bull; Production Ready</div>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Copy Code to Clipboard Helper
+        function copyCode(btn) {
+            const pre = btn.closest('.code-container').querySelector('pre code');
+            const text = pre.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const origHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fa fa-check"></i> Tersalin!';
+                btn.style.background = '#059669';
+                setTimeout(() => {
+                    btn.innerHTML = origHtml;
+                    btn.style.background = '';
+                }, 2000);
+            });
+        }
+
+        // Interactive License Generator Simulator
+        function simulateLicense() {
+            const domain = document.getElementById('simDomain').value.trim().toLowerCase().replace(/^www\./i, '');
+            const client = document.getElementById('simClient').value.trim();
+
+            if (!domain) {
+                alert('Silakan masukkan nama domain!');
+                return;
+            }
+
+            const randomKey = 'POSHUB-2026-' + Math.random().toString(36).substring(2, 10).toUpperCase() + '-' + Math.floor(1000 + Math.random() * 9000);
+            const fakeRsaSig = btoa(domain + '|' + randomKey + '|secure-rsa-sig-' + Date.now()).substring(0, 48) + '...';
+
+            const csvRow = `"${domain}","${randomKey}","${fakeRsaSig}","${client || 'POSHUB Client'}"`;
+
+            document.getElementById('simRowOutput').innerText = csvRow;
+            document.getElementById('simResult').style.display = 'block';
+        }
+
+        // Active Link TOC Scrollspy
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.doc-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

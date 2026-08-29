@@ -100,21 +100,26 @@ class PosReceiptPrintController extends Controller
         $change = max(0, $cashPaid - $finalTotal);
         $dueAmount = max(0, $finalTotal - $cashPaid);
 
+        // Digital Cryptographic Verification Seal
+        $licenseService = app(\App\Services\License\LicenseService::class);
+        $receiptChecksum = $licenseService->generateTransactionChecksum($finalTotal, $data->ref_no ?? ('TRX-' . $data->id));
+
         return view('pos.print', [
-            'page'           => 'Struk Transaksi #' . ($data->ref_no ?? $data->id),
-            'data'           => $data,
-            'store'          => $store,
-            'settings'       => $settings,
-            'paperWidth'     => $paperWidth,
-            'barcodeSvg'     => $barcodeSvg,
-            'earnedPoints'   => $earnedPoints,
-            'customerPoints' => $customerPoints,
-            'loyaltyTier'    => $loyaltyTier,
-            'logoUrl'        => $logoUrl,
-            'cashPaid'       => $cashPaid,
-            'change'         => $change,
-            'dueAmount'      => $dueAmount,
-            'autoPrint'      => $request->query('autoprint', 1) == 1
+            'page'            => 'Struk Transaksi #' . ($data->ref_no ?? $data->id),
+            'data'            => $data,
+            'store'           => $store,
+            'settings'        => $settings,
+            'paperWidth'      => $paperWidth,
+            'barcodeSvg'      => $barcodeSvg,
+            'earnedPoints'    => $earnedPoints,
+            'customerPoints'  => $customerPoints,
+            'loyaltyTier'     => $loyaltyTier,
+            'logoUrl'         => $logoUrl,
+            'cashPaid'        => $cashPaid,
+            'change'          => $change,
+            'dueAmount'       => $dueAmount,
+            'receiptChecksum' => $receiptChecksum,
+            'autoPrint'       => $request->query('autoprint', 1) == 1
         ]);
     }
 

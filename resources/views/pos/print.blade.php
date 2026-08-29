@@ -449,6 +449,12 @@
             </div>
             @endif
 
+            @if(!empty($receiptChecksum))
+            <div style="font-size: 7.5px; color: #64748b; margin-top: 3px; font-family: monospace; letter-spacing: 0.5px;">
+                SEAL: {{ strtoupper($receiptChecksum) }}
+            </div>
+            @endif
+
             <p class="brand-watermark">Powered by <strong>POSHUB ACCOUNTING</strong></p>
         </div>
 
