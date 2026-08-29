@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Kitchen Display System (KDS) - POSHUB ACCOUNTING</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/poshub-modern-ui.css') }}">
@@ -14,7 +14,11 @@
             background: #0b0f19;
             color: #f1f5f9;
             min-height: 100vh;
+            min-height: -webkit-fill-available;
+            padding: clamp(10px, 2vw, 20px);
+            overflow-x: hidden;
         }
+
         .kds-card {
             background: #1e293b;
             border: 2px solid #334155;
@@ -39,40 +43,57 @@
             70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
             100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
+
+        .station-tabs-wrap {
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
         .station-tab.active {
             background: #2563eb !important;
             color: #ffffff !important;
         }
+
+        .kds-btn-action {
+            min-height: 48px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
     </style>
 </head>
-<body class="p-3">
-    <div class="container-fluid">
+<body>
+    <div class="container-fluid p-0">
         <!-- KDS Top Navigation -->
-        <header class="d-flex justify-content-between align-items-center mb-4 p-3 bg-dark rounded-4 border border-secondary">
+        <header class="d-flex flex-wrap justify-content-between align-items-center mb-3 p-3 bg-dark rounded-4 border border-secondary gap-2">
             <div class="d-flex align-items-center gap-3">
-                <div class="bg-danger text-white p-2 rounded-3">
-                    <i class="fa fa-fire fa-2x"></i>
+                <div class="bg-danger text-white p-2 rounded-3 shadow-sm d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                    <i class="fa fa-fire fa-lg"></i>
                 </div>
                 <div>
-                    <h3 class="mb-0 fw-bold text-white tracking-wide">KITCHEN DISPLAY SYSTEM</h3>
-                    <span class="text-white-50 small">Layar Pesanan Dapur & Bar Real-Time</span>
+                    <h4 class="mb-0 fw-bold text-white tracking-wide">KITCHEN DISPLAY (KDS)</h4>
+                    <span class="text-white-50 small">Pesanan Dapur & Bar Real-Time</span>
                 </div>
             </div>
 
             <!-- Station Switcher Tabs -->
-            <div class="btn-group p-1 bg-black rounded-pill border border-secondary">
-                <button class="btn btn-sm text-white-50 rounded-pill px-4 fw-bold station-tab active" onclick="switchStation(this, 'all')">Semua Station</button>
-                <button class="btn btn-sm text-white-50 rounded-pill px-4 fw-bold station-tab" onclick="switchStation(this, 'kitchen')">Dapur (Kitchen)</button>
-                <button class="btn btn-sm text-white-50 rounded-pill px-4 fw-bold station-tab" onclick="switchStation(this, 'bar')">Bar / Minuman</button>
+            <div class="station-tabs-wrap p-1 bg-black rounded-pill border border-secondary">
+                <button class="btn btn-sm text-white-50 rounded-pill px-3 px-md-4 fw-bold station-tab active" onclick="switchStation(this, 'all')">Semua Station</button>
+                <button class="btn btn-sm text-white-50 rounded-pill px-3 px-md-4 fw-bold station-tab" onclick="switchStation(this, 'kitchen')">Dapur (Kitchen)</button>
+                <button class="btn btn-sm text-white-50 rounded-pill px-3 px-md-4 fw-bold station-tab" onclick="switchStation(this, 'bar')">Bar / Minuman</button>
             </div>
 
-            <div class="d-flex align-items-center gap-3">
+            <div class="d-flex align-items-center gap-2">
                 <span id="activeTicketCount" class="badge bg-primary fs-6 px-3 py-2 rounded-pill">0 Tiket Aktif</span>
-                <span id="kdsClock" class="fw-bold text-white-50 fs-5">--:--:--</span>
+                <span id="kdsClock" class="fw-bold text-white-50 fs-5 d-none d-sm-inline">--:--:--</span>
             </div>
         </header>
 
-        <!-- KDS Order Cards Grid -->
+        <!-- KDS Order Cards Grid (Adaptive 1-4 Columns) -->
         <div id="ticketsGrid" class="row g-3">
             <div class="col-12 text-center py-5">
                 <i class="fa fa-spinner fa-spin fa-3x text-primary mb-3"></i>
@@ -85,7 +106,8 @@
         let currentStation = 'all';
 
         function updateClock() {
-            document.getElementById('kdsClock').textContent = new Date().toLocaleTimeString('id-ID');
+            const el = document.getElementById('kdsClock');
+            if (el) el.textContent = new Date().toLocaleTimeString('id-ID');
         }
         setInterval(updateClock, 1000);
         updateClock();
@@ -131,11 +153,11 @@
 
                 let actionBtn = '';
                 if (t.status === 'pending') {
-                    actionBtn = `<button onclick="updateTicketStatus(${t.id}, 'cooking')" class="btn btn-primary w-100 fw-bold py-2"><i class="fa fa-utensils me-2"></i>Mulai Masak</button>`;
+                    actionBtn = `<button onclick="updateTicketStatus(${t.id}, 'cooking')" class="btn btn-primary w-100 kds-btn-action"><i class="fa fa-utensils"></i>Mulai Masak</button>`;
                 } else if (t.status === 'cooking') {
-                    actionBtn = `<button onclick="updateTicketStatus(${t.id}, 'ready')" class="btn btn-success w-100 fw-bold py-2"><i class="fa fa-check me-2"></i>Selesai (Ready)</button>`;
+                    actionBtn = `<button onclick="updateTicketStatus(${t.id}, 'ready')" class="btn btn-success w-100 kds-btn-action"><i class="fa fa-check"></i>Selesai (Ready)</button>`;
                 } else if (t.status === 'ready') {
-                    actionBtn = `<button onclick="updateTicketStatus(${t.id}, 'served')" class="btn btn-secondary w-100 fw-bold py-2"><i class="fa fa-concierge-bell me-2"></i>Sajikan (Served)</button>`;
+                    actionBtn = `<button onclick="updateTicketStatus(${t.id}, 'served')" class="btn btn-secondary w-100 kds-btn-action"><i class="fa fa-concierge-bell"></i>Sajikan (Served)</button>`;
                 }
 
                 const itemsHtml = (t.items || []).map(item => `
@@ -146,7 +168,7 @@
                 `).join('');
 
                 return `
-                    <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
                         <div class="kds-card ${statusClass} p-3 h-100 d-flex flex-column justify-content-between">
                             <div>
                                 <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom border-secondary">

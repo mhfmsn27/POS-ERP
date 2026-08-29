@@ -1,0 +1,68 @@
+{
+  "name": "POSHUB ACCOUNTING & ERP",
+  "short_name": "POSHUB",
+  "description": "Platform Enterprise ERP & Omnichannel Point of Sale Indonesia",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0f172a",
+  "theme_color": "#1e40af",
+  "categories": ["business", "finance", "productivity", "shopping"],
+  "icons": [
+    {
+      "src": "/assets/images/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/installer/img/favicon/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/images/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "POS Kasir",
+      "short_name": "Kasir",
+      "description": "Buka Layar Kasir Point of Sale",
+      "url": "/pos?source=pwa_shortcut",
+      "icons": [{ "src": "/assets/images/icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Customer Display",
+      "short_name": "Display",
+      "description": "Layar Pelanggan Kasir",
+      "url": "/pos/customer-display?source=pwa_shortcut",
+      "icons": [{ "src": "/assets/images/icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Kitchen Display",
+      "short_name": "Dapur (KDS)",
+      "description": "Layar Pesanan Dapur",
+      "url": "/pos/kitchen-display?source=pwa_shortcut",
+      "icons": [{ "src": "/assets/images/icon.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Toko Online",
+      "short_name": "Storefront",
+      "description": "Katalog Toko Online Pelanggan",
+      "url": "/ecommerce?source=pwa_shortcut",
+      "icons": [{ "src": "/assets/images/icon.png", "sizes": "192x192" }]
+    }
+  ]
+}

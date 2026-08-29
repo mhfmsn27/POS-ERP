@@ -13,12 +13,17 @@
     <link rel="stylesheet" type="text/css" href="{{asset('emobile/css/nouislider.min.css')}}" />
     <link rel="stylesheet" href="{{asset('emobile/css/swiper-bundle.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('emobile/css/styles.css')}}" />
-    <!-- <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js"> -->
+    <meta name="theme-color" content="#1e40af">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/manifest.json">
     <!-- Favicon and Touch Icons  -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/fontawesome/all.min.css') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/icon.png') }}" />
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/icon.png') }}" />
     <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/images/icon.png') }}" />
     <link rel="stylesheet" href="{{asset('assets/vendors/toastr/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/poshub-modern-ui.css') }}">
 
     @yield('styles')
     <title>{{$page}}</title>
@@ -120,6 +125,7 @@
     <script src="{{ asset('assets/vendors/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/toastr/evolution.js') }}"></script>
     <script src="{{ asset('assets/vendors/sweetalert/evolution.js')}}"></script>
+    <script src="{{ asset('js/pwa-manager.js') }}"></script>
 
     @yield('scripts')
     <script>

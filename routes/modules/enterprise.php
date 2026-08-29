@@ -163,4 +163,37 @@ Route::prefix('enterprise')->group(function () {
     // 38. Executive C-Level BI Analytics & WhatsApp Morning Briefing
     Route::get('executive/briefing/snapshot', [\App\Http\Controllers\Api\Enterprise\FrontierEnterpriseController::class, 'getExecutiveSnapshot']);
     Route::post('executive/briefing/send-whatsapp', [\App\Http\Controllers\Api\Enterprise\FrontierEnterpriseController::class, 'sendExecutiveBriefing']);
+
+    // =========================================================================
+    // TIER-1 STRATEGIC ENTERPRISE ERP MODULES (ACCURATE, HASHMICRO, ZAHIR & KLEDO)
+    // =========================================================================
+
+    // 39. Modul Pajak & Kepatuhan e-Faktur DJP (CSV Export, NSFP & Withholding Tax)
+    Route::post('tax/efaktur-csv', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'exportEfakturCsv']);
+    Route::post('tax/allocate-nsfp', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'allocateNsfp']);
+    Route::post('tax/calculate-withholding', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'calculateTaxWithholding']);
+
+    // 40. Executive Financial Health, 8 Rasio Finansial & AR/AP Aging Schedule
+    Route::get('analytics/financial-health', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'getFinancialHealth']);
+    Route::get('analytics/aging-schedule', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'getAgingSchedule']);
+    Route::get('analytics/cashflow-forecast', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'getCashFlowForecast']);
+
+    // 41. Cost Center, Departemen & Akuntansi Proyek (Project P&L & Recurring Amortization)
+    Route::get('accounting/project-pnl', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'getProjectPnl']);
+    Route::post('accounting/amortization/create', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'createAmortization']);
+
+    // 42. Multi-Satuan Berjenjang (Multi-Tier UoM) & Manufaktur Absorption HPP
+    Route::post('inventory/uom/convert', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'convertUom']);
+    Route::get('inventory/uom/tiered-prices', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'getTieredUomPrices']);
+    Route::post('manufacturing/absorption-costing', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'calculateManufacturingCost']);
+
+    // 43. Rekonsiliasi Bank Otomatis & Kas Kecil (Petty Cash Imprest/Fluctuating)
+    Route::post('cashbank/bank-statement/parse', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'parseBankStatement']);
+    Route::post('cashbank/bank-statement/auto-match', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'autoMatchBank']);
+    Route::post('cashbank/petty-cash/record', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'recordPettyCash']);
+
+    // 44. Portal B2B Mandiri Pelanggan & Vendor (Plafon Kredit & PO Confirmation)
+    Route::get('b2b/customer/{id}/profile', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'getB2bCustomerPortal']);
+    Route::get('b2b/vendor/{id}/orders', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'getVendorPortal']);
+    Route::post('b2b/vendor/{id}/dispatch-confirm', [\App\Http\Controllers\Api\Enterprise\TierOneEnterpriseErpController::class, 'confirmVendorDispatch']);
 });

@@ -3,10 +3,16 @@
 
 <head>
       <x-ecommerce-meta-component></x-ecommerce-meta-component>
+      <meta name="theme-color" content="#1e40af">
+      <meta name="mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <link rel="manifest" href="/manifest.json">
       <link rel="shortcut icon" href="{{ asset('assets/images/icon.png') }}" type="image/x-icon"> 
+      <link rel="apple-touch-icon" href="{{ asset('assets/images/icon.png') }}">
       <link rel="stylesheet" href="{{asset('ecommerce/css/plugins/animate.min.css')}}" />
       <link rel="stylesheet" href="{{asset('ecommerce/css/main.css')}}?v=5.5" />
       <link rel="stylesheet" href="{{ asset('assets/vendors/toastr/toastr.min.css') }}"> 
+      <link rel="stylesheet" href="{{ asset('css/poshub-modern-ui.css') }}">
       @yield('styles')
 </head> 
 <body> 
@@ -57,6 +63,7 @@
       <script src="{{ asset('assets/vendors/sweetalert/sweetalert2.all.min.js')}}"></script>
     <script src="{{ asset('assets/vendors/sweetalert/evolution.js')}}"></script>
       <script src="{{asset('ecommerce/js/custom.js')}}"></script>
+      <script src="{{ asset('js/pwa-manager.js') }}"></script>
 
       @yield('scripts')
 </body>

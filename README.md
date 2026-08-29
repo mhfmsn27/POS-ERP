@@ -199,6 +199,31 @@ graph TD
 
 ---
 
+### 11. 🏛️ Tier-1 Enterprise ERP Core (*Accurate, HashMicro, Zahir & Kledo Standard*)
+* **💼 Modul Pajak & Kepatuhan e-Faktur DJP**:
+  * Generator ekspor data Faktur Pajak Keluaran (FK) & Masukan (FM) format CSV resmi DJP 3.0 / 3.2.
+  * Manajemen alokasi otomatis Nomor Seri Faktur Pajak (NSFP) dari DJP.
+  * Kalkulator & pembukuan otomatis PPh 21, PPh 23 (2%), dan PPh Final 0.5% (UMKM PP 55/2022).
+* **📊 Analitik Keuangan Eksekutif & Prediksi Arus Kas (AI Cash Flow Forecast)**:
+  * Dashboard *Financial Health Score* dengan **8 Rasio Finansial** (*Current Ratio, Quick Ratio, Gross Margin, Net Margin, ROE, ROA, Debt-to-Equity*).
+  * Laporan Umur Piutang & Hutang (**AR/AP Aging Schedule 0-30, 31-60, 61-90, >90 Hari**) dengan 1-klik tagih WhatsApp CRMHUB.
+  * Proyeksi Arus Kas Cerdas 30-90 Hari ke depan (*Cash Flow Forecast*).
+* **🏢 Cost Center, Departemen & Akuntansi Proyek**:
+  * Laporan Laba Rugi terisolasi per Project / Divisi / Cost Center.
+  * Otomasi Jurnal Berulang & Amortisasi Beban Dibayar di Muka (*Prepaid Rent / Insurance*).
+* **📦 Multi-Satuan Berjenjang (Multi-Tier UoM) & HPP Manufaktur**:
+  * Struktur konversi satuan bertingkat (`1 Dus = 12 Pak = 144 Pcs`) dengan auto-deduct pada unit dasar master produk.
+  * Kalkulasi HPP Manufaktur lengkap: Bahan Baku (BOM) + Tenaga Kerja Langsung (DL) + Biaya Overhead Pabrik (FOH).
+* **🏦 Rekonsiliasi Bank Otomatis & Kas Kecil (Petty Cash)**:
+  * Parser mutasi rekening koran format CSV untuk bank BCA, Mandiri, BNI, BRI, Permata, CIMB.
+  * Algoritma *Auto-Match* cerdas mencocokkan mutasi bank dengan transaksi internal.
+  * Pengelolaan Kas Kecil dengan sistem Dana Tetap (*Imprest*) atau Dana Berubah (*Fluctuating*).
+* **🌐 Portal B2B Mandiri Pelanggan & Supplier (Vendor)**:
+  * Portal Pelanggan B2B: Cek sisa limit plafon kredit, unduh invoice/faktur pajak PDF, dan bayar online.
+  * Portal Supplier: Akses PO yang disetujui, konfirmasi kesiapan kirim (*e-POD*), dan unggah tagihan vendor.
+
+---
+
 ## 🐳 Instalasi Instan Menggunakan Docker
 
 POSHUB ACCOUNTING telah dilengkapi dengan konfigurasi **Docker & Docker Compose** multi-container siap pakai:
@@ -316,6 +341,51 @@ Tersedia dua panduan komprehensif untuk mempublikasikan POSHUB ke server produks
 
 ---
 
+---
+
+## 📱 Ekosistem PWA, Android & iOS Native Mobile Apps
+
+POSHUB ACCOUNTING telah dilengkapi dengan arsitektur **Progressive Web App (PWA) + CapacitorJS Native Mobile** yang siap dipublikasikan ke **Google Play Store (Android)** dan **Apple App Store (iOS)**:
+
+```
++==================================================================================================+
+|                        ARSITEKTUR MULTI-PLATFORM POSHUB ENTERPRISE                               |
++---+----------------------------+-----------------------------------------------------------------+
+| # | Platform                   | Kemampuan & Fitur Utama                                         |
++---+----------------------------+-----------------------------------------------------------------+
+| 1 | 🌟 PWA (Web App Standalone)| • 0 Instalasi Toko Aplikasi (Bisa langsung 'Add to Home Screen')|
+|   |                            | • Service Worker Cache-First (Buka instan < 1 detik)            |
+|   |                            | • Background Auto-Sync saat koneksi internet offline pulih      |
++---+----------------------------+-----------------------------------------------------------------+
+| 2 | 🖨️ Direct Bluetooth Print | • Web Bluetooth API (SPP/GATT ESC/POS) langsung ke printer mini |
+|   |                            | • Cetak struk kasir 58mm & 80mm instan tanpa pop-up dialog print|
++---+----------------------------+-----------------------------------------------------------------+
+| 3 | 📷 Camera Barcode Scanner  | • BarcodeDetector API (EAN-13, Code 128, QR Code) kamera HP     |
++---+----------------------------+-----------------------------------------------------------------+
+| 4 | 🤖 Sunmi & iMin POS Driver | • Native JS Bridge untuk mesin kasir Android berprinter built-in|
++---+----------------------------+-----------------------------------------------------------------+
+| 5 | 📦 Capacitor Native Apps   | • Android: Rilis Google Play Store (.aab) & Sideload (.apk)     |
+|   |                            | • iOS: Rilis Apple App Store (.ipa) & Beta TestFlight           |
++---+----------------------------+-----------------------------------------------------------------+
+```
+
+### 🔨 Cara Build Android APK / iOS IPA (Capacitor)
+```bash
+# 1. Pasang dependensi Capacitor CLI
+npm install @capacitor/core @capacitor/cli @capacitor/android @capacitor/ios
+
+# 2. Sinkronkan asset web ke platform native
+npx cap sync
+
+# 3. Buka Android Studio untuk Build APK/AAB
+npx cap open android
+
+# 4. Buka Xcode (macOS) untuk Build iOS IPA
+npx cap open ios
+```
+
+---
+
 ## 🛠️ Perintah Berguna Pengembang (Cheat-Sheet CLI)
 
 ```bash
@@ -339,3 +409,4 @@ php artisan schedule:run
 
 Hak Cipta © 2026 **POSHUB ENTERPRISE**. Semua Hak Dilindungi Undang-Undang.
 Dilisensikan untuk penggunaan mandiri internal perusahaan (*Standalone Enterprise Edition*).
+

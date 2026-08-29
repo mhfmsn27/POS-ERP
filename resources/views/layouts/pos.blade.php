@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#1e40af">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/manifest.json">
     <title>{{ $page }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
@@ -12,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pos.css') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/icon.png') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/icon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/fontawesome/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/select3/dist/css/select2.min.css') }}" />
@@ -97,6 +103,8 @@
     <script src="{{ asset('js/lang.js') }}"></script>
     <script src="{{ asset('js/connection.js') }}"></script>
     <script src="{{ asset('js/pos-hotkeys.js') }}"></script>
+    <script src="{{ asset('js/pwa-manager.js') }}"></script>
+    <script src="{{ asset('js/hardware-bridge.js') }}"></script>
     @yield('scripts')
 </body>
 

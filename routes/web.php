@@ -63,6 +63,8 @@ if ($installed == false) {
             return view('pos.kitchen_display');
         })->name("pos.kitchen_display");
 
+        Route::get('/print/{id}', [\App\Http\Controllers\Pos\PosReceiptPrintController::class, 'printThermal'])->name('pos.print');
+
         Route::get('/{vue?}', function () {
             return view('pos', ["page" => "POSHUB - POS"]);
         })->where('vue', '^(?!setup|update|password).*$')->name("pos.module");

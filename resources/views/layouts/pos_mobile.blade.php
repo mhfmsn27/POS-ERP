@@ -3,8 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="theme-color" content="#1e40af">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="{{ asset('assets/images/icon.png') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/icon.png') }}">
     <title>{{$page}}</title>
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/vendors/slick/slick.min.css')}}" />
@@ -80,6 +86,9 @@
     <script src="{{ asset('js/lang.js') }}"></script>
     <script src="{{ asset('js/connection.js') }}"></script>
     <script src="{{ asset('assets/vendors/select3/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('js/pos-hotkeys.js') }}"></script>
+    <script src="{{ asset('js/pwa-manager.js') }}"></script>
+    <script src="{{ asset('js/hardware-bridge.js') }}"></script>
     @yield('scripts')
 
 

@@ -58,6 +58,7 @@ Route::middleware(['auth', 'verified', 'is_merchant'])->group(function () {
         Route::get('pembayaran-pembelian/{transaction}', [PurchasePaymentController::class, 'print']);
         Route::get('penerimaan/{transaction}', [PurchaseController::class, 'penerimaanprint']);
         Route::match(['get', 'post'], 'barcode-print', [\App\Http\Controllers\Api\Inventory\BarcodeController::class, 'printView'])->name('product.barcode.print');
+        Route::get('struk-pos/{transaction}', [\App\Http\Controllers\Pos\PosReceiptPrintController::class, 'printThermal'])->name('pos.receipt.print');
     });
 
     Route::get('backup-database', [\App\Http\Controllers\Api\System\DatabaseBackupController::class, 'viewIndex'])->name('settings.backup');
