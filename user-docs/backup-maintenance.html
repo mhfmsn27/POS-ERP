@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Backup & Optimizer - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="api.html" class="header-btn header-btn-primary">REST API Docs <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-database"></i> 7. Mobile, Keamanan & Referensi</div>
+        <h1>Pencadangan Otomatis (Auto Backup) & Pemeliharaan Sistem</h1>
+        <p class="lead">
+          Sistem pencadangan basis data otomatis terjadwal (*Scheduled Database Dump*), kompresi arsip ZIP, pengiriman cadangan ke cloud storage (Google Drive / S3 / Wasabi), serta pembersihan cache dan log sistem untuk performa server maksimal.
+        </p>
+
+        <h2 id="backup-manual"><i class="fa-solid fa-cloud-arrow-up" style="color: var(--primary);"></i> Pencadangan Database Manual via CLI</h2>
+        <p>Jalankan perintah ini di terminal server VPS Anda:</p>
+        <div class="code-container">
+          <div class="code-header"><span>Bash Command (VPS Terminal)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>cd /var/www/poshub
+php artisan backup:run --only-db</code></pre>
+        </div>
+
+        <h2 id="system-optimizer"><i class="fa-solid fa-gauge-high" style="color: var(--primary);"></i> Pembersihan Cache & Optimasi Kecepatan (Optimizer)</h2>
+        <p>Jalankan perintah pembersihan dan kompilasi cache jika melakukan perubahan konfigurasi:</p>
+        <div class="code-container">
+          <div class="code-header"><span>Bash Command (Optimize Production)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code># 1. Bersihkan Seluruh Cache Lama
+php artisan optimize:clear
+
+# 2. Kompilasi Cache Produksi Super Cepat
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="security-license.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Lisensi RSA-2048 & Anti-Bypass</div>
+          </a>
+          <a href="api.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Developer & REST API <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#backup-manual" class="toc-link">Pencadangan Database</a>
+        <a href="#system-optimizer" class="toc-link">Optimasi Kecepatan</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('backup-maintenance.html');
+  </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup VPS Multi-Tenant - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="pos.html" class="header-btn header-btn-primary">Kasir POS <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-server"></i> 1. Memulai & Fondasi</div>
+        <h1>Setup VPS Multi-Tenant (Domainesia & Rumahweb)</h1>
+        <p class="lead">
+          Panduan langkah demi langkah memasang <strong>POSHUB ACCOUNTING</strong> pada VPS Linux yang sudah aktif menjalankan aplikasi CRM. Seluruh komponen (folder aplikasi, database, virtual host Nginx, worker, dan sertifikat SSL) dibuat <strong>100% terisolasi mandiri</strong> tanpa mengganggu layanan CRM yang sedang berjalan.
+        </p>
+
+        <h2 id="topologi"><i class="fa-solid fa-sitemap" style="color: var(--primary);"></i> 1. Arsitektur Isolasi 1 VPS Bersama</h2>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Komponen Sistem</th>
+              <th>CRM Eksisting (Tetap Aktif)</th>
+              <th>POSHUB Baru (Terisolasi)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Domain / Host</strong></td>
+              <td>2 Domain CRM yang sudah ada</td>
+              <td><code>poshub.internatechtion.my.id</code></td>
+            </tr>
+            <tr>
+              <td><strong>Direktori Project</strong></td>
+              <td><code>/var/www/crmhub</code> (atau lokasi lama)</td>
+              <td><code>/var/www/poshub</code> (Folder Khusus)</td>
+            </tr>
+            <tr>
+              <td><strong>Database MySQL</strong></td>
+              <td><code>crm_database</code> (TIDAK TERSENTUH)</td>
+              <td><code>poshub_accounting</code> (Database Baru)</td>
+            </tr>
+            <tr>
+              <td><strong>Nginx Virtual Host</strong></td>
+              <td>Vhost lama CRM</td>
+              <td><code>sites-available/poshub.internatechtion.my.id</code></td>
+            </tr>
+            <tr>
+              <td><strong>SSL Certificate</strong></td>
+              <td>Certbot SSL lama</td>
+              <td>Let's Encrypt SSL Baru</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="dns"><i class="fa-solid fa-globe" style="color: var(--primary);"></i> 2. Setup DNS Record di Rumahweb</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Login ke ClientZone Rumahweb</div>
+            <div class="step-body">Buka <code>clientzone.rumahweb.com</code> &rarr; Masuk ke menu <strong>Domains</strong> &rarr; Pilih domain <code>internatechtion.my.id</code> &rarr; Klik <strong>DNS Management</strong> (Zone Editor).</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Tambahkan A-Record Subdomain 'poshub'</div>
+            <div class="step-body">
+              Buat A-Record baru dengan Nama: <code>poshub</code>, Target IP: <code>IP_VPS_DOMAINESIA</code>, TTL: <code>14400</code>.
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Uji Propagasi DNS</div>
+            <div class="step-body">
+              Jalankan perintah ping di terminal: <code>ping poshub.internatechtion.my.id</code>. Pastikan merespons ke IP VPS Anda.
+            </div>
+          </div>
+        </div>
+
+        <h2 id="database"><i class="fa-solid fa-database" style="color: var(--primary);"></i> 3. Pembuatan Database MySQL Terpisah</h2>
+        <p>Login ke SSH VPS Domainesia Anda dan buat database khusus POSHUB:</p>
+        <div class="code-container">
+          <div class="code-header"><span>SQL Commands (MySQL Console)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>CREATE DATABASE poshub_accounting CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'poshub_user'@'localhost' IDENTIFIED BY 'PasswordKuatPoshub2026!';
+GRANT ALL PRIVILEGES ON poshub_accounting.* TO 'poshub_user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;</code></pre>
+        </div>
+
+        <h2 id="folder-permission"><i class="fa-solid fa-folder-tree" style="color: var(--primary);"></i> 4. Upload & Izin Akses Folder</h2>
+        <p>Buat direktori dan atur perizinan hak akses web server:</p>
+        <div class="code-container">
+          <div class="code-header"><span>Bash Command (VPS SSH)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>sudo mkdir -p /var/www/poshub
+# Upload source code POSHUB ke /var/www/poshub via SFTP/Git
+
+cd /var/www/poshub
+composer install --no-dev --optimize-autoloader
+sudo chown -R www-data:www-data /var/www/poshub
+sudo chmod -R 755 /var/www/poshub
+sudo chmod -R 775 /var/www/poshub/storage /var/www/poshub/bootstrap/cache</code></pre>
+        </div>
+
+        <h2 id="env-config"><i class="fa-solid fa-sliders" style="color: var(--primary);"></i> 5. Konfigurasi .env Produksi</h2>
+        <div class="code-container">
+          <div class="code-header"><span>/var/www/poshub/.env</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>APP_NAME="POSHUB ACCOUNTING"
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://poshub.internatechtion.my.id
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=poshub_accounting
+DB_USERNAME=poshub_user
+DB_PASSWORD=PasswordKuatPoshub2026!
+
+LICENSE_SHEET_ID=1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
+ALLOW_ALL_LICENSE=false
+LICENSE_CACHE_TTL=21600
+LICENSE_OFFLINE_GRACE_PERIOD=604800</code></pre>
+        </div>
+
+        <p>Jalankan inisialisasi aplikasi:</p>
+        <div class="code-container">
+          <div class="code-header"><span>Terminal</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>php artisan storage:link
+php artisan migrate --seed --force
+php artisan config:cache && php artisan route:cache && php artisan view:cache</code></pre>
+        </div>
+
+        <h2 id="nginx-vhost"><i class="fa-solid fa-network-wired" style="color: var(--primary);"></i> 6. Nginx Server Block & SSL HTTPS</h2>
+        <div class="code-container">
+          <div class="code-header"><span>/etc/nginx/sites-available/poshub.internatechtion.my.id</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>server {
+    listen 80;
+    server_name poshub.internatechtion.my.id;
+    root /var/www/poshub/public;
+
+    index index.php index.html;
+    charset utf-8;
+    client_max_body_size 64M;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}</code></pre>
+        </div>
+
+        <p>Aktifkan vhost dan pasang SSL Let's Encrypt gratis:</p>
+        <div class="code-container">
+          <div class="code-header"><span>Terminal</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>sudo ln -s /etc/nginx/sites-available/poshub.internatechtion.my.id /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+sudo certbot --nginx -d poshub.internatechtion.my.id</code></pre>
+        </div>
+
+        <h2 id="license-entry"><i class="fa-solid fa-key" style="color: var(--primary);"></i> 7. Baris Lisensi Resmi Google Sheet</h2>
+        <p>Salin baris lisensi RSA-2048 resmi ini ke baris baru Google Sheet lisensi Anda:</p>
+        <div class="code-container">
+          <div class="code-header"><span>Google Sheet CSV Row (poshub.internatechtion.my.id)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>"poshub.internatechtion.my.id","POSHUB-2026-D7C470A6-7788","rA1HsVeIyy8xJj3xw2E8u3+EBfrCTgZYk/oGeXu/VyoVAyE2LD8ozw/US4FhCo+VRGypxESw0Rgodo69TxudkocrGk107PgIa1bbKGC6rr8S9W3EfKY4RO28j+Dc3bcyZV+gRT6/CFTFJGhn2w+Japfzhi52iBcqO2lksZxqTaJFkPy3mMMHq4PpGY+0K67QFsRPd/9rMLby+Ho4u41GwKMb0Q7tPUkl5AmqpnwvQjMO8QenAMGqsXYK47WsoEYWFd358W75WqTOB5ViokDQJfdhk9cAzwXWxFpbdlfaJS7ouYOJmhZGuDQDaHer7eFg3dgJoKNPGjIycOGHTgI3dw==","POSHUB Production Server"</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="overview.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Gambaran Ekosistem v3.5</div>
+          </a>
+          <a href="pos.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Panel Kasir POS Modern <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#topologi" class="toc-link">Topologi 1 VPS</a>
+        <a href="#dns" class="toc-link">Setup DNS Rumahweb</a>
+        <a href="#database" class="toc-link">Database Terpisah</a>
+        <a href="#folder-permission" class="toc-link">Folder & Izin Akses</a>
+        <a href="#env-config" class="toc-link">Konfigurasi .env</a>
+        <a href="#nginx-vhost" class="toc-link">Nginx & SSL HTTPS</a>
+        <a href="#license-entry" class="toc-link">Baris Lisensi Resmi</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('setup-vps.html');
+  </script>
+</body>
+</html>

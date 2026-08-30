@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Penawaran & Komisi Sales - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="purchases.html" class="header-btn header-btn-primary">Pembelian PO <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-file-signature"></i> 3. Penjualan, Stok & Rantai Pasok</div>
+        <h1>Surat Penawaran Harga (Quotation), Invoice & Komisi Sales</h1>
+        <p class="lead">
+          Alur penjualan formal B2B dari pembuatan Surat Penawaran Harga (*Sales Quotation*), persetujuan penawaran menjadi Sales Order (SO), penerbitan faktur invoice tempo, hingga kalkulasi persentase komisi tenaga penjual (*Salesperson Commission*) secara otomatis.
+        </p>
+
+        <h2 id="alur-quotation"><i class="fa-solid fa-timeline" style="color: var(--primary);"></i> Alur Penjualan B2B (Quotation to Invoice)</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Buat Surat Penawaran Harga (Quotation)</div>
+            <div class="step-body">Masuk ke menu <strong>Penjualan &rarr; Penawaran Harga (Offer)</strong> &rarr; Pilih Pelanggan B2B &rarr; Masukkan produk, harga penawaran khusus, dan masa berlaku penawaran (misal: 14 hari) &rarr; Unduh PDF resmi atau kirim via WhatsApp.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Konversi Penawaran Menjadi Sales Order / Invoice</div>
+            <div class="step-body">Saat pelanggan menyetujui penawaran, klik tombol <strong>Convert to Invoice</strong>. Seluruh rincian produk otomatis disalin ke faktur penjualan tanpa perlu input ulang.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Pengiriman Barang & Pelunasan Piutang</div>
+            <div class="step-body">Gudang menerbitkan Surat Jalan (*Delivery Order*) &rarr; Pelanggan melakukan pembayaran transfer bank saat jatuh tempo &rarr; Jurnal piutang lunas otomatis.</div>
+          </div>
+        </div>
+
+        <h2 id="komisi-sales"><i class="fa-solid fa-percent" style="color: var(--primary);"></i> Perhitungan Komisi Sales Otomatis</h2>
+        <p>
+          POSHUB menyediakan modul komisi sales untuk memotivasi tim lapangan:
+        </p>
+        <ul style="font-size: 13.5px; line-height: 1.8;">
+          <li><strong>Berdasarkan Nilai Penjualan (Gross Sales):</strong> Komisi dihitung dari total omset invoice (misal: 2% dari total penjualan).</li>
+          <li><strong>Berdasarkan Margin Laba Kotor (Profit Margin):</strong> Komisi dihitung dari selisih harga jual dikurangi HPP modal produk (misal: 10% dari laba kotor).</li>
+          <li><strong>Laporan Komisi Per Salesman:</strong> Rekapitulasi komisi bulanan siap cetak untuk lampiran slip gaji bulanan.</li>
+        </ul>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="products.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Produk, Varian & Multi-UOM</div>
+          </a>
+          <a href="purchases.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Pembelian & Multi-Gudang <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#alur-quotation" class="toc-link">Alur Penawaran B2B</a>
+        <a href="#komisi-sales" class="toc-link">Kalkulasi Komisi Sales</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('quotations-sales.html');
+  </script>
+</body>
+</html>

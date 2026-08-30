@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lisensi RSA-2048 & Anti-Bypass - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="backup-maintenance.html" class="header-btn header-btn-primary">Backup & Optimize <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-shield-halved"></i> 7. Mobile, Keamanan & Referensi</div>
+        <h1>Sistem Lisensi 1-Domain Kriptografis (RSA-2048)</h1>
+        <p class="lead">
+          Arsitektur proteksi lisensi untuk model bisnis <strong>Jual Lepas (Open Codebase)</strong>. Source code PHP/Laravel tetap 99% bersih dan bebas dikustomisasi oleh pembeli, namun aplikasi terkunci kuat secara matematis pada satu domain resmi dan tidak dapat di-bypass oleh AI ataupun cracking tools.
+        </p>
+
+        <h2 id="cara-kerja-rsa"><i class="fa-solid fa-key" style="color: var(--primary);"></i> Prinsip Kriptografi Kunci Asimetris (RSA-2048)</h2>
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-lock"></i></div>
+            <div class="card-title">1. Private Key (Hanya Author)</div>
+            <div class="card-desc">Tersimpan aman di komputer author. Digunakan untuk menandatangani (*Digital Signature*) nama domain dan kunci lisensi.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-unlock"></i></div>
+            <div class="card-title">2. Public Key (Di Aplikasi)</div>
+            <div class="card-desc">Tertanam pada file <code>config/license.php</code>. HANYA bisa membaca dan memverifikasi tanda tangan digital.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-link"></i></div>
+            <div class="card-title">3. Cryptographic Logic Binding</div>
+            <div class="card-desc">Kunci lisensi mengikat token kalkulasi struk kasir dan laporan laba rugi. Jika middleware dimatikan paksa, kalkulasi transaksi otomatis rusak.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <div class="card-title">4. Localhost Whitelist (100% Free)</div>
+            <div class="card-desc">Bebas uji coba di <code>localhost</code>, <code>127.0.0.1</code>, dan <code>*.test</code> tanpa batasan.</div>
+          </div>
+        </div>
+
+        <h2 id="cli-keygen"><i class="fa-solid fa-terminal" style="color: var(--primary);"></i> Cara Menerbitkan Lisensi Klien Baru (Artisan CLI)</h2>
+        <p>Jalankan perintah ini di komputer author untuk menghasilkan baris lisensi baru:</p>
+        <div class="code-container">
+          <div class="code-header"><span>Terminal Command (Author Only)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>php artisan license:generate domainklien.com --client="Nama Klien PT ABC"</code></pre>
+        </div>
+
+        <p>Salin hasil output CSV ke baris baru Google Spreadsheet lisensi pusat Anda.</p>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="roles-permissions.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Role, Hak Akses & Multi-Store</div>
+          </a>
+          <a href="backup-maintenance.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Auto Backup & Optimizer <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#cara-kerja-rsa" class="toc-link">Kriptografi RSA-2048</a>
+        <a href="#cli-keygen" class="toc-link">Cara Menerbitkan Lisensi</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('security-license.html');
+  </script>
+</body>
+</html>

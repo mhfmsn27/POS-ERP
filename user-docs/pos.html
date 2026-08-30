@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Kasir POS Modern - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="customer-display.html" class="header-btn header-btn-primary">Customer Display <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-cash-register"></i> 2. Kasir POS & Smart Hardware</div>
+        <h1>Panel Kasir POS Modern</h1>
+        <p class="lead">
+          Antarmuka kasir Single Page Application (SPA) berbasis Vue.js berkecepatan tinggi, didesain untuk transaksi cepat, dukungan multi-pembayaran, split bill, hold/recall transaksi, dan integrasi barcode scanner.
+        </p>
+
+        <h2 id="fitur-pos"><i class="fa-solid fa-sparkles" style="color: var(--primary);"></i> Fitur Unggulan Panel Kasir</h2>
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-barcode"></i></div>
+            <div class="card-title">Barcode Scanning Instan</div>
+            <div class="card-desc">Dukungan scanner USB, Bluetooth, dan pemindaian kamera native GPU dengan Web BarcodeDetector API.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+            <div class="card-title">Multi-Payment & Split Bill</div>
+            <div class="card-desc">Kombinasi pembayaran Tunai, QRIS Dinamis, Kartu Debit/Kredit, Transfer Bank, dan Poin Loyalitas.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-pause"></i></div>
+            <div class="card-title">Hold & Recall Transaksi</div>
+            <div class="card-desc">Simpan sementara antrian transaksi pelanggan yang sedang tertunda dan panggil kembali tanpa mengulang input.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-tags"></i></div>
+            <div class="card-title">Diskon & Multi-Tier UOM</div>
+            <div class="card-desc">Pilihan satuan grosir/eceran (Pcs/Lusin/Karton) dan penerapan diskon bertingkat / voucher instan.</div>
+          </div>
+        </div>
+
+        <h2 id="shortcuts"><i class="fa-solid fa-keyboard" style="color: var(--primary);"></i> Keyboard Shortcuts Kasir</h2>
+        <p>Kasir dapat menyelesaikan transaksi tanpa menyentuh mouse dengan kombinasi tombol keyboard:</p>
+
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Shortcut Keyboard</th>
+              <th>Aksi / Fungsi</th>
+              <th>Keterangan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>F2</code></td>
+              <td>Fokus ke Pencarian / Barcode</td>
+              <td>Kursor langsung aktif di kolom input barcode produk</td>
+            </tr>
+            <tr>
+              <td><code>F4</code></td>
+              <td>Bayar Cepat (Tunai Pas)</td>
+              <td>Langsung menyelesaikan transaksi dengan nominal uang pas</td>
+            </tr>
+            <tr>
+              <td><code>F8</code></td>
+              <td>Buka Modal Pembayaran Lengkap</td>
+              <td>Pilihan multi-metode (Debit, QRIS, Transfer, Cicilan)</td>
+            </tr>
+            <tr>
+              <td><code>F9</code></td>
+              <td>Hold / Tahan Transaksi</td>
+              <td>Menyimpan keranjang belanja ke daftar antrian hold</td>
+            </tr>
+            <tr>
+              <td><code>F10</code></td>
+              <td>Recall / Buka Transaksi Hold</td>
+              <td>Membuka modal daftar transaksi yang ditahan</td>
+            </tr>
+            <tr>
+              <td><code>Esc</code></td>
+              <td>Batal / Tutup Modal</td>
+              <td>Menutup popup aktif atau membatalkan keranjang</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="split-bill"><i class="fa-solid fa-scissors" style="color: var(--primary);"></i> Cara Melakukan Split Bill & Multi-Payment</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Pilih Menu Pembayaran (F8)</div>
+            <div class="step-body">Klik tombol <strong>Bayar</strong> atau tekan tombol <code>F8</code> pada keyboard.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Pilih Metode Pertama & Masukkan Nominal</div>
+            <div class="step-body">Pilih misalnya <strong>Tunai</strong> dan masukkan Rp 100.000 &rarr; Klik <strong>+ Tambah Baris Pembayaran</strong>.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Pilih Metode Kedua (QRIS / Kartu Debit)</div>
+            <div class="step-body">Pilih <strong>QRIS</strong> untuk sisa tagihan Rp 50.000 &rarr; Sistem akan otomatis mengunci total dan mencetak struk dengan rincian pembayaran ganda.</div>
+          </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="setup-vps.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Setup VPS Multi-Tenant</div>
+          </a>
+          <a href="customer-display.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Customer Facing Display <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#fitur-pos" class="toc-link">Fitur Unggulan POS</a>
+        <a href="#shortcuts" class="toc-link">Keyboard Shortcuts</a>
+        <a href="#split-bill" class="toc-link">Split Bill & Payment</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('pos.html');
+  </script>
+</body>
+</html>

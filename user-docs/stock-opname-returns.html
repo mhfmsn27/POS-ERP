@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Opname, Koreksi & Retur - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="stock-alerts.html" class="header-btn header-btn-primary">Peringatan Stok <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-clipboard-check"></i> 3. Penjualan, Stok & Rantai Pasok</div>
+        <h1>Stock Opname, Penyesuaian Stok & Retur Barang</h1>
+        <p class="lead">
+          Prosedur audit fisik persediaan (*Physical Stock Count*), penyesuaian selisih stok (*Stock Adjustment*), penanganan retur penjualan dari pelanggan (*Sales Return*), serta retur barang cacat/rusak ke supplier (*Purchase Return*).
+        </p>
+
+        <h2 id="stock-opname"><i class="fa-solid fa-boxes-packing" style="color: var(--primary);"></i> Alur Pelaksanaan Stock Opname</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Buat Sesi Stock Opname Baru</div>
+            <div class="step-body">Masuk ke menu <strong>Inventori &rarr; Stock Opname</strong> &rarr; Pilih Gudang / Toko yang akan diaudit &rarr; Sistem mengunci snapshot kuantitas sistem.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Hitung Fisik Menggunakan Barcode Scanner</div>
+            <div class="step-body">Staf gudang memindai setiap item di rak. Sistem menghitung selisih kuantitas: <strong>Fisik - Sistem = Selisih (+/-)</strong>.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Posting Penyesuaian & Jurnal Selisih Otomatis</div>
+            <div class="step-body">Setelah disetujui Manajer Gudang, klik <strong>Posting Adjustment</strong> &rarr; Stok sistem disesuaikan menjadi angka fisik riil &rarr; Akuntansi otomatis mencatat jurnal <em>(D/K) Beban/Pendapatan Selisih Persediaan</em>.</div>
+          </div>
+        </div>
+
+        <h2 id="retur-jual-beli"><i class="fa-solid fa-rotate-left" style="color: var(--primary);"></i> Manajemen Retur Penjualan & Pembelian</h2>
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-user-xmark"></i></div>
+            <div class="card-title">Retur Penjualan (Sales Return)</div>
+            <div class="card-desc">Pelanggan mengembalikan barang rusak/salah ukuran. Sistem dapat mengembalikan uang tunai (*Refund*) atau menerbitkan *Credit Note / Store Credit* untuk belanja berikutnya.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="card-title">Retur Pembelian (Purchase Return)</div>
+            <div class="card-desc">Barang dari supplier cacat saat unboxing. Sistem memotong hutang dagang supplier atau menerima penggantian unit barang baru (*Replacement*).</div>
+          </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="purchases.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Pembelian & Multi-Gudang</div>
+          </a>
+          <a href="stock-alerts.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Peringatan Stok & Auto-PO <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#stock-opname" class="toc-link">Alur Stock Opname</a>
+        <a href="#retur-jual-beli" class="toc-link">Retur Jual & Beli</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('stock-opname-returns.html');
+  </script>
+</body>
+</html>

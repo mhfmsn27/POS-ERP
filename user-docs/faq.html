@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ & Pemecahan Masalah - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="changelog.html" class="header-btn header-btn-primary">Changelog v3.5 <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-circle-question"></i> 7. Mobile, Keamanan & Referensi</div>
+        <h1>Tanya Jawab Sering Ditanyakan (FAQ) & Solusi Kendala</h1>
+        <p class="lead">
+          Daftar pertanyaan yang sering diajukan seputar operasional kasir, sinkronisasi stok, pembukuan akuntansi, sistem lisensi domain, dan panduan pemecahan masalah (*Troubleshooting*).
+        </p>
+
+        <h2 id="faq-pos"><i class="fa-solid fa-cash-register" style="color: var(--primary);"></i> Operasional Kasir & Hardware</h2>
+        <div class="faq-item">
+          <div class="faq-q"><span>Bagaimana jika printer Bluetooth tidak terdeteksi saat menekan tombol cetak?</span> <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="faq-a">Pastikan Bluetooth di komputer/tablet sudah dalam posisi aktif (ON) dan printer thermal dalam keadaan menyala. Di browser Chrome/Edge, klik ikon gembok di sebelah URL &rarr; pastikan izin <strong>Bluetooth</strong> diatur ke <em>Allow (Izinkan)</em>.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span>Apakah kasir tetap bisa bertransaksi jika koneksi internet toko terputus?</span> <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="faq-a">Ya, teknologi PWA 2.0 POSHUB secara otomatis menyimpan transaksi di IndexedDB lokal browser. Begitu koneksi internet pulih, sistem akan melakukan sinkronisasi otomatis ke server pusat tanpa ada data yang hilang.</div>
+        </div>
+
+        <h2 id="faq-license"><i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i> Sistem Lisensi 1-Domain</h2>
+        <div class="faq-item">
+          <div class="faq-q"><span>Mengapa muncul layar 'Akses Lisensi Domain Terkunci'?</span> <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="faq-a">Layar lock screen muncul jika domain yang sedang digunakan belum terdaftar di Google Spreadsheet lisensi pusat atau signature RSA-2048 tidak cocok. Hubungi author untuk mendaftarkan domain baru Anda via perintah <code>php artisan license:generate</code>.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><span>Apakah saya bisa mengembangkan aplikasi di localhost tanpa internet?</span> <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="faq-a">Ya 100%! Domain <code>localhost</code>, <code>127.0.0.1</code>, dan domain lokal <code>*.test</code> di-whitelist secara otomatis dan bebas dari pemeriksaan lisensi.</div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="api.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Developer & REST API</div>
+          </a>
+          <a href="changelog.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Catatan Rilis (Changelog v3.5) <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#faq-pos" class="toc-link">Kasir & Hardware</a>
+        <a href="#faq-license" class="toc-link">Sistem Lisensi</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('faq.html');
+  </script>
+</body>
+</html>

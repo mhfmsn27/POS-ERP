@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA 2.0 & Native Mobile App - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="roles-permissions.html" class="header-btn header-btn-primary">Role & Akses <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-mobile-screen-button"></i> 7. Mobile, Keamanan & Referensi</div>
+        <h1>PWA 2.0 & Native Mobile App (Android / iOS)</h1>
+        <p class="lead">
+          Arsitektur Progressive Web App (PWA) generasi 2.0 dengan Service Worker canggih untuk sinkronisasi transaksi saat internet terputus (*Offline Background Sync*), serta wrapper native <strong>Capacitor</strong> untuk kompilasi menjadi file instalasi APK Android dan IPA iOS.
+        </p>
+
+        <h2 id="fitur-pwa"><i class="fa-solid fa-wifi" style="color: var(--primary);"></i> Arsitektur Offline POS PWA 2.0</h2>
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+            <div class="card-title">IndexedDB Transaction Queue</div>
+            <div class="card-desc">Jika jaringan internet kasir tiba-tiba putus, transaksi kasir tetap dapat diproses dan disimpan di database lokal browser (*IndexedDB*).</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-rotate"></i></div>
+            <div class="card-title">Background Auto-Sync</div>
+            <div class="card-desc">Saat koneksi internet kembali online, Service Worker secara otomatis mengirim antrian transaksi ke server pusat tanpa intervensi kasir.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-brands fa-android"></i></div>
+            <div class="card-title">Install to Homescreen</div>
+            <div class="card-desc">Aplikasi dapat diinstal langsung ke layar utama Android/iOS/Windows Desktop seperti aplikasi native tanpa melalui Play Store.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-bell"></i></div>
+            <div class="card-title">Web Push Notifications</div>
+            <div class="card-desc">Pemberitahuan push instan untuk pesanan baru e-commerce, persetujuan PO, dan peringatan stok minimum.</div>
+          </div>
+        </div>
+
+        <h2 id="build-apk"><i class="fa-brands fa-google-play" style="color: var(--primary);"></i> Kompilasi APK Android via Capacitor</h2>
+        <p>Langkah membungkus PWA menjadi file APK Android mandiri:</p>
+        <div class="code-container">
+          <div class="code-header"><span>Terminal (Capacitor Build)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code># 1. Inisialisasi Capacitor
+npx cap init "POSHUB Enterprise" "com.poshub.app"
+
+# 2. Tambahkan Platform Android
+npx cap add android
+
+# 3. Sinkronisasi Aset Web
+npx cap sync
+
+# 4. Buka di Android Studio & Generate Signed APK / AAB
+npx cap open android</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="payment-expedition.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Midtrans QRIS & RajaOngkir</div>
+          </a>
+          <a href="roles-permissions.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Role, Hak Akses & Multi-Store <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#fitur-pwa" class="toc-link">Offline PWA 2.0</a>
+        <a href="#build-apk" class="toc-link">Kompilasi APK Android</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('mobile-pwa.html');
+  </script>
+</body>
+</html>

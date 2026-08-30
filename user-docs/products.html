@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produk, Varian & Multi-UOM - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="purchases.html" class="header-btn header-btn-primary">Pembelian & Stok <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-boxes-stacked"></i> 3. Stok & Rantai Pasok</div>
+        <h1>Manajemen Produk, Varian & Multi-Tier UOM</h1>
+        <p class="lead">
+          Katalog produk komprehensif mendukung varian multi-dimensi (Ukuran/Warna/Rasa), konversi satuan bertingkat (*Multi-Tier Unit of Measurement*), penentuan harga grosir/eceran, dan generator label barcode SVG Code-128.
+        </p>
+
+        <h2 id="multi-uom"><i class="fa-solid fa-layer-group" style="color: var(--primary);"></i> Konversi Satuan Bertingkat (Multi-Tier UOM)</h2>
+        <p>
+          Fitur Multi-UOM memungkinkan Anda membeli barang dalam satuan besar (misal: <strong>Karton</strong> atau <strong>Dus</strong>) dari supplier, namun dapat dijual di kasir secara grosir per <strong>Lusin/Pak</strong> atau eceran per <strong>Pcs/Biji</strong>:
+        </p>
+
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-box"></i></div>
+            <div class="card-title">Level 1: Karton / Dus</div>
+            <div class="card-desc">1 Karton = 12 Lusin = 144 Pcs. Digunakan untuk Purchase Order (PO) ke Pabrik/Supplier.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-boxes-packing"></i></div>
+            <div class="card-title">Level 2: Lusin / Pak</div>
+            <div class="card-desc">1 Lusin = 12 Pcs. Digunakan untuk penjualan ke Pelanggan Grosir / Reseller.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
+            <div class="card-title">Level 3: Pcs / Eceran</div>
+            <div class="card-desc">Satuan dasar terkecil (*Base Unit*) untuk penjualan eceran di kasir toko fisik.</div>
+          </div>
+        </div>
+
+        <h2 id="barcode-generator"><i class="fa-solid fa-barcode" style="color: var(--primary);"></i> Generator Barcode Code-128 SVG</h2>
+        <p>
+          POSHUB dilengkapi dengan generator barcode vektor SVG murni tanpa dependensi eksternal. Anda dapat mencetak lembar label barcode stiker untuk ditempel pada rak atau kemasan produk:
+        </p>
+
+        <div class="code-container">
+          <div class="code-header"><span>Contoh URL Cetak Barcode</span></div>
+          <pre><code>https://poshub.internatechtion.my.id/app/barcode/print?products=[{"id":101,"qty":24},{"id":102,"qty":12}]</code></pre>
+        </div>
+
+        <h2 id="kategori-varian"><i class="fa-solid fa-sliders" style="color: var(--primary);"></i> Varian Produk Multi-Dimensi</h2>
+        <p>Satu produk induk (*Parent Product*) dapat memiliki banyak kombinasi variasi:</p>
+        <ul style="font-size: 13.5px; line-height: 1.8;">
+          <li><strong>Dimensi 1 (Warna):</strong> Merah, Biru, Hitam, Putih</li>
+          <li><strong>Dimensi 2 (Ukuran):</strong> S, M, L, XL, XXL</li>
+          <li>Setiap varian memiliki SKU unik, barcode unik, harga beli/HPP, dan pencatatan stok fisik tersendiri.</li>
+        </ul>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="shift-management.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Shift Kasir & Z-Report WA</div>
+          </a>
+          <a href="purchases.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Pembelian & Multi-Gudang <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#multi-uom" class="toc-link">Multi-Tier UOM</a>
+        <a href="#barcode-generator" class="toc-link">Barcode Generator</a>
+        <a href="#kategori-varian" class="toc-link">Varian Multi-Dimensi</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('products.html');
+  </script>
+</body>
+</html>

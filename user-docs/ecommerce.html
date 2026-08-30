@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko Online B2C Terintegrasi - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="payment-expedition.html" class="header-btn header-btn-primary">Payment & Ekspedisi <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-store"></i> 6. E-Commerce Omnichannel</div>
+        <h1>Toko Online B2C Terintegrasi (Omnichannel Storefront)</h1>
+        <p class="lead">
+          Storefront toko online modern bawaan sistem yang terhubung langsung ke database stok kasir (*Single Source of Truth*). Setiap produk yang dibuat di POS dapat langsung dipublikasikan ke toko online dengan 1 klik tanpa perlu integrasi plugin pihak ketiga yang rumit.
+        </p>
+
+        <h2 id="fitur-ecommerce"><i class="fa-solid fa-bag-shopping" style="color: var(--primary);"></i> Fitur Toko Online Terpadu</h2>
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-arrows-rotate"></i></div>
+            <div class="card-title">Sinkronisasi Stok Instan</div>
+            <div class="card-desc">Jika produk terjual di kasir toko fisik, stok di website toko online langsung berkurang detik itu juga untuk mencegah *overselling*.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="card-title">Flash Sale & Banner Promo</div>
+            <div class="card-desc">Pengaturan hitung mundur diskon kilat (*Countdown Timer*) dan slider banner promosi dinamis.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-cart-arrow-down"></i></div>
+            <div class="card-title">One-Page Checkout</div>
+            <div class="card-desc">Proses checkout belanja cepat: pilih kurir, input alamat, hitung ongkir otomatis, dan bayar QRIS/VA dalam 1 layar.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
+            <div class="card-title">Tombol WhatsApp Checkout</div>
+            <div class="card-desc">Pelanggan dapat mengirimkan rincian keranjang belanja langsung ke nomor WhatsApp customer service toko.</div>
+          </div>
+        </div>
+
+        <h2 id="akses-ecommerce"><i class="fa-solid fa-globe" style="color: var(--primary);"></i> Akses Storefront Pelanggan</h2>
+        <p>Halaman toko online dapat langsung diakses pada root URL publik:</p>
+        <div class="code-container">
+          <div class="code-header"><span>URL Storefront E-Commerce</span></div>
+          <pre><code>https://poshub.internatechtion.my.id/</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="rma-service.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> RMA & Servis Garansi</div>
+          </a>
+          <a href="payment-expedition.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Midtrans QRIS & RajaOngkir <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#fitur-ecommerce" class="toc-link">Fitur Toko Online</a>
+        <a href="#akses-ecommerce" class="toc-link">Akses Storefront</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('ecommerce.html');
+  </script>
+</body>
+</html>

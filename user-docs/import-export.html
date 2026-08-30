@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Import/Export Massal Excel - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="backup-maintenance.html" class="header-btn header-btn-primary">Backup & Optimize <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-file-excel"></i> 7. Mobile, Keamanan & Referensi</div>
+        <h1>Import & Export Massal Data (Excel / CSV)</h1>
+        <p class="lead">
+          Panduan migrasi data massal (*Bulk Data Import/Export*) dari sistem lama ke POSHUB. Mendukung template Excel siap pakai untuk ribuan produk, varian, pelanggan, supplier, saldo awal akun akuntansi, dan rekapitulasi SPT Masa Pajak.
+        </p>
+
+        <h2 id="langkah-import"><i class="fa-solid fa-file-import" style="color: var(--primary);"></i> 3 Langkah Mudah Import Data Excel</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Unduh File Template Resmi (.xlsx)</div>
+            <div class="step-body">Masuk ke menu modul yang dituju (misal: <strong>Produk &rarr; Import Excel</strong>) &rarr; Klik <strong>Download Template Format</strong>.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Isi Data Sesuai Kolom Panduan</div>
+            <div class="step-body">Salin data produk atau pelanggan Anda ke dalam template. Pastikan kolom wajib seperti Kode SKU, Nama Produk, dan Harga Jual terisi dengan benar.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Unggah File & Validasi Instan</div>
+            <div class="step-body">Upload file Excel &rarr; Sistem memvalidasi data dalam hitungan detik (*Chunk Import 500 baris/detik*) &rarr; Seluruh produk langsung aktif di sistem.</div>
+          </div>
+        </div>
+
+        <h2 id="modul-dukungan"><i class="fa-solid fa-table-list" style="color: var(--primary);"></i> Modul yang Mendukung Import / Export Massal</h2>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Nama Modul</th>
+              <th>Format File</th>
+              <th>Cakupan Data yang Diimpor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Katalog Produk & Varian</strong></td>
+              <td><code>.xlsx / .csv</code></td>
+              <td>Nama, Barcode, Kategori, Merek, Harga Beli/Jual, Satuan UOM, dan Stok Awal.</td>
+            </tr>
+            <tr>
+              <td><strong>Pelanggan & Supplier</strong></td>
+              <td><code>.xlsx / .csv</code></td>
+              <td>Nama Kontak, No WhatsApp, Email, Alamat, NPWP, Plafon Kredit B2B.</td>
+            </tr>
+            <tr>
+              <td><strong>Bagan Akun & Saldo Awal (COA)</strong></td>
+              <td><code>.xlsx</code></td>
+              <td>Nomor Akun, Nama Akun, Klasifikasi Akun, dan Saldo Awal Debit/Kredit.</td>
+            </tr>
+            <tr>
+              <td><strong>Faktur Pajak SPT DJP</strong></td>
+              <td><code>.xml / .csv</code></td>
+              <td>Faktur Pajak Masukan & Keluaran kompatibel dengan aplikasi resmi DJP.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="security-license.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Lisensi RSA-2048 & Anti-Bypass</div>
+          </a>
+          <a href="backup-maintenance.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Auto Backup & Optimizer <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#langkah-import" class="toc-link">Langkah Import Excel</a>
+        <a href="#modul-dukungan" class="toc-link">Modul Dukungan Import</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('import-export.html');
+  </script>
+</body>
+</html>

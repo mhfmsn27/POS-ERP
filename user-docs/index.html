@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengantar & Arsitektur - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="overview.html" class="header-btn header-btn-primary">Mulai Ekosistem <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-flag"></i> 1. Memulai & Fondasi</div>
+        <h1>Pengantar & Arsitektur Sistem</h1>
+        <p class="lead">
+          Selamat datang di dokumentasi resmi <strong>POSHUB ACCOUNTING & ERP Enterprise Edition (v3.5)</strong>. Platform terpadu Point of Sale (POS), Akuntansi Standar PSAK, Manajemen Rantai Pasok, E-Commerce Terintegrasi, dan Sistem Lisensi Kriptografis 1-Domain.
+        </p>
+
+        <h2 id="arsitektur"><i class="fa-solid fa-layer-group" style="color: var(--primary);"></i> Arsitektur Teknologi</h2>
+        <p>
+          POSHUB dibangun di atas arsitektur monolitik modern berkinerja tinggi (*High Performance Hybrid Architecture*) dengan pemisahan concern yang terstruktur rapi:
+        </p>
+
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-brands fa-laravel"></i></div>
+            <div class="card-title">Backend Engine</div>
+            <div class="card-desc">Laravel Framework PHP 8.x dengan Eloquent ORM, Service Layer Pattern, dan Repository Pattern.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-brands fa-vuejs"></i></div>
+            <div class="card-title">Frontend POS & SPA</div>
+            <div class="card-desc">Vue.js interaktif berkecepatan tinggi dengan state management terpusat untuk kelancaran transaksi kasir.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <div class="card-title">PWA & Hardware Native</div>
+            <div class="card-desc">Service Worker Offline Sync, Capacitor Native Mobile Bridge, dan Web Bluetooth ESC/POS Direct Print.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="card-title">Keamanan Lisensi RSA</div>
+            <div class="card-desc">Asymmetric Cryptography RSA-2048 dengan Cryptographic Logic Binding pada kalkulasi transaksi.</div>
+          </div>
+        </div>
+
+        <h2 id="modul-utama"><i class="fa-solid fa-cubes" style="color: var(--primary);"></i> 7 Pilar Utama Sistem</h2>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Pilar Sistem</th>
+              <th>Cakupan Fitur</th>
+              <th>Target Pengguna</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Kasir POS & Hardware</strong></td>
+              <td>Kasir Vue.js, Customer Display Dual-Screen, Kitchen Display KDS, Struk Bluetooth Thermal 58/80mm, Z-Report WA.</td>
+              <td>Kasir, Barista, Pramuniaga, Kitchen Staff</td>
+            </tr>
+            <tr>
+              <td><strong>2. Stok & Rantai Pasok</strong></td>
+              <td>Multi-Warehouse, Multi-Tier UOM (Pcs/Lusin/Dus), Reorder Point ROP, Auto-Generate Purchase Order (PO).</td>
+              <td>Staff Gudang, Purchasing Manager</td>
+            </tr>
+            <tr>
+              <td><strong>3. Akuntansi Standar PSAK</strong></td>
+              <td>Bagan Akun (COA), Jurnal Umum, Cost Center, Rekonsiliasi Bank Otomatis, e-Faktur DJP XML, Altman Z-Score AI.</td>
+              <td>Akuntan, Finance Manager, Auditor</td>
+            </tr>
+            <tr>
+              <td><strong>4. CRM, Loyalitas & B2B</strong></td>
+              <td>VIP Member Tiers, Kartu Loyalitas Digital, Portal B2B Grosir & Vendor (Plafon Kredit & TOP), RMA Servis Garansi.</td>
+              <td>Sales, CRM Officer, Teknisi Servis</td>
+            </tr>
+            <tr>
+              <td><strong>5. E-Commerce Omnichannel</strong></td>
+              <td>Storefront B2C Terintegrasi, Sinkronisasi Stok Real-Time, Midtrans Payment Gateway, RajaOngkir Expedition.</td>
+              <td>Pelanggan Online, Admin E-Commerce</td>
+            </tr>
+            <tr>
+              <td><strong>6. Mobile PWA & Android/iOS</strong></td>
+              <td>Progressive Web App, Background Offline Sync, Native Capacitor Android APK / iOS IPA.</td>
+              <td>Manager Lapangan, Eksekutif Bisnis</td>
+            </tr>
+            <tr>
+              <td><strong>7. Lisensi 1-Domain Anti-Bypass</strong></td>
+              <td>Kunci Asimetris RSA-2048, Verifikasi Google Sheets CSV, Logic Binding Checksum Transaksi Kasir.</td>
+              <td>Author / Pemilik Software (Jual Lepas)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="quick-start"><i class="fa-solid fa-bolt" style="color: var(--primary);"></i> Panduan Memulai Cepat (Localhost)</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Kloning & Konfigurasi File .env</div>
+            <div class="step-body">
+              Salin file <code>.env.example</code> menjadi <code>.env</code> dan sesuaikan kredensial database lokal:
+              <div class="code-container">
+                <div class="code-header"><span>Terminal</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+                <pre><code>cp .env.example .env
+php artisan key:generate</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Jalankan Migrasi Database & Seeder Master</div>
+            <div class="step-body">
+              Inisialisasi seluruh tabel dan data awal sistem:
+              <div class="code-container">
+                <div class="code-header"><span>Terminal</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+                <pre><code>php artisan migrate --seed</code></pre>
+              </div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Jalankan Server Lokal</div>
+            <div class="step-body">
+              Jalankan server PHP bawaan Laravel:
+              <div class="code-container">
+                <div class="code-header"><span>Terminal</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+                <pre><code>php artisan serve</code></pre>
+              </div>
+              Buka di browser Anda: <code>http://127.0.0.1:8000</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="alert-box alert-info">
+          <i class="fa-solid fa-circle-info"></i>
+          <div>
+            <strong>Kredensial Default:</strong><br>
+            Email: <code>admin@poshub.id</code> &bull; Password: <code>123456</code> (Ubah segera setelah login pertama kali pada lingkungan produksi).
+          </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <div></div>
+          <a href="overview.html" class="page-btn text-end" style="margin-left: auto;">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Gambaran Ekosistem v3.5 <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#arsitektur" class="toc-link">Arsitektur Teknologi</a>
+        <a href="#modul-utama" class="toc-link">7 Pilar Utama Sistem</a>
+        <a href="#quick-start" class="toc-link">Memulai Cepat</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('index.html');
+  </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peringatan Stok & Auto-PO - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="general-ledger.html" class="header-btn header-btn-primary">Akuntansi & COA <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-bell"></i> 3. Stok & Rantai Pasok</div>
+        <h1>Peringatan Stok Minimum & Auto-Generate PO</h1>
+        <p class="lead">
+          Fitur otomatisasi rantai pasok cerdas yang memantau sisa kuantitas barang secara real-time. Ketika persediaan menipis di bawah titik aman (*Reorder Point*), sistem memberikan sinyal peringatan dan dapat membuat draf Purchase Order (PO) secara otomatis ke supplier utama.
+        </p>
+
+        <h2 id="rumus-rop"><i class="fa-solid fa-calculator" style="color: var(--primary);"></i> Formula Reorder Point (ROP)</h2>
+        <p>Sistem menghitung titik pemesanan ulang berdasarkan rumus persediaan modern:</p>
+
+        <div class="code-container">
+          <div class="code-header"><span>Formula Reorder Point (ROP)</span></div>
+          <pre><code>ROP = (Rata-rata Penjualan Harian x Lead Time Pengiriman Supplier) + Safety Stock</code></pre>
+        </div>
+
+        <h2 id="auto-po"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--primary);"></i> Pembuatan Otomatis Purchase Order (Auto-PO)</h2>
+        <p>
+          Anda tidak perlu mendata barang habis satu per satu secara manual. Cukup jalankan wizard <strong>Generate Auto-PO</strong>:
+        </p>
+
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Sistem Mendeteksi Produk Kritis (Low Stock)</div>
+            <div class="step-body">Cron job harian (<code>poshub:check-low-stock</code>) mendata semua produk dengan <code>current_stock &lt;= alert_quantity</code>.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Pengelompokan Berdasarkan Supplier Utama</div>
+            <div class="step-body">Sistem secara otomatis mengelompokkan item yang perlu dipesan ulang berdasarkan data kontak supplier preferensi masing-masing produk.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Draf PO Terbit & Siap Dikirim</div>
+            <div class="step-body">Draf PO dengan estimasi kuantitas yang disarankan langsung tersedia di menu Pembelian untuk disetujui (Approve) oleh Manajer Purchasing.</div>
+          </div>
+        </div>
+
+        <h2 id="cron-auto-po"><i class="fa-solid fa-terminal" style="color: var(--primary);"></i> Jadwal Cron Otomatis di Server</h2>
+        <p>Pemeriksaan stok minimum berjalan otomatis setiap pagi pukul 08:00 WIB via scheduler Laravel:</p>
+        <div class="code-container">
+          <div class="code-header"><span>Linux Crontab</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>* * * * * cd /var/www/poshub && php artisan schedule:run >> /dev/null 2>&1</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="purchases.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Pembelian & Multi-Gudang</div>
+          </a>
+          <a href="general-ledger.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">COA, Jurnal & Buku Besar <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#rumus-rop" class="toc-link">Formula ROP</a>
+        <a href="#auto-po" class="toc-link">Pembuatan Auto-PO</a>
+        <a href="#cron-auto-po" class="toc-link">Jadwal Cron Server</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('stock-alerts.html');
+  </script>
+</body>
+</html>

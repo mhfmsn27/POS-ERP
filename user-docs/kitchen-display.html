@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitchen Display System (KDS) - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="hardware-drivers.html" class="header-btn header-btn-primary">Hardware Drivers <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-utensils"></i> 2. Kasir POS & Smart Hardware</div>
+        <h1>Kitchen Display System (KDS) & Bar Ticket</h1>
+        <p class="lead">
+          Sistem tampilan pesanan dapur dan bar tanpa kertas (*Paperless Kitchen Order Ticket*). Pesanan dari kasir otomatis dipisahkan antara pos dapur makanan dan pos bar minuman dengan indikator waktu pembuatan dan peringatan keterlambatan visual.
+        </p>
+
+        <h2 id="alur-kds"><i class="fa-solid fa-fire-burner" style="color: var(--primary);"></i> Alur Kerja Dapur Digital</h2>
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-bell-concierge"></i></div>
+            <div class="card-title">Auto Station Routing</div>
+            <div class="card-desc">Item makanan otomatis diarahkan ke layar KDS Kitchen, sedangkan minuman diarahkan ke layar KDS Bar/Beverage.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-stopwatch"></i></div>
+            <div class="card-title">Color-Coded Time Alerts</div>
+            <div class="card-desc">Kartu tiket berubah warna: Hijau (0–5 mnt), Kuning (5–10 mnt), dan Merah Berkedip (>15 mnt) jika pesanan melewati standar SLA.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="card-title">1-Click Status Update</div>
+            <div class="card-desc">Koki cukup menyentuh kartu untuk mengubah status: <code>Pending &rarr; Cooking &rarr; Ready to Serve &rarr; Completed</code>.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-chair"></i></div>
+            <div class="card-title">Nomor Meja & Catatan Koki</div>
+            <div class="card-desc">Menampilkan nomor meja dan catatan khusus pelanggan (misal: <em>"Pedas level 5, Tanpa Bawang"</em>).</div>
+          </div>
+        </div>
+
+        <h2 id="akses-kds"><i class="fa-solid fa-desktop" style="color: var(--primary);"></i> Cara Mengakses Layar KDS</h2>
+        <p>Buka browser pada tablet atau monitor Smart TV di area dapur dan akses URL:</p>
+        <div class="code-container">
+          <div class="code-header"><span>URL Layar KDS Dapur</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>https://poshub.internatechtion.my.id/pos/kitchen-display</code></pre>
+        </div>
+
+        <h2 id="kds-api"><i class="fa-solid fa-code" style="color: var(--primary);"></i> REST API Status Tiket Dapur</h2>
+        <p>Aplikasi pihak ketiga atau monitor Android dapat mengupdate status tiket via API:</p>
+        <div class="code-container">
+          <div class="code-header"><span>POST /api/kds/tickets/{id}/status</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>// Request Body JSON
+{
+  "status": "ready" // Pilihan: "cooking", "ready", "completed", "cancelled"
+}</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="customer-display.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Customer Display</div>
+          </a>
+          <a href="hardware-drivers.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Hardware Thermal & Barcode <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#alur-kds" class="toc-link">Alur Kerja Dapur</a>
+        <a href="#akses-kds" class="toc-link">Cara Akses KDS</a>
+        <a href="#kds-api" class="toc-link">REST API Tiket</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('kitchen-display.html');
+  </script>
+</body>
+</html>

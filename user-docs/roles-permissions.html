@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Role & Hak Akses - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="security-license.html" class="header-btn header-btn-primary">Lisensi RSA <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-user-shield"></i> 7. Mobile, Keamanan & Referensi</div>
+        <h1>Role, Hak Akses Multi-Level & Multi-Store Branch</h1>
+        <p class="lead">
+          Manajemen otorisasi pengguna berbasis peran (*Role-Based Access Control - Spatie Permission*), pembatasan akses data antar cabang toko (*Multi-Store Data Isolation*), dan audit log aktivitas staf (*Audit Trail*).
+        </p>
+
+        <h2 id="role-default"><i class="fa-solid fa-users-gear" style="color: var(--primary);"></i> 6 Role Standar Sistem</h2>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Nama Role</th>
+              <th>Cakupan Hak Akses</th>
+              <th>Batasan Akses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>👑 Super Admin</strong></td>
+              <td>Akses 100% tanpa batas ke seluruh modul, pengaturan sistem, database, dan lisensi.</td>
+              <td>Tidak ada batasan.</td>
+            </tr>
+            <tr>
+              <td><strong>🏢 Branch Manager</strong></td>
+              <td>Akses penuh ke modul POS, Inventori, Pembelian, dan Laporan cabang yang ditugaskan.</td>
+              <td>Tidak bisa melihat data keuangan cabang lain.</td>
+            </tr>
+            <tr>
+              <td><strong>💼 Accountant / Finance</strong></td>
+              <td>Akses COA, Jurnal Umum, Laporan Keuangan PSAK, Pajak, Rekonsiliasi Bank, dan Kas Kecil.</td>
+              <td>Tidak bisa mengubah setting sistem inti.</td>
+            </tr>
+            <tr>
+              <td><strong>🏪 Kasir (Cashier)</strong></td>
+              <td>Hanya dapat membuka antarmuka POS Kasir, Shift, Scan Barcode, dan Cetak Struk.</td>
+              <td>Tidak bisa melihat laporan laba rugi atau HPP modal beli.</td>
+            </tr>
+            <tr>
+              <td><strong>📦 Warehouse Staff</strong></td>
+              <td>Hanya mengelola Penerimaan Barang (GRN), Stock Opname, dan Stock Transfer.</td>
+              <td>Tidak bisa mengakses transaksi penjualan kasir.</td>
+            </tr>
+            <tr>
+              <td><strong>🛠️ Service Technician</strong></td>
+              <td>Hanya mengelola modul RMA & Servis Garansi dan pemakaian suku cadang spare part.</td>
+              <td>Akses terbatas pada tiket servis saja.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="mobile-pwa.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> PWA 2.0 & Native Mobile App</div>
+          </a>
+          <a href="security-license.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Lisensi RSA-2048 & Anti-Bypass <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#role-default" class="toc-link">6 Role Standar Sistem</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('roles-permissions.html');
+  </script>
+</body>
+</html>

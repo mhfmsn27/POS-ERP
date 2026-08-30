@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COA, Jurnal & Buku Besar - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="cost-centers.html" class="header-btn header-btn-primary">Cost Centers <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-book-journal-whills"></i> 4. Akuntansi & Keuangan Standar PSAK</div>
+        <h1>Bagan Akun (COA), Jurnal Umum & Buku Besar</h1>
+        <p class="lead">
+          Fondasi pembukuan akuntansi standar PSAK/IFRS. Bagan Akun (*Chart of Accounts*) hierarkis multi-level, otomatisasi pencatatan jurnal berpasangan (*Double-Entry Bookkeeping*), serta buku besar (*General Ledger*) komprehensif.
+        </p>
+
+        <h2 id="struktur-coa"><i class="fa-solid fa-sitemap" style="color: var(--primary);"></i> Struktur Bagan Akun (Chart of Accounts)</h2>
+        <p>POSHUB telah dikonfigurasi dengan standar penomoran akun akuntansi Indonesia:</p>
+
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Kepala Akun</th>
+              <th>Klasifikasi Akun</th>
+              <th>Saldo Normal</th>
+              <th>Contoh Akun</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>1-0000</code></td>
+              <td><strong>Aset / Harta (Assets)</strong></td>
+              <td>Debit</td>
+              <td>Kas Utama, Bank BCA, Piutang Usaha, Persediaan Barang Dagang</td>
+            </tr>
+            <tr>
+              <td><code>2-0000</code></td>
+              <td><strong>Kewajiban / Hutang (Liabilities)</strong></td>
+              <td>Kredit</td>
+              <td>Hutang Dagang Supplier, Hutang Gaji, Hutang PPN</td>
+            </tr>
+            <tr>
+              <td><code>3-0000</code></td>
+              <td><strong>Ekuitas / Modal (Equity)</strong></td>
+              <td>Kredit</td>
+              <td>Modal Disetor, Laba Ditahan (Retained Earnings), Prive</td>
+            </tr>
+            <tr>
+              <td><code>4-0000</code></td>
+              <td><strong>Pendapatan (Revenue)</strong></td>
+              <td>Kredit</td>
+              <td>Pendapatan Penjualan Toko, Penjualan E-Commerce, Diskon Diberikan</td>
+            </tr>
+            <tr>
+              <td><code>5-0000</code></td>
+              <td><strong>Harga Pokok Penjualan (HPP / COGS)</strong></td>
+              <td>Debit</td>
+              <td>Beban Pokok Penjualan, Biaya Angkut Pembelian</td>
+            </tr>
+            <tr>
+              <td><code>6-0000</code></td>
+              <td><strong>Beban Operasional (Expenses)</strong></td>
+              <td>Debit</td>
+              <td>Beban Gaji Karyawan, Listrik/Air, Sewa Ruko, Penyusutan</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="auto-journal"><i class="fa-solid fa-arrows-split-up-and-left" style="color: var(--primary);"></i> Penjurnalan Otomatis (Auto-Journal Trigger)</h2>
+        <p>
+          Setiap modul operasional secara otomatis menghasilkan pasangan ayat jurnal seimbang tanpa perlu diinput manual:
+        </p>
+
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <div class="card-title">Penjualan Kasir POS</div>
+            <div class="card-desc"><code>(D) Kas/Bank / Piutang</code> &bull; <code>(K) Pendapatan Penjualan</code> &bull; <code>(D) Beban HPP</code> &bull; <code>(K) Persediaan</code>.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-truck"></i></div>
+            <div class="card-title">Pembelian dari Supplier</div>
+            <div class="card-desc"><code>(D) Persediaan Barang</code> &bull; <code>(K) Kas/Bank atau Hutang Usaha</code>.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+            <div class="card-title">Pembayaran Hutang/Piutang</div>
+            <div class="card-desc"><code>(D) Hutang Dagang</code> &bull; <code>(K) Kas/Bank</code> saat melunasi tagihan supplier.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-file-signature"></i></div>
+            <div class="card-title">Jurnal Manual (Adjustment)</div>
+            <div class="card-desc">Formulir jurnal umum manual untuk penyesuaian penyusutan, amortisasi sewa, dan koreksi saldo.</div>
+          </div>
+        </div>
+
+        <h2 id="buku-besar"><i class="fa-solid fa-book" style="color: var(--primary);"></i> Buku Besar (General Ledger) & Neraca Saldo</h2>
+        <p>
+          Anda dapat memfilter buku besar per akun, rentang tanggal, atau per cabang toko. Seluruh mutasi debit/kredit ditampilkan berurutan lengkap dengan nomor referensi transaksi (*Audit Trail*).
+        </p>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="stock-alerts.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Peringatan Stok & Auto-PO</div>
+          </a>
+          <a href="cost-centers.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Cost Center & P&L Proyek <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#struktur-coa" class="toc-link">Struktur Bagan Akun</a>
+        <a href="#auto-journal" class="toc-link">Penjurnalan Otomatis</a>
+        <a href="#buku-besar" class="toc-link">Buku Besar & Saldo</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('general-ledger.html');
+  </script>
+</body>
+</html>

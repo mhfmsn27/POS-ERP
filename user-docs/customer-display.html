@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Facing Display - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="kitchen-display.html" class="header-btn header-btn-primary">Kitchen Display <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-tv"></i> 2. Kasir POS & Smart Hardware</div>
+        <h1>Customer Facing Display (Dual-Screen)</h1>
+        <p class="lead">
+          Layar kedua khusus menghadap ke pelanggan yang menampilkan daftar belanja secara real-time, kode QRIS dinamis untuk pembayaran instan, serta media promosi visual toko saat kasir dalam keadaan standby.
+        </p>
+
+        <h2 id="cara-kerja"><i class="fa-solid fa-sync" style="color: var(--primary);"></i> Mekanisme Sinkronisasi Layar Kedua</h2>
+        <p>
+          Customer Facing Display berjalan pada rute <code>/pos/customer-display</code>. Layar ini dapat dipasang pada monitor kedua kasir (Extended Screen), tablet Android, iPad, atau Smart TV kasir yang terhubung ke jaringan lokal yang sama.
+        </p>
+
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <div class="card-title">Live Cart Mirroring</div>
+            <div class="card-desc">Setiap kali kasir menambah produk, mengubah jumlah (qty), atau memberi diskon, layar pelanggan terupdate seketika tanpa jeda.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-qrcode"></i></div>
+            <div class="card-title">QRIS Dinamis Otomatis</div>
+            <div class="card-desc">Ketika kasir memilih pembayaran QRIS, kode QRIS dengan nominal presisi langsung muncul di layar pelanggan untuk dipindai.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-film"></i></div>
+            <div class="card-title">Standby Video & Banner Promo</div>
+            <div class="card-desc">Saat kasir tidak sedang bertransaksi, layar otomatis memutar video promosi banner diskon untuk meningkatkan penjualan (*Upselling*).</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-star"></i></div>
+            <div class="card-title">Poin & Info VIP Member</div>
+            <div class="card-desc">Menampilkan saldo poin loyalitas dan nama pelanggan saat nomor telepon pelanggan diinput oleh kasir.</div>
+          </div>
+        </div>
+
+        <h2 id="cara-setup"><i class="fa-solid fa-display" style="color: var(--primary);"></i> Langkah Setup Customer Display</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Hubungkan Monitor Kedua ke Komputer Kasir</div>
+            <div class="step-body">Sambungkan kabel HDMI/VGA monitor kedua ke PC kasir &rarr; Atur Display Settings Windows/Linux menjadi <strong>Extend these displays</strong>.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Buka Rute Customer Display di Jendela Baru</div>
+            <div class="step-body">Buka browser &rarr; akses URL <code>https://poshub.internatechtion.my.id/pos/customer-display</code> &rarr; Geser jendela browser ke monitor kedua &rarr; Tekan <code>F11</code> untuk Fullscreen.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Selesai & Sinkronisasi Otomatis Aktif</div>
+            <div class="step-body">Layar kasir dan customer display akan otomatis tersinkronisasi via state sharing lokal storage & REST API tanpa perlu konfigurasi kabel tambahan.</div>
+          </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="pos.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Panel Kasir POS Modern</div>
+          </a>
+          <a href="kitchen-display.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Kitchen Display System (KDS) <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#cara-kerja" class="toc-link">Mekanisme Sinkronisasi</a>
+        <a href="#cara-setup" class="toc-link">Langkah Setup Display</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('customer-display.html');
+  </script>
+</body>
+</html>

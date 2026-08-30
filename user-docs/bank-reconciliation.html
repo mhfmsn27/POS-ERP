@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekonsiliasi Bank & Kas Kecil - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="financial-reports.html" class="header-btn header-btn-primary">Laporan Keuangan <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-building-columns"></i> 4. Akuntansi & Keuangan Standar PSAK</div>
+        <h1>Rekonsiliasi Bank Otomatis & Kas Kecil (Petty Cash)</h1>
+        <p class="lead">
+          Alat pencocokan mutasi rekening koran bank (*Bank Statement Matching Engine*) secara otomatis, deteksi selisih saldo, serta sistem pengelolaan dana kas kecil operasional metode Imprest & Fluktuasi.
+        </p>
+
+        <h2 id="auto-recon"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--primary);"></i> Auto Bank Reconciliation Matching Engine</h2>
+        <p>
+          Anda dapat mengunggah file mutasi rekening koran (CSV/Excel) dari bank komersial (BCA, Mandiri, BRI, BNI). Engine POSHUB akan mencocokkan transaksi berdasarkan algoritma 3 parameter:
+        </p>
+
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-equals"></i></div>
+            <div class="card-title">1. Exact Match (100% Cocok)</div>
+            <div class="card-desc">Tanggal, nominal mutasi, dan nomor referensi sama persis dengan jurnal pembukuan sistem. Status langsung diberi tanda Hijau (Reconciled).</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+            <div class="card-title">2. Fuzzy Match (Rekomendasi AI)</div>
+            <div class="card-desc">Nominal cocok namun terdapat selisih tanggal 1–2 hari karena kliring akhir pekan. Sistem memberi saran transaksi yang sesuai.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-receipt"></i></div>
+            <div class="card-title">3. Auto Create Adjustment</div>
+            <div class="card-desc">Untuk biaya admin bank bulanan atau bunga tabungan, sistem menyediakan tombol 1-klik untuk otomatis membuat jurnal penyesuaian.</div>
+          </div>
+        </div>
+
+        <h2 id="petty-cash"><i class="fa-solid fa-wallet" style="color: var(--primary);"></i> Manajemen Kas Kecil (Petty Cash)</h2>
+        <p>POSHUB mendukung dua metode standar pengelolaan kas kecil kasir/kantor:</p>
+        <ul style="font-size: 13.5px; line-height: 1.8;">
+          <li><strong>Metode Dana Tetap (Imprest Fund System):</strong> Plafon saldo kas kecil selalu tetap (misal: Rp 5.000.000). Saat dana terpakai Rp 3.200.000, pengajuan reimbursement dilakukan tepat sebesar Rp 3.200.000 untuk mengembalikan saldo ke plafon semula.</li>
+          <li><strong>Metode Dana Berubah (Fluctuating Fund System):</strong> Pengisian dana kas kecil dilakukan sesuai kebutuhan operasional harian.</li>
+        </ul>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="cost-centers.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Cost Center & P&L Proyek</div>
+          </a>
+          <a href="financial-reports.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Laporan Keuangan & Forecast AI <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#auto-recon" class="toc-link">Auto Bank Recon Engine</a>
+        <a href="#petty-cash" class="toc-link">Manajemen Kas Kecil</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('bank-reconciliation.html');
+  </script>
+</body>
+</html>

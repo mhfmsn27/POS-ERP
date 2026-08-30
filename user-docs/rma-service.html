@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RMA & Servis Garansi - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="ecommerce.html" class="header-btn header-btn-primary">E-Commerce <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-screwdriver-wrench"></i> 5. Pelanggan, CRM & Portal B2B</div>
+        <h1>RMA & Servis Garansi Elektronik</h1>
+        <p class="lead">
+          Sistem manajemen perbaikan barang (*Return Merchandise Authorization & Repair Management*), pencatatan nomor seri perangkat (Serial Number/IMEI), riwayat pengerjaan teknisi, penggantian suku cadang (*Spare Parts*), dan halaman pelacakan status servis publik untuk pelanggan.
+        </p>
+
+        <h2 id="alur-rma"><i class="fa-solid fa-timeline" style="color: var(--primary);"></i> Alur Servis & Klaim Garansi</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Penerimaan Unit (Check-In) & Cetak Tanda Terima</div>
+            <div class="step-body">Pelanggan menyerahkan barang rusak &rarr; CS mencatat keluhan fisik & kelengkapan (Charger/Dus) &rarr; Sistem menerbitkan nomor tiket servis (misal: <code>RMA-2026-0801</code>) dan mencetak lembar tanda terima barcode.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Diagnosa & Estimasi Biaya Teknisi</div>
+            <div class="step-body">Teknisi melakukan pengecekan &rarr; Menginput estimasi biaya perbaikan dan kebutuhan suku cadang (spare part otomatis memotong stok gudang servis) &rarr; Notifikasi persetujuan biaya terkirim via WhatsApp ke pelanggan.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Penyelesaian Servis (Ready for Pickup) & Pengambilan</div>
+            <div class="step-body">Setelah selesai diuji (*Quality Control*), status diubah menjadi <strong>Selesai</strong> &rarr; Pelanggan mengambil unit, melakukan pembayaran di kasir POS, dan menerima kartu garansi servis resmi.</div>
+          </div>
+        </div>
+
+        <h2 id="tracking-publik"><i class="fa-solid fa-magnifying-glass-location" style="color: var(--primary);"></i> Pelacakan Servis Publik Tanpa Login</h2>
+        <p>
+          Pelanggan dapat memantau progres perbaikan unit mereka secara mandiri dari browser smartphone mereka:
+        </p>
+        <div class="code-container">
+          <div class="code-header"><span>URL Pelacakan Servis Publik</span></div>
+          <pre><code>https://poshub.internatechtion.my.id/rma</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="b2b-portal.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Portal B2B Grosir & Vendor</div>
+          </a>
+          <a href="ecommerce.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Toko Online B2C Terintegrasi <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#alur-rma" class="toc-link">Alur Servis & Garansi</a>
+        <a href="#tracking-publik" class="toc-link">Pelacakan Servis Publik</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('rma-service.html');
+  </script>
+</body>
+</html>

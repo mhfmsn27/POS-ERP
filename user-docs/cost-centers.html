@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cost Center & P&L Proyek - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="bank-reconciliation.html" class="header-btn header-btn-primary">Rekonsiliasi Bank <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-diagram-project"></i> 4. Akuntansi & Keuangan Standar PSAK</div>
+        <h1>Multi Cost Center & Laporan Laba Rugi Proyek</h1>
+        <p class="lead">
+          Pusat Biaya (*Cost Center*) dan Pusat Laba (*Profit Center*) untuk melacak profitabilitas per cabang toko, divisi departemen, lini produk, maupun proyek kontrak khusus secara independen (*Project Profit & Loss*).
+        </p>
+
+        <h2 id="hierarki-cc"><i class="fa-solid fa-sitemap" style="color: var(--primary);"></i> Struktur Hierarki Cost Center</h2>
+        <p>
+          Anda dapat menyusun Cost Center bertingkat untuk mengelompokkan pengeluaran operasional perusahaan:
+        </p>
+
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-store"></i></div>
+            <div class="card-title">Per Cabang / Outlet</div>
+            <div class="card-desc">Contoh: <code>CC-STORE-01 (Toko Pusat)</code>, <code>CC-STORE-02 (Cabang Mall)</code>.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="card-title">Per Departemen</div>
+            <div class="card-desc">Contoh: <code>CC-DEPT-MKT (Marketing & Iklan)</code>, <code>CC-DEPT-LOG (Logistik & Armada)</code>.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+            <div class="card-title">Per Kontrak / Proyek B2B</div>
+            <div class="card-desc">Contoh: <code>PRJ-2026-CORP (Pengadaan Seragam Korporat B2B)</code>.</div>
+          </div>
+        </div>
+
+        <h2 id="laporan-pnl-proyek"><i class="fa-solid fa-chart-pie" style="color: var(--primary);"></i> Laporan Laba Rugi Per Cost Center (P&L)</h2>
+        <p>
+          Laporan ini membedah pendapatan dan biaya yang secara spesifik dialokasikan ke masing-masing Cost Center, sehingga manajemen dapat mengetahui cabang atau divisi mana yang paling menguntungkan (*High Margin*) dan mana yang mengalami kerugian (*Bleeding*).
+        </p>
+
+        <div class="alert-box alert-success">
+          <i class="fa-solid fa-shield-check"></i>
+          <div>
+            <strong>Kriptografis Integrity Seal:</strong><br>
+            Setiap output laporan Cost Center di-generate dengan stempel segel integritas kriptografis yang terikat dengan kunci lisensi sah server.
+          </div>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="general-ledger.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> COA, Jurnal & Buku Besar</div>
+          </a>
+          <a href="bank-reconciliation.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Rekonsiliasi Bank & Kas Kecil <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#hierarki-cc" class="toc-link">Hierarki Cost Center</a>
+        <a href="#laporan-pnl-proyek" class="toc-link">Laporan Laba Rugi P&L</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('cost-centers.html');
+  </script>
+</body>
+</html>

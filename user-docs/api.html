@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer & REST API - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="faq.html" class="header-btn header-btn-primary">FAQ & Solusi <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-code"></i> 7. Mobile, Keamanan & Referensi</div>
+        <h1>Dokumentasi Pengembang & REST API</h1>
+        <p class="lead">
+          Antarmuka pemrograman aplikasi (*Application Programming Interface*) standar RESTful JSON untuk integrasi sistem pihak ketiga, marketplace, ERP eksternal, dan aplikasi mobile custom dengan autentikasi <strong>Laravel Sanctum Bearer Token</strong>.
+        </p>
+
+        <h2 id="auth-api"><i class="fa-solid fa-key" style="color: var(--primary);"></i> Autentikasi API (Bearer Token)</h2>
+        <p>Setiap permintaan API harus menyertakan header otentikasi:</p>
+        <div class="code-container">
+          <div class="code-header"><span>HTTP Headers</span></div>
+          <pre><code>Authorization: Bearer 1|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Accept: application/json
+Content-Type: application/json</code></pre>
+        </div>
+
+        <h2 id="endpoints"><i class="fa-solid fa-network-wired" style="color: var(--primary);"></i> Daftar Endpoint Utama</h2>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint URL</th>
+              <th>Deskripsi & Fungsi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>POST</code></td>
+              <td><code>/api/auth/login</code></td>
+              <td>Autentikasi pengguna & mendapatkan Bearer Token Sanctum.</td>
+            </tr>
+            <tr>
+              <td><code>GET</code></td>
+              <td><code>/api/products</code></td>
+              <td>Mengambil daftar produk, varian, dan stok fisik per cabang.</td>
+            </tr>
+            <tr>
+              <td><code>POST</code></td>
+              <td><code>/api/pos/transactions</code></td>
+              <td>Membuat transaksi penjualan kasir baru & pemotongan stok otomatis.</td>
+            </tr>
+            <tr>
+              <td><code>GET</code></td>
+              <td><code>/api/customers</code></td>
+              <td>Mengambil data pelanggan, saldo poin, dan tier VIP.</td>
+            </tr>
+            <tr>
+              <td><code>GET</code></td>
+              <td><code>/api/license/status</code></td>
+              <td>Memeriksa status validitas lisensi domain aktif server.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="backup-maintenance.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Auto Backup & Optimizer</div>
+          </a>
+          <a href="faq.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">FAQ & Pemecahan Masalah <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#auth-api" class="toc-link">Autentikasi Bearer Token</a>
+        <a href="#endpoints" class="toc-link">Daftar Endpoint Utama</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('api.html');
+  </script>
+</body>
+</html>

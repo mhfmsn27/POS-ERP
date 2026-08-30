@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM, Loyalty Card & Poin - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="b2b-portal.html" class="header-btn header-btn-primary">Portal B2B <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-users"></i> 5. Pelanggan, CRM & Portal B2B</div>
+        <h1>Manajemen Pelanggan, Tiering VIP & Kartu Loyalitas</h1>
+        <p class="lead">
+          Pusat data pelanggan (*Customer 360 View*), riwayat belanja, kartu member digital (*Digital Member Card*), akumulasi poin reward, diskon khusus level keanggotaan, serta pengiriman ucapan ulang tahun otomatis via WhatsApp.
+        </p>
+
+        <h2 id="tiering-vip"><i class="fa-solid fa-crown" style="color: var(--primary);"></i> Sistem Tingkatan Member (VIP Tiering)</h2>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Tingkat Member</th>
+              <th>Syarat Akumulasi Belanja</th>
+              <th>Manfaat & Keuntungan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>🥉 Bronze Member</strong></td>
+              <td>Pendaftaran Awal (Rp 0)</td>
+              <td>1 Poin reward per kelipatan belanja Rp 10.000.</td>
+            </tr>
+            <tr>
+              <td><strong>🥈 Silver Member</strong></td>
+              <td>Akumulasi Belanja &gt; Rp 2.500.000</td>
+              <td>Diskon otomatis 3% untuk seluruh produk reguler + 1.5x Poin reward.</td>
+            </tr>
+            <tr>
+              <td><strong>🥇 Gold Member</strong></td>
+              <td>Akumulasi Belanja &gt; Rp 10.000.000</td>
+              <td>Diskon otomatis 5% + Gratis Ongkir Toko Online + 2x Poin reward.</td>
+            </tr>
+            <tr>
+              <td><strong>💎 Platinum VIP</strong></td>
+              <td>Akumulasi Belanja &gt; Rp 25.000.000</td>
+              <td>Diskon 8% + Jalur Antrian Khusus Kasir + Akses Flash Sale Lebih Awal.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="kartu-digital"><i class="fa-solid fa-id-card" style="color: var(--primary);"></i> Kartu Member Digital (Web vCard & Barcode)</h2>
+        <p>
+          Pelanggan tidak perlu membawa kartu fisik plastik. Setiap member memiliki kartu digital interaktif yang dapat diakses di smartphone mereka:
+        </p>
+
+        <div class="code-container">
+          <div class="code-header"><span>URL Kartu Member Digital</span></div>
+          <pre><code>https://poshub.internatechtion.my.id/customer/card/{customer_uuid}</code></pre>
+        </div>
+
+        <p>
+          Kasir cukup memindai barcode QR yang ada pada layar smartphone pelanggan untuk menerapkan diskon member secara instan.
+        </p>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="tax-compliance.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Kepatuhan Pajak & e-Faktur</div>
+          </a>
+          <a href="b2b-portal.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Portal B2B Grosir & Vendor <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#tiering-vip" class="toc-link">Sistem Tingkatan VIP</a>
+        <a href="#kartu-digital" class="toc-link">Kartu Member Digital</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('customers.html');
+  </script>
+</body>
+</html>

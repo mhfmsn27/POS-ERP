@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kepatuhan Pajak & e-Faktur DJP - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="customers.html" class="header-btn header-btn-primary">CRM & Pelanggan <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-file-invoice-dollar"></i> 4. Akuntansi & Keuangan Standar PSAK</div>
+        <h1>Kepatuhan Pajak & e-Faktur DJP</h1>
+        <p class="lead">
+          Modul kepatuhan perpajakan Indonesia resmi: kalkulasi PPN 11%, pemotongan PPh Pasal 21/23/Final UMKM, rekapitulasi Faktur Pajak Masukan/Keluaran, serta ekspor data format XML resmi untuk aplikasi <strong>e-Faktur Direktorat Jenderal Pajak (DJP)</strong>.
+        </p>
+
+        <h2 id="efaktur-export"><i class="fa-solid fa-file-code" style="color: var(--primary);"></i> Ekspor XML e-Faktur DJP</h2>
+        <p>
+          Anda dapat mengekspor faktur penjualan B2B dan transaksi PKP langsung menjadi format XML skema resmi DJP:
+        </p>
+
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Isi Data NPWP / NIK Pelanggan</div>
+            <div class="step-body">Pastikan data Nomor Pokok Wajib Pajak (NPWP 15/16 digit) dan alamat resmi pelanggan terisi pada master kontak.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Pilih Transaksi & Generate XML</div>
+            <div class="step-body">Masuk ke menu <strong>Laporan Pajak &rarr; e-Faktur Export</strong> &rarr; Pilih rentang masa pajak &rarr; Klik <strong>Download XML DJP</strong>.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Import ke Aplikasi e-Faktur Desktop DJP</div>
+            <div class="step-body">Buka aplikasi e-Faktur DJP &rarr; Pilih menu <em>Impor Faktur Pajak Keluaran</em> &rarr; Seluruh data langsung terunggah tanpa error skema.</div>
+          </div>
+        </div>
+
+        <h2 id="rekap-ppn"><i class="fa-solid fa-receipt" style="color: var(--primary);"></i> Rekapitulasi SPT Masa PPN (PPN Kurang/Lebih Bayar)</h2>
+        <p>Sistem menghitung posisi PPN bulanan secara otomatis:</p>
+        <div class="code-container">
+          <div class="code-header"><span>Formula PPN Terutang</span></div>
+          <pre><code>PPN Kurang/Lebih Bayar = Total PPN Keluaran (Penjualan) - Total PPN Masukan (Pembelian Supplier)</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="financial-reports.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Laporan Keuangan & Forecast AI</div>
+          </a>
+          <a href="customers.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">CRM, Loyalty Card & Poin <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#efaktur-export" class="toc-link">Ekspor XML DJP</a>
+        <a href="#rekap-ppn" class="toc-link">Rekapitulasi PPN</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('tax-compliance.html');
+  </script>
+</body>
+</html>

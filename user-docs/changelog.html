@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catatan Rilis (Changelog) - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="index.html" class="header-btn header-btn-primary"><i class="fa-solid fa-house"></i> Kembali ke Beranda</a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-clock-rotate-left"></i> 7. Mobile, Keamanan & Referensi</div>
+        <h1>Catatan Rilis & Riwayat Pembaruan (Changelog)</h1>
+        <p class="lead">
+          Dokumentasi riwayat pembaruan fitur, perbaikan keamanan, optimalisasi kinerja basis data, dan rilis versi Enterprise POSHUB ACCOUNTING & ERP.
+        </p>
+
+        <h2 id="v35"><i class="fa-solid fa-tag" style="color: var(--primary);"></i> Versi 3.5.0 Enterprise (Rilis Saat Ini)</h2>
+        <div class="alert-box alert-success">
+          <i class="fa-solid fa-star"></i>
+          <div>
+            <strong>Rilis Flagship 2026:</strong><br>
+            Peningkatan keamanan kriptografi asimetris RSA-2048, integrasi PWA 2.0 Offline Sync, isolasi multi-tenant VPS Domainesia, dan perbaikan performa akuntansi.
+          </div>
+        </div>
+
+        <ul style="font-size: 13.5px; line-height: 1.8;">
+          <li><span class="badge" style="background: #1e40af; color: white; padding: 2px 7px; border-radius: 4px; font-weight: bold;">Security</span> <strong>Asymmetric Cryptography RSA-2048:</strong> Implementasi verifikasi tanda tangan digital anti-bypass untuk model jual lepas.</li>
+          <li><span class="badge" style="background: #059669; color: white; padding: 2px 7px; border-radius: 4px; font-weight: bold;">POS</span> <strong>Web Bluetooth ESC/POS Direct Print:</strong> Pencetakan struk termal 58/80mm instan tanpa plugin perantara.</li>
+          <li><span class="badge" style="background: #d97706; color: white; padding: 2px 7px; border-radius: 4px; font-weight: bold;">Accounting</span> <strong>Altman Z-Score & Forecast AI:</strong> Analisis kesehatan finansial dan proyeksi arus kas cerdas.</li>
+          <li><span class="badge" style="background: #7c3aed; color: white; padding: 2px 7px; border-radius: 4px; font-weight: bold;">Hardware</span> <strong>Customer & Kitchen Display:</strong> Sinkronisasi layar kedua dual-screen dan KDS tanpa kertas.</li>
+          <li><span class="badge" style="background: #0284c7; color: white; padding: 2px 7px; border-radius: 4px; font-weight: bold;">Branding</span> <strong>Master Brand Refactor:</strong> Pembersihan total aset logo, favicon, namespace package ke <code>Poshub\Ecommerce</code> dan 0 error audit suite.</li>
+        </ul>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="faq.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> FAQ & Pemecahan Masalah</div>
+          </a>
+          <a href="index.html" class="page-btn text-end">
+            <div class="page-btn-label">Kembali ke Awal &rarr;</div>
+            <div class="page-btn-title">Pengantar & Arsitektur <i class="fa-solid fa-house"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#v35" class="toc-link">Versi 3.5.0 Enterprise</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('changelog.html');
+  </script>
+</body>
+</html>

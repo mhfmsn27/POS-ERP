@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gambaran Ekosistem v3.5 - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="setup-vps.html" class="header-btn header-btn-primary">Setup VPS <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-layer-group"></i> 1. Memulai & Fondasi</div>
+        <h1>Gambaran Ekosistem POSHUB v3.5</h1>
+        <p class="lead">
+          Platform all-in-one yang menghubungkan penjualan kasir di toko fisik (Offline Store), toko online (E-Commerce), pergerakan stok multi-gudang, pembukuan akuntansi standar PSAK, hingga pelaporan pajak resmi dalam satu basis data terpusat.
+        </p>
+
+        <h2 id="alur-bisnis"><i class="fa-solid fa-diagram-project" style="color: var(--primary);"></i> Alur Aliran Data End-to-End</h2>
+        <p>
+          Setiap aktivitas transaksi di POSHUB terhubung secara otomatis ke modul terkait secara real-time (*Zero Data Discrepancy*):
+        </p>
+
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Kasir Memproses Transaksi Penjualan</div>
+            <div class="step-body">Kasir memindai barcode produk &rarr; Customer Display menampilkan total belanja & QRIS dinamis &rarr; Kitchen Display menerima tiket pesanan secara otomatis.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Pengurangan Stok & Pemotongan Multi-UOM Real-Time</div>
+            <div class="step-body">Stok di gudang toko langsung terpotong secara otomatis. Jika stok mencapai batas minimum, sistem memicu notifikasi <em>Reorder Point (ROP)</em> dan Auto-Generate Purchase Order (PO).</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Penjurnalan Akuntansi Otomatis (Standar PSAK)</div>
+            <div class="step-body">Sistem secara otomatis mendebit Kas/Bank dan mengkredit Pendapatan Penjualan serta mendebit HPP dan mengkredit Persediaan Barang tanpa perlu input manual staf akuntansi.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">4</div>
+            <div class="step-heading">Akumulasi Poin Loyalitas & WhatsApp E-Receipt</div>
+            <div class="step-body">Pelanggan secara otomatis mendapatkan reward poin VIP member dan struk digital PDF/teks dikirimkan ke nomor WhatsApp pelanggan melalui gateway resmi.</div>
+          </div>
+        </div>
+
+        <h2 id="matriks-fitur"><i class="fa-solid fa-table-cells" style="color: var(--primary);"></i> Matriks Modul & Spesifikasi Lengkap</h2>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Modul Sistem</th>
+              <th>Fitur Unggulan</th>
+              <th>Status Produksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Point of Sale (POS)</strong></td>
+              <td>Keyboard shortcut kasir lengkap, Split payment, Hold/Recall bill, Barcode scan GPU, Struk Thermal Bluetooth 58/80mm.</td>
+              <td><span style="color: var(--success); font-weight: 700;">✅ Siap Produksi</span></td>
+            </tr>
+            <tr>
+              <td><strong>Dual-Screen Display</strong></td>
+              <td>Dual screen mirroring WebSocket/Storage, QRIS interaktif, running text promo video.</td>
+              <td><span style="color: var(--success); font-weight: 700;">✅ Siap Produksi</span></td>
+            </tr>
+            <tr>
+              <td><strong>Kitchen Display (KDS)</strong></td>
+              <td>Routing otomatis Kitchen vs Bar, tiket status (Pending/Cooking/Ready/Served), time alert timer.</td>
+              <td><span style="color: var(--success); font-weight: 700;">✅ Siap Produksi</span></td>
+            </tr>
+            <tr>
+              <td><strong>Inventory & Supply Chain</strong></td>
+              <td>Multi-gudang, Multi-Tier UOM (Pcs/Lusin/Karton), Transfer antar cabang, Auto-PO Reorder Point.</td>
+              <td><span style="color: var(--success); font-weight: 700;">✅ Siap Produksi</span></td>
+            </tr>
+            <tr>
+              <td><strong>Financial & Accounting</strong></td>
+              <td>COA multi-level, Auto Journal, Multi Cost Center & Project P&L, Auto Bank Recon, Altman Z-Score & Forecast AI.</td>
+              <td><span style="color: var(--success); font-weight: 700;">✅ Siap Produksi</span></td>
+            </tr>
+            <tr>
+              <td><strong>Tax Compliance</strong></td>
+              <td>e-Faktur DJP XML Export, PPN 11%, PPh 21/23 calculation, Rekap Faktur Pajak Masukan & Keluaran.</td>
+              <td><span style="color: var(--success); font-weight: 700;">✅ Siap Produksi</span></td>
+            </tr>
+            <tr>
+              <td><strong>CRM & B2B Portal</strong></td>
+              <td>Tier VIP member (Silver/Gold/Platinum), Kartu digital, Plafon kredit B2B & TOP, RMA Garansi.</td>
+              <td><span style="color: var(--success); font-weight: 700;">✅ Siap Produksi</span></td>
+            </tr>
+            <tr>
+              <td><strong>E-Commerce B2C</strong></td>
+              <td>Toko online omnichannel, sinkronisasi stok real-time, Midtrans Payment Gateway, RajaOngkir.</td>
+              <td><span style="color: var(--success); font-weight: 700;">✅ Siap Produksi</span></td>
+            </tr>
+            <tr>
+              <td><strong>Mobile & PWA 2.0</strong></td>
+              <td>Progressive Web App, Background Sync Offline, Native Capacitor Android/iOS APK.</td>
+              <td><span style="color: var(--success); font-weight: 700;">✅ Siap Produksi</span></td>
+            </tr>
+            <tr>
+              <td><strong>Lisensi 1-Domain</strong></td>
+              <td>RSA-2048 Asymmetric Cryptography, Logic Binding Checksum Transaksi Kasir, Whitelist Localhost.</td>
+              <td><span style="color: var(--success); font-weight: 700;">✅ Siap Produksi</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="index.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Pengantar & Arsitektur</div>
+          </a>
+          <a href="setup-vps.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Setup VPS Multi-Tenant <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#alur-bisnis" class="toc-link">Alur Aliran Data</a>
+        <a href="#matriks-fitur" class="toc-link">Matriks Modul Lengkap</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('overview.html');
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aset Tetap & Budgeting - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="bank-reconciliation.html" class="header-btn header-btn-primary">Rekonsiliasi Bank <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-vault"></i> 4. Akuntansi & Keuangan Standar PSAK</div>
+        <h1>Manajemen Aset Tetap, Budgeting & Multi-Mata Uang</h1>
+        <p class="lead">
+          Pencatatan aktiva tetap (*Fixed Assets*), jadwal amortisasi dan depresiasi bulanan otomatis metode Garis Lurus (*Straight-Line Depreciation*), penetapan pagu anggaran departemen (*Budgeting vs Actual*), serta transaksi valuta asing (*Multi-Currency & Exchange Rates*).
+        </p>
+
+        <h2 id="fixed-assets"><i class="fa-solid fa-landmark" style="color: var(--primary);"></i> Depresiasi Aset Tetap Otomatis</h2>
+        <p>
+          Anda dapat mendaftarkan aset seperti Kendaraan Operasional, Mesin Kasir, Komputer Server, dan Renovasi Gedung:
+        </p>
+
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Daftarkan Aset & Masa Manfaat (Tahun)</div>
+            <div class="step-body">Input Harga Perolehan (misal: Rp 24.000.000), Nilai Residu (Rp 0), dan Masa Manfaat (4 Tahun = 48 Bulan).</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Jadwal Penyusutan Otomatis</div>
+            <div class="step-body">Sistem menghitung beban penyusutan Rp 500.000/bulan dan membuat tabel amortisasi nilai buku (*Book Value*).</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Auto-Post Jurnal Penyusutan Bulanan</div>
+            <div class="step-body">Setiap akhir bulan, cron job sistem otomatis memposting: <code>(D) Beban Penyusutan Aset</code> &bull; <code>(K) Akumulasi Penyusutan Aset</code>.</div>
+          </div>
+        </div>
+
+        <h2 id="budgeting"><i class="fa-solid fa-chart-pie" style="color: var(--primary);"></i> Anggaran Biaya (Budgeting vs Realisasi)</h2>
+        <p>
+          Tentukan batas pagu anggaran tahunan/bulanan per akun biaya (misal: Biaya Iklan Google/FB maks Rp 15.000.000/bulan). Sistem akan menampilkan grafik perbandingan real-time antara <strong>Budget vs Actual</strong> dengan peringatan jika pengeluaran melebihi 90% dari batas pagu.
+        </p>
+
+        <h2 id="multi-currency"><i class="fa-solid fa-coins" style="color: var(--primary);"></i> Multi-Mata Uang & Kurs Valas</h2>
+        <p>
+          Mendukung transaksi dalam USD, SGD, EUR, MYR, dll. Sistem mencatat nilai dalam mata uang asing dan otomatis mengonversi ke IDR (Rupiah) berdasarkan kurs tengah Bank Indonesia serta menghitung <em>Laba/Rugi Selisih Kurs (Foreign Exchange Gain/Loss)</em>.
+        </p>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="cost-centers.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Cost Center & P&L Proyek</div>
+          </a>
+          <a href="bank-reconciliation.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Rekonsiliasi Bank & Kas Kecil <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#fixed-assets" class="toc-link">Depresiasi Aset Tetap</a>
+        <a href="#budgeting" class="toc-link">Budgeting vs Realisasi</a>
+        <a href="#multi-currency" class="toc-link">Multi-Mata Uang</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('fixed-assets-budgeting.html');
+  </script>
+</body>
+</html>

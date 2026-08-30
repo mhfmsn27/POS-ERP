@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan Keuangan & Forecast AI - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="tax-compliance.html" class="header-btn header-btn-primary">Pajak & e-Faktur <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-chart-line"></i> 4. Akuntansi & Keuangan Standar PSAK</div>
+        <h1>Laporan Keuangan Eksekutif & Prediksi AI</h1>
+        <p class="lead">
+          Paket lengkap laporan keuangan standar PSAK/IFRS (Laba Rugi, Neraca, Arus Kas, Perubahan Ekuitas), rasio kesehatan finansial model <em>Altman Z-Score</em>, dan proyeksi arus kas prediktif berbasis machine learning.
+        </p>
+
+        <h2 id="laporan-psak"><i class="fa-solid fa-file-invoice-dollar" style="color: var(--primary);"></i> 4 Laporan Keuangan Wajib</h2>
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+            <div class="card-title">1. Neraca (Balance Sheet)</div>
+            <div class="card-desc">Membandingkan posisi Aset Lancar/Tetap dengan total Kewajiban Lancar/Jangka Panjang dan Ekuitas secara seimbang.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-chart-simple"></i></div>
+            <div class="card-title">2. Laba Rugi (Income Statement)</div>
+            <div class="card-desc">Rincian Pendapatan Usaha, HPP, Laba Kotor (*Gross Profit*), Beban Operasional, dan Laba Bersih (*Net Profit*).</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+            <div class="card-title">3. Arus Kas (Cash Flow)</div>
+            <div class="card-desc">Arus kas dari 3 aktivitas utama: Operasional (Operating), Investasi (Investing), dan Pendanaan (Financing).</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-landmark"></i></div>
+            <div class="card-title">4. Perubahan Ekuitas</div>
+            <div class="card-desc">Pelacakan akumulasi laba ditahan dan penambahan modal pemilik perusahaan dari waktu ke waktu.</div>
+          </div>
+        </div>
+
+        <h2 id="altman-zscore"><i class="fa-solid fa-heart-pulse" style="color: var(--primary);"></i> Altman Z-Score Financial Health Index</h2>
+        <p>
+          Sistem secara otomatis menghitung skor kesehatan perusahaan untuk mendeteksi risiko likuiditas atau kebangkrutan:
+        </p>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Rentang Skor Z-Score</th>
+              <th>Zona Kesehatan</th>
+              <th>Status Evaluasi Keuangan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>Z &gt; 2.99</code></td>
+              <td><span style="color: var(--success); font-weight: 700;">🟢 Safe Zone</span></td>
+              <td>Kondisi keuangan sangat sehat, likuiditas kuat, dan risiko gagal bayar rendah.</td>
+            </tr>
+            <tr>
+              <td><code>1.81 &lt;= Z &lt;= 2.99</code></td>
+              <td><span style="color: var(--warning); font-weight: 700;">🟡 Grey Zone</span></td>
+              <td>Kondisi waspada, perlu pengendalian biaya operasional dan efisiensi modal kerja.</td>
+            </tr>
+            <tr>
+              <td><code>Z &lt; 1.81</code></td>
+              <td><span style="color: var(--danger); font-weight: 700;">🔴 Distress Zone</span></td>
+              <td>Risiko tinggi, restrukturisasi hutang dan akselerasi piutang sangat mendesak.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="bank-reconciliation.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Rekonsiliasi Bank & Kas Kecil</div>
+          </a>
+          <a href="tax-compliance.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Kepatuhan Pajak & e-Faktur <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#laporan-psak" class="toc-link">4 Laporan PSAK</a>
+        <a href="#altman-zscore" class="toc-link">Altman Z-Score</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('financial-reports.html');
+  </script>
+</body>
+</html>

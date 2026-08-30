@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pembelian & Multi-Gudang - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="stock-alerts.html" class="header-btn header-btn-primary">Peringatan Stok <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-truck-ramp-box"></i> 3. Stok & Rantai Pasok</div>
+        <h1>Pembelian (PO), Penerimaan & Multi-Gudang</h1>
+        <p class="lead">
+          Siklus pengadaan barang lengkap dari pembuatan Purchase Order (PO), penerimaan barang fisik di gudang (*Goods Received Note*), pencatatan hutang dagang, retur supplier, hingga transfer stok antar cabang (*Stock Transfer*).
+        </p>
+
+        <h2 id="alur-po"><i class="fa-solid fa-cart-flatbed" style="color: var(--primary);"></i> Alur Siklus Pembelian (Procurement)</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Buat Purchase Order (PO) ke Supplier</div>
+            <div class="step-body">Pilih Supplier &rarr; Tambahkan item produk & satuan beli &rarr; Tentukan syarat pembayaran (Tunai / Tempo 30 Hari) &rarr; Kirimkan dokumen PDF PO resmi.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Penerimaan Barang di Gudang (Goods Received)</div>
+            <div class="step-body">Saat truk supplier tiba, staf gudang mencocokkan jumlah fisik dengan surat jalan &rarr; Ubah status PO menjadi <strong>Received (Diterima)</strong>. Stok otomatis bertambah di gudang tujuan.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Pencatatan Hutang Dagang & Jurnal Otomatis</div>
+            <div class="step-body">Sistem secara otomatis mendebit Persediaan Barang dan mengkredit Hutang Usaha / Kas, serta menghitung perubahan HPP rata-rata (*Moving Average*).</div>
+          </div>
+        </div>
+
+        <h2 id="transfer-gudang"><i class="fa-solid fa-truck-arrow-right" style="color: var(--primary);"></i> Transfer Stok Antar Gudang / Cabang</h2>
+        <p>
+          Fitur Stock Transfer memungkinkan perpindahan barang dari Gudang Pusat (Main DC) ke Toko Cabang (Branch Store) dengan pelacakan status transit:
+        </p>
+        <ul style="font-size: 13.5px; line-height: 1.8;">
+          <li><strong>Status In-Transit:</strong> Stok berkurang dari gudang asal namun belum masuk ke gudang tujuan (dalam perjalanan ekspedisi).</li>
+          <li><strong>Status Completed:</strong> Cabang tujuan menekan tombol konfirmasi terima, dan stok resmi masuk ke display toko cabang.</li>
+        </ul>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="products.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Produk, Varian & UOM</div>
+          </a>
+          <a href="stock-alerts.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Peringatan Stok & Auto-PO <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#alur-po" class="toc-link">Siklus Pembelian (PO)</a>
+        <a href="#transfer-gudang" class="toc-link">Transfer Stok Antar Gudang</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('purchases.html');
+  </script>
+</body>
+</html>

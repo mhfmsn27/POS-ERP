@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Gateway & Ekspedisi - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="mobile-pwa.html" class="header-btn header-btn-primary">Mobile PWA <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-truck-fast"></i> 6. E-Commerce Omnichannel</div>
+        <h1>Integrasi Payment Gateway & Cek Ongkir Otomatis</h1>
+        <p class="lead">
+          Panduan integrasi gerbang pembayaran otomatis (*Payment Gateway Snap/Core API*) untuk menerima pembayaran QRIS, Virtual Account Bank (BCA, Mandiri, BNI, BRI), E-Wallet (GoPay, OVO, ShopeePay), serta kalkulasi ongkos kirim real-time kurir nasional via RajaOngkir API.
+        </p>
+
+        <h2 id="midtrans-config"><i class="fa-solid fa-credit-card" style="color: var(--primary);"></i> Konfigurasi Midtrans Payment Gateway</h2>
+        <p>
+          Masukkan kredensial Midtrans Production atau Sandbox ke dalam file <code>.env</code> Anda:
+        </p>
+
+        <div class="code-container">
+          <div class="code-header"><span>Konfigurasi Midtrans .env</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>MIDTRANS_SERVER_KEY=SB-Mid-server-xxxxxxxxxxxx
+MIDTRANS_CLIENT_KEY=SB-Mid-client-xxxxxxxxxxxx
+MIDTRANS_IS_PRODUCTION=false
+MIDTRANS_IS_SANITIZED=true
+MIDTRANS_IS_3DS=true</code></pre>
+        </div>
+
+        <h2 id="rajaongkir-config"><i class="fa-solid fa-truck" style="color: var(--primary);"></i> Konfigurasi Ekspedisi & RajaOngkir API</h2>
+        <p>
+          Mendukung pengecekan ongkos kirim otomatis hingga tingkat kecamatan/kelurahan untuk kurir: <strong>JNE, J&T, SiCepat, POS Indonesia, Anteraja, dan Tiki</strong>.
+        </p>
+
+        <div class="code-container">
+          <div class="code-header"><span>Konfigurasi RajaOngkir .env</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>RAJAONGKIR_API_KEY=your_rajaongkir_api_key_here
+RAJAONGKIR_PACKAGE_TYPE=pro # Pilihan: starter, basic, pro
+RAJAONGKIR_ORIGIN_CITY_ID=152 # ID Kota Asal Pengiriman Gudang Toko</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="ecommerce.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Toko Online B2C Terintegrasi</div>
+          </a>
+          <a href="mobile-pwa.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">PWA 2.0 & Native Mobile App <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#midtrans-config" class="toc-link">Konfigurasi Midtrans</a>
+        <a href="#rajaongkir-config" class="toc-link">Konfigurasi RajaOngkir</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('payment-expedition.html');
+  </script>
+</body>
+</html>

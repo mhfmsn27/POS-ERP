@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hardware Drivers & Printing - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="shift-management.html" class="header-btn header-btn-primary">Shift Kasir & WA <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-print"></i> 2. Kasir POS & Smart Hardware</div>
+        <h1>Hardware Drivers & Thermal Printing</h1>
+        <p class="lead">
+          Panduan integrasi perangkat keras kasir: printer thermal ESC/POS Bluetooth 58mm & 80mm, pemindai barcode USB/Kamera GPU, laci kasir otomatis (*Cash Drawer RJ11*), dan terminal POS Android pintar (Sunmi & iMin).
+        </p>
+
+        <h2 id="bluetooth-printer"><i class="fa-brands fa-bluetooth" style="color: var(--primary);"></i> Direct Web Bluetooth Thermal Printing</h2>
+        <p>
+          POSHUB mendukung pencetakan struk langsung dari browser via <strong>Web Bluetooth API</strong> tanpa perlu menginstal aplikasi pihak ketiga (*Raw ESC/POS Driver*):
+        </p>
+
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-receipt"></i></div>
+            <div class="card-title">Printer 58mm & 80mm</div>
+            <div class="card-desc">Otomatis menyesuaikan lebar karakter (32 karakter untuk 58mm dan 48 karakter untuk 80mm).</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-shield"></i></div>
+            <div class="card-title">Chunk Buffer Protection</div>
+            <div class="card-desc">Byte stream dipecah dalam paket 100-byte untuk mencegah buffer overflow pada printer thermal mini portabel.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-vault"></i></div>
+            <div class="card-title">Buka Laci Kasir (RJ-11)</div>
+            <div class="card-desc">Mengirim sinyal pulsa <code>ESC p 0 25 250</code> secara otomatis setelah transaksi selesai untuk membuka laci kasir.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-scissors"></i></div>
+            <div class="card-title">Auto Paper Cutter</div>
+            <div class="card-desc">Mengirim perintah potong kertas otomatis (<code>GS V 66 0</code>) pada printer thermal 80mm yang mendukung auto-cutter.</div>
+          </div>
+        </div>
+
+        <h2 id="js-bridge"><i class="fa-solid fa-code" style="color: var(--primary);"></i> Hardware Bridge API (JavaScript)</h2>
+        <p>Driver JavaScript global yang tersedia pada antarmuka kasir:</p>
+        <div class="code-container">
+          <div class="code-header"><span>JavaScript Console API</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>// 1. Hubungkan ke Printer Bluetooth
+await window.PoshubBluetoothPrinter.connect();
+
+// 2. Kirim Text Cetak & Potong Kertas
+await window.PoshubBluetoothPrinter.printFormattedReceipt({
+  storeName: 'POSHUB OFFICIAL STORE',
+  invoiceNo: 'INV-20260829-001',
+  items: [...],
+  total: 150000
+});
+
+// 3. Pemicu Buka Laci Kasir RJ-11
+await window.PoshubBluetoothPrinter.openCashDrawer();</code></pre>
+        </div>
+
+        <h2 id="sunmi-bridge"><i class="fa-solid fa-robot" style="color: var(--primary);"></i> Dukungan Terminal POS Sunmi & iMin</h2>
+        <p>
+          Untuk perangkat Android All-in-One (Sunmi V2 Pro, Sunmi T2, iMin D4), POSHUB secara otomatis mendeteksi objek <code>window.sunmiPrinter</code> atau <code>window.iminPrinter</code> dan mengalihkan pencetakan ke hardware printer internal berkecepatan tinggi.
+        </p>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="kitchen-display.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Kitchen Display (KDS)</div>
+          </a>
+          <a href="shift-management.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Shift Kasir & Z-Report WA <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#bluetooth-printer" class="toc-link">Web Bluetooth Print</a>
+        <a href="#js-bridge" class="toc-link">Hardware Bridge API</a>
+        <a href="#sunmi-bridge" class="toc-link">Terminal Sunmi & iMin</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('hardware-drivers.html');
+  </script>
+</body>
+</html>

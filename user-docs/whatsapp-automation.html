@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Gateway & Template - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="ecommerce.html" class="header-btn header-btn-primary">Toko Online <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-brands fa-whatsapp"></i> 5. Pelanggan, CRM & Portal B2B</div>
+        <h1>WhatsApp Multi-Device Gateway & Template Notifikasi</h1>
+        <p class="lead">
+          Integrasi gerbang WhatsApp multi-perangkat (*Multi-Device QR Pairing*), pengiriman struk digital e-Receipt kasir otomatis, faktur tagihan invoice PDF, notifikasi pengingat piutang jatuh tempo (*Payment Reminder*), dan Z-Report kasir.
+        </p>
+
+        <h2 id="pairing-qr"><i class="fa-solid fa-qrcode" style="color: var(--primary);"></i> Cara Menghubungkan Nomor WhatsApp Toko</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Buka Menu Pengaturan WhatsApp Device</div>
+            <div class="step-body">Masuk ke <strong>Pengaturan &rarr; WhatsApp Device</strong> &rarr; Klik <strong>Tambah Perangkat Baru</strong>.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Pindai Kode QR dari Aplikasi WhatsApp Smartphone</div>
+            <div class="step-body">Buka WhatsApp di HP toko &rarr; Pilih menu <em>Perangkat Tertaut (Linked Devices)</em> &rarr; Scan QR Code yang muncul di layar dashboard POSHUB.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Status Terhubung & Siap Kirim Otomatis</div>
+            <div class="step-body">Status perangkat berubah menjadi <span style="color: var(--success); font-weight: 700;">🟢 Connected</span>. Seluruh notifikasi otomatis langsung aktif.</div>
+          </div>
+        </div>
+
+        <h2 id="template-pesan"><i class="fa-solid fa-file-lines" style="color: var(--primary);"></i> Template Pesan Otomatis (Dynamic Variables)</h2>
+        <p>Anda dapat mengkustomisasi format pesan menggunakan variabel dinamis:</p>
+
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Jenis Notifikasi</th>
+              <th>Pemicu (Trigger)</th>
+              <th>Variabel yang Tersedia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Struk Kasir (e-Receipt)</strong></td>
+              <td>Setelah kasir menyelesaikan transaksi penjualan</td>
+              <td><code>{customer_name}</code>, <code>{invoice_no}</code>, <code>{total_amount}</code>, <code>{receipt_url}</code></td>
+            </tr>
+            <tr>
+              <td><strong>Pengingat Piutang (Due Reminder)</strong></td>
+              <td>H-3 atau saat tanggal jatuh tempo invoice terlewati</td>
+              <td><code>{customer_name}</code>, <code>{invoice_no}</code>, <code>{due_date}</code>, <code>{unpaid_balance}</code></td>
+            </tr>
+            <tr>
+              <td><strong>Laporan Tutup Shift (Z-Report)</strong></td>
+              <td>Kasir menutup kasir di akhir shift</td>
+              <td><code>{store_name}</code>, <code>{cashier_name}</code>, <code>{total_sales}</code>, <code>{cash_total}</code></td>
+            </tr>
+            <tr>
+              <td><strong>Status RMA Servis</strong></td>
+              <td>Teknisi mengubah status pengerjaan servis</td>
+              <td><code>{customer_name}</code>, <code>{ticket_no}</code>, <code>{device_model}</code>, <code>{status}</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="rma-service.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> RMA & Servis Garansi</div>
+          </a>
+          <a href="ecommerce.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Toko Online B2C Terintegrasi <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#pairing-qr" class="toc-link">Cara Hubungkan WA</a>
+        <a href="#template-pesan" class="toc-link">Template Pesan Otomatis</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('whatsapp-automation.html');
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal B2B Grosir & Vendor - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="rma-service.html" class="header-btn header-btn-primary">RMA & Servis <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-handshake"></i> 5. Pelanggan, CRM & Portal B2B</div>
+        <h1>Portal B2B Khusus Pelanggan Grosir & Vendor</h1>
+        <p class="lead">
+          Portal mandiri (*Self-Service B2B Customer Portal*) untuk mitra bisnis grosir, distributor, dan reseller. Pelanggan B2B dapat melihat katalog harga kontrak khusus, mengajukan Purchase Order secara online, memantau plafon kredit (*Credit Limit*), dan mengunduh faktur invoice PDF secara mandiri.
+        </p>
+
+        <h2 id="fitur-b2b"><i class="fa-solid fa-building" style="color: var(--primary);"></i> Fitur Unggulan Portal B2B</h2>
+        <div class="card-grid">
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-credit-card"></i></div>
+            <div class="card-title">Plafon Kredit & TOP (Tempo)</div>
+            <div class="card-desc">Sistem membatasi pesanan jika total tagihan belum lunas melewati limit kredit atau batas jatuh tempo (misal: Net 30/60 Hari).</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-tags"></i></div>
+            <div class="card-title">Tiered Contract Pricing</div>
+            <div class="card-desc">Harga khusus yang dikunci berdasarkan perjanjian kontrak kerja sama per grup mitra B2B.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-file-pdf"></i></div>
+            <div class="card-title">Self-Service Invoice & Faktur</div>
+            <div class="card-desc">Mitra dapat mengunduh salinan invoice, kwitansi pembayaran, dan mutasi saldo piutang tanpa perlu menghubungi admin finance.</div>
+          </div>
+          <div class="card-box">
+            <div class="card-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="card-title">Tracking Pengiriman Kargo</div>
+            <div class="card-desc">Pelacakan nomor resi pengiriman kargo truk/ekspedisi secara real-time langsung dari portal.</div>
+          </div>
+        </div>
+
+        <h2 id="akses-portal"><i class="fa-solid fa-arrow-right-to-bracket" style="color: var(--primary);"></i> Akses Login Portal B2B</h2>
+        <p>Mitra grosir dapat login menggunakan kredensial akun mereka pada URL:</p>
+        <div class="code-container">
+          <div class="code-header"><span>URL Portal B2B</span></div>
+          <pre><code>https://poshub.internatechtion.my.id/b2b/login</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="customers.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> CRM, Loyalty Card & Poin</div>
+          </a>
+          <a href="rma-service.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">RMA & Servis Garansi <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#fitur-b2b" class="toc-link">Fitur Unggulan B2B</a>
+        <a href="#akses-portal" class="toc-link">Akses Login Portal</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('b2b-portal.html');
+  </script>
+</body>
+</html>

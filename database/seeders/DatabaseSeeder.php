@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ReportsSeeder::class);
         $this->call(EcommerceMenuSeeder::class);
         $this->call(EnterpriseMasterSeeder::class);
+        $this->call(DemoLiveSeeder::class);
     }
 }

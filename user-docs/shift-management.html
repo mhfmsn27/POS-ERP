@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shift Kasir & Z-Report WA - POSHUB ACCOUNTING & ERP Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-cash-register"></i></div>
+      <span>POSHUB</span>
+      <span class="logo-badge">v3.5 Enterprise</span>
+    </a>
+    <div class="header-spacer"></div>
+    <div class="header-search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Cari dokumentasi...</span>
+      <kbd>Ctrl K</kbd>
+    </div>
+    <a href="products.html" class="header-btn header-btn-primary">Produk & Stok <i class="fa-solid fa-arrow-right"></i></a>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="layout">
+    <!-- LEFT SIDEBAR -->
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <!-- CONTENT -->
+    <div class="main">
+      <article class="content">
+        <div class="badge-cat"><i class="fa-solid fa-receipt"></i> 2. Kasir POS & Smart Hardware</div>
+        <h1>Manajemen Shift Kasir & WhatsApp Z-Report</h1>
+        <p class="lead">
+          Prosedur pembukaan dan penutupan shift kasir (*Cash Register Drawer*), pencatatan uang modal awal, petty cash operasional, audit selisih kas fisik, dan pengiriman ringkasan laporan Z-Report otomatis ke WhatsApp pemilik toko.
+        </p>
+
+        <h2 id="buka-tutup-shift"><i class="fa-solid fa-clock" style="color: var(--primary);"></i> Alur Buka & Tutup Shift</h2>
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Buka Shift Kasir (Cash Float In)</div>
+            <div class="step-body">Kasir masuk ke menu POS &rarr; Masukkan nominal modal uang kembalian awal (misal: Rp 200.000) &rarr; Klik <strong>Buka Register Kasir</strong>.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Transaksi & Pencatatan Kas Masuk / Kas Keluar</div>
+            <div class="step-body">Jika ada pengeluaran darurat (misal: beli es batu Rp 20.000), kasir mencatat di menu <em>Cash Out</em> dengan nota keterangan.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Tutup Shift & Hitung Uang Fisik (Blind Count)</div>
+            <div class="step-body">Kasir menghitung uang fisik di laci &rarr; Masukkan total hitungan &rarr; Sistem menampilkan perbandingan sistem vs fisik (Selisih Lebih/Kurang).</div>
+          </div>
+        </div>
+
+        <h2 id="wa-zreport"><i class="fa-brands fa-whatsapp" style="color: #059669;"></i> Pengiriman Z-Report Otomatis ke WhatsApp Owner</h2>
+        <p>
+          Begitu tombol <strong>Tutup Register</strong> dikonfirmasi, sistem secara otomatis merangkum omset penjualan per metode bayar dan mengirimkan notifikasi instan ke WhatsApp Owner / Manajer:
+        </p>
+
+        <div class="code-container">
+          <div class="code-header"><span>Format Pesan WhatsApp Z-Report</span></div>
+          <pre><code>📊 *LAPORAN PENUTUPAN KASIR (Z-REPORT)*
+🏪 Toko       : POSHUB OFFICIAL CABANG UTAMA
+👤 Kasir      : Rian Pratama
+⏰ Periode    : 29 Agu 2026, 08:00 - 16:00
+------------------------------------
+💵 Modal Awal     : Rp 200.000
+💰 Total Penjualan: Rp 4.850.000
+  - Tunai (Cash)  : Rp 2.450.000
+  - QRIS Dinamis  : Rp 1.500.000
+  - Kartu Debit   : Rp 900.000
+📉 Kas Keluar     : Rp 50.000
+------------------------------------
+📦 Total Transaksi: 48 Struk
+💵 Total Kas Laci : Rp 2.600.000
+⚖️ Selisih Fisik  : Rp 0 (PAS)
+------------------------------------
+_Laporan otomatis dari POSHUB ERP Enterprise_</code></pre>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="doc-pagination">
+          <a href="hardware-drivers.html" class="page-btn">
+            <div class="page-btn-label">&larr; Sebelumnya</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Hardware Thermal & Barcode</div>
+          </a>
+          <a href="products.html" class="page-btn text-end">
+            <div class="page-btn-label">Selanjutnya &rarr;</div>
+            <div class="page-btn-title">Produk, Varian & UOM <i class="fa-solid fa-arrow-right"></i></div>
+          </a>
+        </div>
+      </article>
+
+      <!-- RIGHT TOC -->
+      <aside class="toc">
+        <div class="toc-title">Di Halaman Ini</div>
+        <a href="#buka-tutup-shift" class="toc-link">Alur Buka Tutup Shift</a>
+        <a href="#wa-zreport" class="toc-link">WhatsApp Z-Report</a>
+      </aside>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    renderNav('shift-management.html');
+  </script>
+</body>
+</html>
