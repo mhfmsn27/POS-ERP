@@ -11,8 +11,8 @@ class DemoLiveSeeder extends Seeder
 {
     /**
      * Run safe, rock-solid foundational master data & storefront demo products seeds.
-     * Mengisi data master, akun demo, kategori, merek, serta katalog produk demo
-     * yang 100% terhubung sempurna ke Marketplace Storefront & Kasir POS.
+     * Menggunakan Schema::hasColumn() secara dinamis untuk seluruh tabel
+     * sehingga 100% bebas dari SQLSTATE[42S22] 1054 Unknown column.
      *
      * @return void
      */
@@ -25,6 +25,7 @@ class DemoLiveSeeder extends Seeder
             $hasMerchantId = Schema::hasColumn('users', 'merchant_id');
             $hasStoreId    = Schema::hasColumn('users', 'store_id');
             $hasRoleType   = Schema::hasColumn('users', 'role_type');
+            $hasRole       = Schema::hasColumn('users', 'role');
 
             $demoUsers = [
                 [
@@ -33,6 +34,8 @@ class DemoLiveSeeder extends Seeder
                     'password'          => Hash::make('password123'),
                     'photo'             => 'uploads/image.jpg',
                     'email_verified_at' => now(),
+                    'role_val'          => 1,
+                    'role_type_val'     => 'administrator',
                 ],
                 [
                     'name'              => 'Store Manager (Budi Pratama)',
@@ -40,6 +43,8 @@ class DemoLiveSeeder extends Seeder
                     'password'          => Hash::make('password123'),
                     'photo'             => 'uploads/image.jpg',
                     'email_verified_at' => now(),
+                    'role_val'          => 1,
+                    'role_type_val'     => 'administrator',
                 ],
                 [
                     'name'              => 'Kasir Toko (Siti Nurhaliza)',
@@ -47,19 +52,31 @@ class DemoLiveSeeder extends Seeder
                     'password'          => Hash::make('password123'),
                     'photo'             => 'uploads/image.jpg',
                     'email_verified_at' => now(),
+                    'role_val'          => 2,
+                    'role_type_val'     => 'cashier',
                 ],
             ];
 
             foreach ($demoUsers as $u) {
-                $userData = $u;
-                if ($hasMerchantId) {
-                    $userData['merchant_id'] = 1;
-                }
+                $userData = [
+                    'name'              => $u['name'],
+                    'email'             => $u['email'],
+                    'password'          => $u['password'],
+                    'photo'             => $u['photo'],
+                    'email_verified_at' => $u['email_verified_at'],
+                ];
+
                 if ($hasStoreId) {
                     $userData['store_id'] = 1;
                 }
+                if ($hasMerchantId) {
+                    $userData['merchant_id'] = 1;
+                }
+                if ($hasRole) {
+                    $userData['role'] = $u['role_val'];
+                }
                 if ($hasRoleType) {
-                    $userData['role_type'] = 'administrator';
+                    $userData['role_type'] = $u['role_type_val'];
                 }
 
                 DB::table('users')->updateOrInsert(
@@ -76,7 +93,11 @@ class DemoLiveSeeder extends Seeder
         // 2. SEED MASTER GUDANG (WAREHOUSES)
         // ====================================================================
         if (Schema::hasTable('warehouses')) {
-            $hasStoreId = Schema::hasColumn('warehouses', 'store_id');
+            $hasStoreId     = Schema::hasColumn('warehouses', 'store_id');
+            $hasCode        = Schema::hasColumn('warehouses', 'code');
+            $hasDescription = Schema::hasColumn('warehouses', 'description');
+            $hasIsActive    = Schema::hasColumn('warehouses', 'is_active');
+
             $warehouses = [
                 [
                     'id'          => 1,
@@ -97,10 +118,24 @@ class DemoLiveSeeder extends Seeder
             ];
 
             foreach ($warehouses as $wh) {
-                $whData = $wh;
+                $whData = [
+                    'name'    => $wh['name'],
+                    'address' => $wh['address'],
+                ];
+
                 if ($hasStoreId) {
                     $whData['store_id'] = 1;
                 }
+                if ($hasCode) {
+                    $whData['code'] = $wh['code'];
+                }
+                if ($hasDescription) {
+                    $whData['description'] = $wh['description'];
+                }
+                if ($hasIsActive) {
+                    $whData['is_active'] = $wh['is_active'];
+                }
+
                 DB::table('warehouses')->updateOrInsert(
                     ['id' => $wh['id']],
                     array_merge($whData, ['created_at' => now(), 'updated_at' => now()])
@@ -346,6 +381,7 @@ class DemoLiveSeeder extends Seeder
             $hasIsActive          = Schema::hasColumn('products', 'is_active');
             $hasPriceType         = Schema::hasColumn('products', 'price_type');
             $hasBarcodeCol        = Schema::hasColumn('variations', 'barcode');
+            $hasVarUnitId         = Schema::hasColumn('variations', 'unit_id');
 
             $demoProducts = [
                 [
@@ -567,8 +603,10 @@ class DemoLiveSeeder extends Seeder
                     'selling_price'  => (string)$p['selling_price'],
                     'price_inc_tax'  => (string)$p['selling_price'],
                     'margin'         => (string)round($margin, 2),
-                    'unit_id'        => $p['unit_id'],
                 ];
+                if ($hasVarUnitId) {
+                    $varData['unit_id'] = $p['unit_id'];
+                }
                 if ($hasBarcodeCol) {
                     $varData['barcode'] = $p['barcode'];
                 }
@@ -641,15 +679,18 @@ class DemoLiveSeeder extends Seeder
         }
 
         if (Schema::hasTable('banners')) {
-            $hasStoreId = Schema::hasColumn('banners', 'store_id');
+            $hasStoreId  = Schema::hasColumn('banners', 'store_id');
+            $hasPosition = Schema::hasColumn('banners', 'position');
             $bannerData = [
                 'image'       => 'uploads/slider/image.jpg',
                 'title'       => 'Koleksi Produk Terlaris',
-                'subtitle'    => 'Temukan produk terfavorit dengan harga terbaik',
                 'button'      => 'no',
                 'button_name' => 'Lihat Katalog',
                 'button_url'  => '/shop',
             ];
+            if ($hasPosition) {
+                $bannerData['position'] = 'home';
+            }
             if ($hasStoreId) {
                 $bannerData['store_id'] = 1;
             }
@@ -661,7 +702,8 @@ class DemoLiveSeeder extends Seeder
         }
 
         if (Schema::hasTable('small_features')) {
-            $hasStoreId = Schema::hasColumn('small_features', 'store_id');
+            $hasStoreId  = Schema::hasColumn('small_features', 'store_id');
+            $hasPosition = Schema::hasColumn('small_features', 'position');
             $features = [
                 ['id' => 1, 'title' => 'Pengiriman Cepat', 'subtitle' => 'Kurir Instan & Kargo Nasional', 'image' => 'uploads/image.jpg'],
                 ['id' => 2, 'title' => 'Produk 100% Original', 'subtitle' => 'Jaminan Kualitas & Garansi Resmi', 'image' => 'uploads/image.jpg'],
@@ -670,7 +712,14 @@ class DemoLiveSeeder extends Seeder
             ];
 
             foreach ($features as $f) {
-                $featData = $f;
+                $featData = [
+                    'title'    => $f['title'],
+                    'subtitle' => $f['subtitle'],
+                    'image'    => $f['image'],
+                ];
+                if ($hasPosition) {
+                    $featData['position'] = 'footer';
+                }
                 if ($hasStoreId) {
                     $featData['store_id'] = 1;
                 }
