@@ -64,6 +64,10 @@ if ($installed == false) {
         })->name("pos.kitchen_display");
 
         Route::get('/print/{id}', [\App\Http\Controllers\Pos\PosReceiptPrintController::class, 'printThermal'])->name('pos.print');
+        Route::get('/print-thermal/{id}', [\App\Http\Controllers\Pos\PosReceiptPrintController::class, 'printThermal'])->name('pos.print_thermal');
+        Route::get('/print-download/{id}', [\App\Http\Controllers\Pos\PosReceiptPrintController::class, 'printThermal'])->name('pos.print_download');
+        Route::get('/print-raw-escpos/{id}', [\App\Http\Controllers\Pos\PosReceiptPrintController::class, 'getRawEscPos'])->name('pos.raw_escpos');
+        Route::post('/send-whatsapp-receipt/{id}', [\App\Http\Controllers\Pos\PosReceiptPrintController::class, 'sendWhatsapp'])->name('pos.send_wa_receipt');
 
         Route::get('/{vue?}', function () {
             return view('pos', ["page" => "POSHUB - POS"]);

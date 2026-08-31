@@ -105,6 +105,32 @@
     <script src="{{ asset('js/pos-hotkeys.js') }}"></script>
     <script src="{{ asset('js/pwa-manager.js') }}"></script>
     <script src="{{ asset('js/hardware-bridge.js') }}"></script>
+    <script>
+        // Global Universal POS Print Handlers (Compatible with Thermal & Regular Printers)
+        window.printcepeipt = function(id) {
+            var targetId = id || window.lastTransactionId || '';
+            if (!targetId) return;
+            var printUrl = '/pos/print/' + targetId;
+            var printWin = window.open(printUrl, 'POSReceiptPrint', 'width=420,height=720,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes');
+            if (printWin) printWin.focus();
+        };
+
+        window.printpage = function(id) {
+            var targetId = id || window.lastTransactionId || '';
+            if (!targetId) return;
+            var printUrl = '/pos/print/' + targetId + '?paper=80';
+            var printWin = window.open(printUrl, 'POSReceiptPrint80', 'width=520,height=800,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes');
+            if (printWin) printWin.focus();
+        };
+
+        window.printInvoice = function(id) {
+            var targetId = id || window.lastTransactionId || '';
+            if (!targetId) return;
+            var printUrl = '/admin/prints/faktur-penjualan/' + targetId;
+            var printWin = window.open(printUrl, 'POSInvoicePrint', 'width=850,height=900,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes');
+            if (printWin) printWin.focus();
+        };
+    </script>
     @yield('scripts')
 </body>
 
