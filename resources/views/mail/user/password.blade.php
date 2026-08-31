@@ -1,99 +1,87 @@
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: "Barlow", sans-serif;
-            color: #000000;
-            font-weight: 400;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Inter", sans-serif;
+            color: #0f172a;
+            font-weight: 600;
         }
 
         body {
-            font-family: "Barlow", sans-serif;
+            font-family: "Inter", sans-serif;
             font-weight: 400;
             font-size: 15px;
             line-height: 1.8;
-            color: rgba(0, 0, 0, 0.4);
+            color: #475569;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 0;
         }
 
         span {
             font-size: 12px;
-            color: #000000;
+            color: #64748b;
         }
 
         a {
             text-decoration: none;
         }
     </style>
-    <title>Reset Password</title>
+    <title>Kode Verifikasi - POSHUB ACCOUNTING</title>
 </head>
 
 <body>
-    <center style="width: 100%">
-        <div style="display: none; font-size: 1px;  max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;  font-family: sans-serif; "></div>
-        <div style="max-width: 600px; margin: 0 auto; background-color: #eaf0f3">
-            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto">
-                <tbody>
-                    <tr>
-                        <td valign="top" class="bg_white" style="padding: 2.5em">
-                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-                                <tbody> 
-                                    <tr style=" display: flex; justify-content: center; align-items: center;">
-                                        <td style="margin-top: 35px; text-align: center">
-                                            <h1 style="text-align: center; font-size: 20px">
-                                                Hi {{$user->name}}, Berikut Kode untuk melanjutkan Reset Password
-                                            </h1>
-                                        </td>
-                                    </tr>
-                                    <tr style="display: flex; justify-content: center; align-items: center;">
-                                        <td style="margin-top: 35px; margin-bottom: 30px; background-color: #fff; border-radius: 6px;">
-                                            <div style="border-top-left-radius: 6px; border-top-right-radius: 6px; border: 0;">
-                                                <div style="height: 10px; border-top-left-radius: 6px; border-top-right-radius: 6px;  background: linear-gradient(90deg, #5b7cfd 24.03%, #ff8057 89.2%);"></div>
-                                                <div style="padding: 0 1.5em">
-                                                    <div style="background-color: #eaf0f3; padding: 5px; font-size: 30px;  color: #000000;  display: flex; justify-content: center; align-items: center; margin: auto; max-width: 100px; margin-top: 2.5rem; border: 0;">
-                                                        {{$user->two_factor_code}}
-                                                    </div>
-                                                    <h6 style="margin: auto; margin-top: 1.25rem">
-                                                        Kode akan kadaluarsa dalam 60 menit. Jika Kamu
-                                                        tidak merasa memerlukan kode verifikasi abaikan
-                                                        pesan ini
-                                                    </h6>
-                                                    <h5 style="margin: auto;  margin-top: 2.5rem; text-align: center;">
-                                                        Aplikasi Fakturco.co.id
-                                                    </h5>
-                                                    <div style="margin: auto; margin-bottom: 2.5rem; margin-top: 0.5rem; text-align: center; "> </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+    <center style="width: 100%; background-color: #f1f5f9; padding: 32px 0;">
+        <!-- Email Container -->
+        <div style="max-width: 560px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
 
-                                    
-                                    <tr>
-                                        <td style="text-align: center">
-                                            <span style="font-size: 12px; color: #000000">Copyright &copy; {{date('Y')}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center; margin-top: 0.5rem">
-                                            <span style="font-size: 12px; color: #000000"><strong>Copyright © POSHUB ACCOUNTING <?=date('Y');?></strong></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Top Gradient Bar -->
+            <div style="height: 5px; background: linear-gradient(90deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);"></div>
+
+            <!-- Header: Logo -->
+            <div style="background: #0f172a; padding: 28px 36px; text-align: center;">
+                <img src="{{ asset('assets/images/logo-faktur.webp') }}" alt="POSHUB ACCOUNTING" style="max-height: 40px; width: auto;" />
+                <div style="margin-top: 8px; font-family: Inter, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #94a3b8;">ENTERPRISE ACCOUNTING</div>
+            </div>
+
+            <!-- Body -->
+            <div style="padding: 40px 36px;">
+                <h1 style="font-size: 20px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0; text-align: center;">
+                    Kode Verifikasi Reset Password
+                </h1>
+                <p style="text-align: center; color: #64748b; font-size: 14px; margin: 0 0 28px 0;">
+                    Hi <strong style="color: #0f172a;">{{$user->name}}</strong>, berikut kode untuk melanjutkan proses reset password Anda:
+                </p>
+
+                <!-- OTP Code Box -->
+                <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 28px; text-align: center; margin: 0 0 28px 0;">
+                    <div style="font-size: 42px; font-weight: 800; letter-spacing: 8px; color: #1e40af; font-family: 'Courier New', monospace;">
+                        {{$user->two_factor_code}}
+                    </div>
+                    <p style="margin: 12px 0 0 0; font-size: 12px; color: #94a3b8;">Berlaku selama <strong style="color: #ef4444;">60 menit</strong></p>
+                </div>
+
+                <p style="font-size: 13px; color: #94a3b8; text-align: center; margin: 0;">
+                    Jika Anda tidak merasa melakukan permintaan reset password, abaikan email ini.
+                    Akun Anda tetap aman.
+                </p>
+            </div>
+
+            <!-- Footer -->
+            <div style="background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 20px 36px; text-align: center;">
+                <p style="margin: 0; font-size: 12px; color: #94a3b8;">
+                    &copy; <?=date('Y');?> <strong style="color: #475569;">POSHUB ACCOUNTING</strong> &mdash; Enterprise POS & ERP System
+                </p>
+                <p style="margin: 6px 0 0 0; font-size: 11px; color: #cbd5e1;">
+                    Email ini dikirim secara otomatis, harap tidak membalas pesan ini.
+                </p>
+            </div>
         </div>
     </center>
 </body>
