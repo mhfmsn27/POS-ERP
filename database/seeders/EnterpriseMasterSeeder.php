@@ -4,13 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class EnterpriseMasterSeeder extends Seeder
 {
     /**
-     * Run the enterprise database seeds.
+     * Run the enterprise database seeds safely.
+     * Menggunakan Schema::hasColumn untuk menjamin kompatibilitas 100%
+     * dengan skema database tanpa error 1054 Unknown column.
      *
      * @return void
      */
@@ -18,71 +19,115 @@ class EnterpriseMasterSeeder extends Seeder
     {
         // 1. Inisialisasi Master Merchant Enterprise
         if (Schema::hasTable('merchants')) {
+            $merchantData = [
+                'name'       => 'POSHUB ENTERPRISE',
+                'owner_id'   => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+
+            if (Schema::hasColumn('merchants', 'email')) {
+                $merchantData['email'] = 'admin@poshub.id';
+            }
+            if (Schema::hasColumn('merchants', 'phone')) {
+                $merchantData['phone'] = '081234567890';
+            }
+            if (Schema::hasColumn('merchants', 'address')) {
+                $merchantData['address'] = 'Kantor Pusat POSHUB';
+            }
+            if (Schema::hasColumn('merchants', 'status')) {
+                $merchantData['status'] = 'active';
+            }
+
             DB::table('merchants')->updateOrInsert(
                 ['id' => 1],
-                [
-                    'name'       => 'POSHUB ENTERPRISE',
-                    'email'      => 'admin@poshub.id',
-                    'phone'      => '081234567890',
-                    'address'    => 'Kantor Pusat POSHUB',
-                    'status'     => 'active',
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]
+                $merchantData
             );
         }
 
         // 2. Inisialisasi Master Paket Enterprise Lifetime
         if (Schema::hasTable('packages')) {
+            $pkgData = [
+                'name'        => 'POSHUB Enterprise Lifetime',
+                'description' => 'Paket Akses Penuh Enterprise Tanpa Batas (Unlimited)',
+                'price'       => 0,
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ];
+
+            if (Schema::hasColumn('packages', 'limit_day')) {
+                $pkgData['limit_day'] = 99999;
+            }
+            if (Schema::hasColumn('packages', 'interval')) {
+                $pkgData['interval'] = 'lifetime';
+            }
+            if (Schema::hasColumn('packages', 'status')) {
+                $pkgData['status'] = 'active';
+            }
+
             DB::table('packages')->updateOrInsert(
                 ['id' => 1],
-                [
-                    'name'         => 'POSHUB Enterprise Lifetime',
-                    'description'  => 'Paket Akses Penuh Enterprise Tanpa Batas (Unlimited)',
-                    'price'        => 0,
-                    'interval'     => 'lifetime',
-                    'status'       => 'active',
-                    'created_at'   => now(),
-                    'updated_at'   => now(),
-                ]
+                $pkgData
             );
         }
 
         // 3. Inisialisasi Toko / Cabang Utama Default
         if (Schema::hasTable('stores')) {
+            $storeData = [
+                'name'        => 'Toko Utama POSHUB',
+                'email'       => 'store@poshub.id',
+                'phone'       => '081234567890',
+                'address'     => 'Jl. Jenderal Sudirman No. 1, Jakarta',
+                'country_id'  => 1,
+                'currency_id' => 54,
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ];
+
+            if (Schema::hasColumn('stores', 'merchant_id')) {
+                $storeData['merchant_id'] = 1;
+            }
+            if (Schema::hasColumn('stores', 'accountant_use')) {
+                $storeData['accountant_use'] = 'yes';
+            }
+            if (Schema::hasColumn('stores', 'shift_register')) {
+                $storeData['shift_register'] = 'active';
+            }
+            if (Schema::hasColumn('stores', 'tax_option')) {
+                $storeData['tax_option'] = 'active';
+            }
+
             DB::table('stores')->updateOrInsert(
                 ['id' => 1],
-                [
-                    'name'           => 'Toko Utama POSHUB',
-                    'email'          => 'store@poshub.id',
-                    'phone'          => '081234567890',
-                    'address'        => 'Jl. Jenderal Sudirman No. 1, Jakarta',
-                    'merchant_id'    => 1,
-                    'country_id'     => 1,
-                    'currency_id'    => 54,
-                    'accountant_use' => 'yes',
-                    'shift_register' => 'active',
-                    'tax_option'     => 'active',
-                    'created_at'     => now(),
-                    'updated_at'     => now(),
-                ]
+                $storeData
             );
         }
 
         // 4. Inisialisasi Transaction Package Lifetime Aktif
         if (Schema::hasTable('transaction_packages')) {
+            $trxPkgData = [
+                'merchant_id'    => 1,
+                'ref_no'         => 'PKG-LIFETIME-ENTERPRISE',
+                'status'         => 'success',
+                'payment_status' => 'paid',
+                'end_date'       => '2099-12-31 23:59:59',
+                'subtotal'       => 0,
+                'tax'            => 0,
+                'grand_total'    => 0,
+                'created_at'     => now(),
+                'updated_at'     => now(),
+            ];
+
+            if (Schema::hasColumn('transaction_packages', 'amount')) {
+                $trxPkgData['amount'] = 0;
+            }
+            if (Schema::hasColumn('transaction_packages', 'start_date')) {
+                $trxPkgData['start_date'] = now()->format('Y-m-d');
+            }
+
             DB::table('transaction_packages')->updateOrInsert(
                 ['store_id' => 1, 'package_id' => 1],
-                [
-                    'merchant_id' => 1,
-                    'ref_no'      => 'PKG-LIFETIME-ENTERPRISE',
-                    'amount'      => 0,
-                    'status'      => 'success',
-                    'start_date'  => now()->format('Y-m-d'),
-                    'end_date'    => '2099-12-31',
-                    'created_at'  => now(),
-                    'updated_at'  => now(),
-                ]
+                $trxPkgData
             );
         }
 
