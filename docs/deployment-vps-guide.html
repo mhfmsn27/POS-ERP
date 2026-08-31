@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panduan Deployment VPS Multi-Tenant - POSHUB ACCOUNTING & ERP</title>
+    <title>Panduan Deployment VPS Multi-Tenant & Instalasi Dependencies - POSHUB ACCOUNTING</title>
     <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,7 +95,7 @@
 
         /* Sidebar Navigation */
         .sidebar {
-            width: 290px;
+            width: 300px;
             flex-shrink: 0;
             position: sticky;
             top: 96px;
@@ -120,29 +120,22 @@
 
         .nav-list {
             list-style: none;
-        }
-
-        .nav-item {
-            margin-bottom: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .nav-link {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 9px 12px;
-            color: var(--text-main);
+            padding: 8px 12px;
+            color: #475569;
             text-decoration: none;
-            font-weight: 500;
             font-size: 13.5px;
+            font-weight: 500;
             border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .nav-link i {
-            width: 18px;
-            color: var(--text-muted);
-            transition: color 0.2s;
+            transition: all 0.2s ease;
         }
 
         .nav-link:hover, .nav-link.active {
@@ -151,8 +144,10 @@
             font-weight: 600;
         }
 
-        .nav-link:hover i, .nav-link.active i {
-            color: var(--primary);
+        .nav-link i {
+            width: 16px;
+            font-size: 14px;
+            text-align: center;
         }
 
         /* Main Content */
@@ -161,42 +156,31 @@
             min-width: 0;
         }
 
-        /* Hero Card */
+        /* Hero Banner */
         .hero-card {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            background: linear-gradient(135deg, #1e40af 0%, #0f172a 100%);
             color: #ffffff;
-            padding: 36px;
             border-radius: var(--radius-lg);
-            margin-bottom: 32px;
+            padding: 36px;
+            margin-bottom: 28px;
             box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
         }
 
-        .hero-card::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 320px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-        }
-
         .hero-title {
-            font-size: 27px;
+            font-size: 26px;
             font-weight: 800;
+            margin-bottom: 10px;
             letter-spacing: -0.5px;
-            margin-bottom: 12px;
-            line-height: 1.25;
         }
 
         .hero-desc {
-            font-size: 14.5px;
+            font-size: 15px;
             color: #cbd5e1;
             max-width: 820px;
-            margin-bottom: 20px;
+            line-height: 1.65;
+            margin-bottom: 18px;
         }
 
         .hero-tags {
@@ -399,8 +383,8 @@
             position: absolute;
             left: -42px;
             top: 0;
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             background: var(--primary);
             color: #ffffff;
             border-radius: 50%;
@@ -409,8 +393,8 @@
             justify-content: center;
             font-weight: 700;
             font-size: 14px;
-            border: 3px solid #ffffff;
-            box-shadow: 0 0 0 2px var(--primary-border);
+            border: 4px solid var(--bg-card);
+            box-shadow: 0 2px 6px rgba(30, 64, 175, 0.3);
         }
 
         .step-heading {
@@ -421,11 +405,12 @@
         }
 
         .step-body {
-            color: var(--text-main);
             font-size: 14px;
+            color: #475569;
+            line-height: 1.6;
         }
 
-        /* Tables */
+        /* Table */
         .doc-table {
             width: 100%;
             border-collapse: collapse;
@@ -437,14 +422,15 @@
             background: #f1f5f9;
             color: var(--dark-navy);
             text-align: left;
-            padding: 12px 16px;
+            padding: 10px 14px;
             font-weight: 600;
-            border-bottom: 2px solid #e2e8f0;
+            border: 1px solid #e2e8f0;
         }
 
         .doc-table td {
-            padding: 12px 16px;
-            border-bottom: 1px solid #e2e8f0;
+            padding: 10px 14px;
+            border: 1px solid #e2e8f0;
+            color: #334155;
         }
 
         .doc-table tr:hover td {
@@ -490,7 +476,7 @@
         <a href="#" class="brand-box">
             <i class="fa fa-server fa-xl" style="color: #60a5fa;"></i>
             <span style="font-weight: 800; font-size: 17px; letter-spacing: -0.3px;">POSHUB ENTERPRISE</span>
-            <span class="brand-badge">VPS Setup Guide</span>
+            <span class="brand-badge">Full VPS Deployment Guide</span>
         </a>
         <div style="font-size: 12.5px; color: #94a3b8;">
             Target: <strong style="color: #38bdf8;">poshub.internatechtion.my.id</strong> &bull; Server: <strong>Domainesia VPS</strong>
@@ -508,28 +494,34 @@
                     <a href="#section-topologi" class="nav-link active"><i class="fa fa-sitemap"></i> 1. Topologi & Isolasi VPS</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#section-dns" class="nav-link"><i class="fa fa-globe"></i> 2. Setup DNS di Rumahweb</a>
+                    <a href="#section-dependencies" class="nav-link"><i class="fa fa-cubes"></i> 2. Instalasi Dependencies Dasar</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#section-database" class="nav-link"><i class="fa fa-database"></i> 3. Database MySQL Terpisah</a>
+                    <a href="#section-dns" class="nav-link"><i class="fa fa-globe"></i> 3. Setup DNS di Rumahweb</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#section-upload" class="nav-link"><i class="fa fa-folder-tree"></i> 4. Upload & Folder Terpisah</a>
+                    <a href="#section-database" class="nav-link"><i class="fa fa-database"></i> 4. Database MySQL Terpisah</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#section-env" class="nav-link"><i class="fa fa-sliders"></i> 5. Konfigurasi .env Produksi</a>
+                    <a href="#section-upload" class="nav-link"><i class="fa fa-folder-tree"></i> 5. Upload & Folder Terpisah</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#section-nginx" class="nav-link"><i class="fa fa-network-wired"></i> 6. Nginx Server Block</a>
+                    <a href="#section-env" class="nav-link"><i class="fa fa-sliders"></i> 6. Konfigurasi .env Produksi</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#section-ssl" class="nav-link"><i class="fa fa-lock"></i> 7. Setup SSL HTTPS Gratis</a>
+                    <a href="#section-nginx" class="nav-link"><i class="fa fa-network-wired"></i> 7. Nginx Server Block</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#section-license" class="nav-link"><i class="fa fa-key"></i> 8. Registrasi Lisensi Domain</a>
+                    <a href="#section-ssl" class="nav-link"><i class="fa fa-lock"></i> 8. Setup SSL HTTPS Gratis</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#section-verify" class="nav-link"><i class="fa fa-circle-check"></i> 9. Verifikasi Go-Live</a>
+                    <a href="#section-license" class="nav-link"><i class="fa fa-key"></i> 9. Registrasi Lisensi Domain</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#section-supervisor" class="nav-link"><i class="fa fa-clock"></i> 10. Queue & Cron Scheduler</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#section-verify" class="nav-link"><i class="fa fa-circle-check"></i> 11. Verifikasi Go-Live</a>
                 </li>
             </ul>
         </aside>
@@ -541,13 +533,13 @@
             <div class="hero-card">
                 <div class="hero-title">🚀 Panduan Lengkap Setup & Go-Live VPS Domainesia</div>
                 <div class="hero-desc">
-                    Tutorial langkah demi langkah memasang <strong>POSHUB ACCOUNTING</strong> pada VPS yang sudah berisi CRM. Seluruh komponen (folder, database, Nginx vhost, PHP worker, SSL, dan lisensi) dibuat <strong>100% terisolasi dan mandiri</strong> tanpa mengganggu aplikasi CRM yang sudah aktif.
+                    Tutorial langkah demi langkah memasang <strong>POSHUB ACCOUNTING</strong> pada VPS Linux Ubuntu yang sudah berisi CRM. Dilengkapi dengan instruksi instalasi seluruh dependencies dasar (PHP 8.2, MySQL, Nginx, Composer, Node.js) serta pemisahan komponen (folder, database, Nginx vhost, SSL) secara <strong>100% terisolasi mandiri</strong> tanpa mengganggu aplikasi CRM yang sudah aktif.
                 </div>
                 <div class="hero-tags">
                     <span class="hero-tag"><i class="fa fa-server"></i> VPS: Domainesia</span>
                     <span class="hero-tag"><i class="fa fa-globe"></i> DNS: Rumahweb</span>
                     <span class="hero-tag"><i class="fa fa-link"></i> Domain: poshub.internatechtion.my.id</span>
-                    <span class="hero-tag"><i class="fa fa-shield"></i> Isolasi Penuh (Zero Conflict)</span>
+                    <span class="hero-tag"><i class="fa fa-shield"></i> Zero Conflict Isolation</span>
                 </div>
             </div>
 
@@ -562,7 +554,7 @@
                         <ul style="font-size: 13px; color: #475569; padding-left: 18px; line-height: 1.7;">
                             <li><strong>Domain:</strong> 2 Domain CRM yang sudah ada</li>
                             <li><strong>Folder Path:</strong> <code>/var/www/crmhub</code> (atau lokasi lama)</li>
-                            <li><strong>Services:</strong> PM2 Node.js (Omnichannel & WA-Gateway)</li>
+                            <li><strong>Services:</strong> PM2 Node.js (Port 8999 Omnichannel & WA-Gateway)</li>
                             <li><strong>Database:</strong> <code>crm_database</code> (TIDAK AKAN TERSENTUH)</li>
                         </ul>
                     </div>
@@ -572,21 +564,153 @@
                         <ul style="font-size: 13px; color: #047857; padding-left: 18px; line-height: 1.7;">
                             <li><strong>Domain:</strong> <code>poshub.internatechtion.my.id</code></li>
                             <li><strong>Folder Path:</strong> <code>/var/www/poshub</code> (Folder Khusus Baru)</li>
-                            <li><strong>Services:</strong> Nginx + PHP 8.x-FPM + Laravel Queue</li>
-                            <li><strong>Database:</strong> <code>poshub_accounting</code> (Database Baru Terpisah)</li>
+                            <li><strong>Services:</strong> Nginx + PHP 8.2-FPM + Supervisor Queue</li>
+                            <li><strong>Database:</strong> <code>poshub_accounting</code> (Database MySQL Baru Terpisah)</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- FASE 2: DNS RUMAHWEB -->
+            <!-- FASE 2: INSTALASI DEPENDENCIES DASAR -->
+            <section id="section-dependencies" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-cubes"></i></div>
+                    <h2 class="section-title">2. Instalasi Dependencies Dasar (PHP 8.2, MySQL, Nginx, Composer, Node.js)</h2>
+                </div>
+                <p>
+                    Jika VPS Anda baru diinstall atau belum memiliki dependensi Laravel yang lengkap, jalankan perintah berikut secara berurutan:
+                </p>
+
+                <div class="step-timeline">
+                    <!-- Step 2.1 -->
+                    <div class="step-item">
+                        <div class="step-bubble">1</div>
+                        <div class="step-heading">Update Sistem & Package Manager Base Tools</div>
+                        <div class="step-body">
+                            Perbarui repository paket Ubuntu dan pasang utilitas dasar:
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span>Terminal VPS (SSH)</span>
+                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
+                                </div>
+                                <pre><code>sudo apt update && sudo apt upgrade -y
+sudo apt install -y curl wget git unzip zip software-properties-common ufw ca-certificates lsb-release gnupg2</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2.2 -->
+                    <div class="step-item">
+                        <div class="step-bubble">2</div>
+                        <div class="step-heading">Instalasi Web Server Nginx</div>
+                        <div class="step-body">
+                            Pastikan Web Server Nginx terpasang dan berjalan:
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span>Terminal VPS (SSH)</span>
+                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
+                                </div>
+                                <pre><code>sudo apt install -y nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2.3 -->
+                    <div class="step-item">
+                        <div class="step-bubble">3</div>
+                        <div class="step-heading">Instalasi PHP 8.2 & Ekstensi Lengkap Laravel / POSHUB</div>
+                        <div class="step-body">
+                            Pasang PHP 8.2 beserta seluruh modul ekstensi yang dibutuhkan:
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span>Terminal VPS (SSH)</span>
+                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
+                                </div>
+                                <pre><code>sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+sudo apt install -y php8.2-fpm php8.2-cli php8.2-mysql php8.2-mbstring php8.2-xml php8.2-bcmath php8.2-curl php8.2-gd php8.2-zip php8.2-intl php8.2-soap php8.2-imagick php8.2-opcache php8.2-redis
+sudo systemctl enable php8.2-fpm
+sudo systemctl start php8.2-fpm</code></pre>
+                            </div>
+
+                            <div class="alert-box alert-info">
+                                <i class="fa fa-lightbulb"></i>
+                                <div>
+                                    <strong>Rekomendasi Konfigurasi php.ini:</strong><br>
+                                    Buka file <code>sudo nano /etc/php/8.2/fpm/php.ini</code> dan pastikan parameter berikut telah disesuaikan:<br>
+                                    <code>upload_max_filesize = 64M</code> &bull; <code>post_max_size = 64M</code> &bull; <code>memory_limit = 512M</code> &bull; <code>max_execution_time = 300</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2.4 -->
+                    <div class="step-item">
+                        <div class="step-bubble">4</div>
+                        <div class="step-heading">Instalasi Composer 2.x (Global)</div>
+                        <div class="step-body">
+                            Pasang dependency manager Composer resmi secara global:
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span>Terminal VPS (SSH)</span>
+                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
+                                </div>
+                                <pre><code>curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+composer --version</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2.5 -->
+                    <div class="step-item">
+                        <div class="step-bubble">5</div>
+                        <div class="step-heading">Instalasi Database Server MySQL</div>
+                        <div class="step-body">
+                            Pasang MySQL Server jika belum terinstall di VPS:
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span>Terminal VPS (SSH)</span>
+                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
+                                </div>
+                                <pre><code>sudo apt install -y mysql-server
+sudo systemctl enable mysql
+sudo systemctl start mysql</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2.6 -->
+                    <div class="step-item">
+                        <div class="step-bubble">6</div>
+                        <div class="step-heading">Instalasi Node.js 20.x & Certbot SSL</div>
+                        <div class="step-body">
+                            Pasang Node.js untuk build asset frontend dan Certbot untuk SSL Let's Encrypt:
+                            <div class="code-container">
+                                <div class="code-header">
+                                    <span>Terminal VPS (SSH)</span>
+                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
+                                </div>
+                                <pre><code># Node.js 20.x LTS
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs certbot python3-certbot-nginx supervisor</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FASE 3: DNS RUMAHWEB -->
             <section id="section-dns" class="doc-section">
                 <div class="section-header">
                     <div class="section-icon"><i class="fa fa-globe"></i></div>
-                    <h2 class="section-title">2. Setup DNS Record di Rumahweb</h2>
+                    <h2 class="section-title">3. Setup DNS Record di Rumahweb</h2>
                 </div>
                 <p>
-                    Karena domain <code>internatechtion.my.id</code> dibeli di Rumahweb, Anda harus mengarahkan subdomain <code>poshub</code> ke alamat IP Publik VPS Domainesia Anda.
+                    Arahkan subdomain <code>poshub</code> pada domain <code>internatechtion.my.id</code> ke alamat IP Publik VPS Domainesia Anda:
                 </p>
 
                 <div class="step-timeline">
@@ -594,13 +718,13 @@
                         <div class="step-bubble">1</div>
                         <div class="step-heading">Login ke ClientZone Rumahweb</div>
                         <div class="step-body">
-                            Buka <a href="https://clientzone.rumahweb.com" target="_blank" style="color: var(--primary); font-weight: 600;">clientzone.rumahweb.com</a> &rarr; Masuk ke menu <strong>Domains</strong> &rarr; Pilih domain <code>internatechtion.my.id</code> &rarr; Klik <strong>DNS Management</strong> (atau Zone Editor).
+                            Buka <a href="https://clientzone.rumahweb.com" target="_blank" style="color: var(--primary); font-weight: 600;">clientzone.rumahweb.com</a> &rarr; Masuk ke menu <strong>Domains</strong> &rarr; Pilih domain <code>internatechtion.my.id</code> &rarr; Klik <strong>DNS Management</strong> (Zone Editor).
                         </div>
                     </div>
 
                     <div class="step-item">
                         <div class="step-bubble">2</div>
-                        <div class="step-heading">Tambahkan A-Record Subdomain Baru</div>
+                        <div class="step-heading">Tambahkan A-Record Subdomain 'poshub'</div>
                         <div class="step-body">
                             Buat DNS Record baru dengan parameter berikut:
                             <table class="doc-table" style="margin-top: 10px;">
@@ -636,57 +760,45 @@
                                 </div>
                                 <pre><code>ping poshub.internatechtion.my.id</code></pre>
                             </div>
-                            <em>Jika muncul balasan IP VPS Domainesia Anda, berarti DNS sudah 100% terhubung!</em>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- FASE 3: DATABASE TERPISAH -->
+            <!-- FASE 4: DATABASE TERPISAH -->
             <section id="section-database" class="doc-section">
                 <div class="section-header">
                     <div class="section-icon"><i class="fa fa-database"></i></div>
-                    <h2 class="section-title">3. Pembuatan Database & User MySQL Terpisah</h2>
+                    <h2 class="section-title">4. Pembuatan Database & User MySQL Terpisah</h2>
                 </div>
                 <p>
-                    Login ke SSH VPS Domainesia Anda menggunakan terminal (Putty / Terminal Windows / MacOS):
+                    Buat database khusus baru bernama <code>poshub_accounting</code> dan user database terisolasi:
                 </p>
 
                 <div class="code-container">
                     <div class="code-header">
-                        <span>Terminal SSH</span>
+                        <span>Terminal VPS (SSH)</span>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
                     </div>
-                    <pre><code>ssh root@IP_VPS_DOMAINESIA</code></pre>
+                    <pre><code>sudo mysql -u root -p</code></pre>
                 </div>
 
-                <p>Masuk ke MySQL server dan buat database khusus POSHUB (terpisah dari database CRM):</p>
-
+                <p>Jalankan query SQL berikut:</p>
                 <div class="code-container">
                     <div class="code-header">
-                        <span>MySQL Root Console</span>
+                        <span>MySQL CLI</span>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
                     </div>
-                    <pre><code>mysql -u root -p</code></pre>
-                </div>
-
-                <p>Jalankan perintah SQL berikut untuk membuat database dan user khusus POSHUB:</p>
-
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>SQL Commands (Isolated Database)</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
-                    </div>
-                    <pre><code>-- 1. Buat database baru khusus POSHUB
+                    <pre><code>-- 1. Buat Database Khusus POSHUB
 CREATE DATABASE poshub_accounting CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- 2. Buat user database baru khusus POSHUB (Ganti PasswordSangatKuat123! dengan password Anda)
-CREATE USER 'poshub_user'@'localhost' IDENTIFIED BY 'PasswordSangatKuat123!';
+-- 2. Buat User Khusus POSHUB
+CREATE USER 'poshub_user'@'localhost' IDENTIFIED BY 'PoshubStrongPass2026!';
 
--- 3. Berikan hak akses penuh hanya pada database poshub_accounting
+-- 3. Berikan Hak Akses Penuh HANYA pada Database POSHUB
 GRANT ALL PRIVILEGES ON poshub_accounting.* TO 'poshub_user'@'localhost';
 
--- 4. Terapkan perubahan
+-- 4. Terapkan Perubahan
 FLUSH PRIVILEGES;
 
 -- 5. Keluar dari MySQL
@@ -694,184 +806,146 @@ EXIT;</code></pre>
                 </div>
             </section>
 
-            <!-- FASE 4: UPLOAD & FOLDER TERPISAH -->
+            <!-- FASE 5: UPLOAD & FOLDER -->
             <section id="section-upload" class="doc-section">
                 <div class="section-header">
                     <div class="section-icon"><i class="fa fa-folder-tree"></i></div>
-                    <h2 class="section-title">4. Upload & Isolasi Folder Aplikasi di VPS</h2>
+                    <h2 class="section-title">5. Pembuatan Folder & Upload Source Code</h2>
                 </div>
-                <p>
-                    Buat direktori khusus <code>/var/www/poshub</code> di VPS Domainesia:
-                </p>
 
                 <div class="code-container">
                     <div class="code-header">
-                        <span>Bash Command (VPS SSH)</span>
+                        <span>Terminal VPS (SSH)</span>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
                     </div>
-                    <pre><code># Buat folder khusus poshub
+                    <pre><code># Buat direktori project terpisah
 sudo mkdir -p /var/www/poshub
+sudo chown -R $USER:$USER /var/www/poshub
+cd /var/www/poshub
 
-# Berikan izin sementara untuk upload
-sudo chown -R $USER:$USER /var/www/poshub</code></pre>
-                </div>
+# Jika clone via Git:
+git clone https://github.com/username/poshub-accounting.git .
 
-                <div class="alert-box alert-info">
-                    <i class="fa fa-cloud-arrow-up"></i>
-                    <div>
-                        <strong>Cara Upload File:</strong><br>
-                        Anda dapat mengupload seluruh file project POSHUB ke <code>/var/www/poshub</code> menggunakan <strong>FileZilla (SFTP)</strong>, <strong>SCP</strong>, atau via Git Clone.
-                    </div>
-                </div>
-
-                <p>Setelah file selesai diupload, jalankan instalasi dependensi dan perizinan hak akses:</p>
-
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>Bash Command (Setup Dependency & Permission)</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
-                    </div>
-                    <pre><code>cd /var/www/poshub
-
-# 1. Install dependensi composer (jika belum ada folder vendor)
-composer install --no-dev --optimize-autoloader
-
-# 2. Atur izin akses aman untuk storage dan bootstrap/cache
-sudo chown -R www-data:www-data /var/www/poshub
-sudo chmod -R 755 /var/www/poshub
-sudo chmod -R 775 /var/www/poshub/storage
-sudo chmod -R 775 /var/www/poshub/bootstrap/cache</code></pre>
+# Atau jika upload file ZIP via SCP/FileZilla:
+# unzip poshub-app.zip -d /var/www/poshub/</code></pre>
                 </div>
             </section>
 
-            <!-- FASE 5: KONFIGURASI .ENV -->
+            <!-- FASE 6: .ENV -->
             <section id="section-env" class="doc-section">
                 <div class="section-header">
                     <div class="section-icon"><i class="fa fa-sliders"></i></div>
-                    <h2 class="section-title">5. Konfigurasi File .env Produksi</h2>
+                    <h2 class="section-title">6. Konfigurasi .env & Migrasi Database</h2>
                 </div>
-                <p>
-                    Edit file <code>.env</code> di dalam folder <code>/var/www/poshub</code>:
-                </p>
 
                 <div class="code-container">
                     <div class="code-header">
-                        <span>Bash Command</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
-                    </div>
-                    <pre><code>nano /var/www/poshub/.env</code></pre>
-                </div>
-
-                <p>Sesuaikan isian variabel kunci berikut untuk server produksi:</p>
-
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>/var/www/poshub/.env (Production Config)</span>
+                        <span>/var/www/poshub/.env</span>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
                     </div>
                     <pre><code>APP_NAME="POSHUB ACCOUNTING"
 APP_ENV=production
-APP_KEY=base64:lOLBNdDn+BfqbgN9feuXxi2elgsf+OZAX2pQLJgclBo=
+APP_KEY=
 APP_DEBUG=false
 APP_URL=https://poshub.internatechtion.my.id
 
-# KONFIGURASI DATABASE TERISOLASI
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=error
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=poshub_accounting
 DB_USERNAME=poshub_user
-DB_PASSWORD=PasswordSangatKuat123!
-DB_STRICT=false
+DB_PASSWORD=PoshubStrongPass2026!
 
-# ==========================================
-# ENTERPRISE DOMAIN-LOCKED LICENSE SYSTEM
-# ==========================================
-LICENSE_SHEET_ID=1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
-ALLOW_ALL_LICENSE=false
-LICENSE_CACHE_TTL=21600
-LICENSE_OFFLINE_GRACE_PERIOD=604800</code></pre>
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DRIVER=local
+QUEUE_CONNECTION=database
+SESSION_DRIVER=file
+SESSION_LIFETIME=120</code></pre>
                 </div>
 
-                <p>Simpan file (Ctrl+O &rarr; Enter &rarr; Ctrl+X), lalu jalankan perintah inisialisasi Laravel:</p>
-
+                <p>Jalankan instalasi dependensi PHP & migrasi database:</p>
                 <div class="code-container">
                     <div class="code-header">
-                        <span>Bash Command</span>
+                        <span>Terminal VPS (SSH)</span>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
                     </div>
                     <pre><code>cd /var/www/poshub
 
-# Symlink storage publik
-php artisan storage:link
+# 1. Install Composer dependencies
+composer install --no-dev --optimize-autoloader
 
-# Jalankan migrasi dan seeding database master
+# 2. Generate Application Key
+php artisan key:generate
+
+# 3. Jalankan Migrasi & Database Seeder Lengkap (Storefront & POS Demo Ready)
 php artisan migrate --seed --force
 
-# Optimasi cache konfigurasi dan routing produksi
+# 4. Storage Link & Optimasi Cache Produksi
+php artisan storage:link
 php artisan config:cache
 php artisan route:cache
-php artisan view:cache</code></pre>
+php artisan view:cache
+
+# 5. Berikan Permission Folder
+sudo chown -R www-data:www-data /var/www/poshub/storage /var/www/poshub/bootstrap/cache
+sudo chmod -R 775 /var/www/poshub/storage /var/www/poshub/bootstrap/cache</code></pre>
                 </div>
             </section>
 
-            <!-- FASE 6: NGINX VHOST TERPISAH -->
+            <!-- FASE 7: NGINX -->
             <section id="section-nginx" class="doc-section">
                 <div class="section-header">
                     <div class="section-icon"><i class="fa fa-network-wired"></i></div>
-                    <h2 class="section-title">6. Konfigurasi Nginx Server Block (Virtual Host Terpisah)</h2>
+                    <h2 class="section-title">7. Konfigurasi Nginx Server Block (Virtual Host)</h2>
                 </div>
-                <p>
-                    Buat file konfigurasi Nginx baru untuk domain <code>poshub.internatechtion.my.id</code> tanpa mengganggu konfigurasi Nginx CRM yang sudah ada:
-                </p>
 
                 <div class="code-container">
                     <div class="code-header">
-                        <span>Bash Command</span>
-                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
-                    </div>
-                    <pre><code>sudo nano /etc/nginx/sites-available/poshub.internatechtion.my.id</code></pre>
-                </div>
-
-                <p>Tempelkan konfigurasi server block Nginx optimal berikut:</p>
-
-                <div class="code-container">
-                    <div class="code-header">
-                        <span>/etc/nginx/sites-available/poshub.internatechtion.my.id</span>
+                        <span>Terminal VPS: sudo nano /etc/nginx/sites-available/poshub.internatechtion.my.id</span>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
                     </div>
                     <pre><code>server {
     listen 80;
+    listen [::]:80;
     server_name poshub.internatechtion.my.id;
-    root /var/www/poshub/public;
 
+    root /var/www/poshub/public;
+    index index.php index.html;
+
+    # Limit Upload Size (50 MB)
+    client_max_body_size 50M;
+
+    # Security Headers
     add_header X-Frame-Options "SAMEORIGIN";
     add_header X-Content-Type-Options "nosniff";
     add_header X-XSS-Protection "1; mode=block";
-
-    index index.php index.html;
-    charset utf-8;
-
-    # Optimalisasi Upload File & Gambar Produk
-    client_max_body_size 64M;
 
     location / {
         try_files $uri $uri/ /index.php?$query_string;
     }
 
-    location = /favicon.ico { access_log off; log_not_found off; }
-    location = /robots.txt  { access_log off; log_not_found off; }
-
-    error_page 404 /index.php;
-
-    # FastCGI PHP-FPM Handler (Sesuaikan versi PHP, misal: php8.1-fpm / php8.2-fpm)
-    location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
-        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-        include fastcgi_params;
-        fastcgi_hide_header X-Powered-By;
+    # Static Assets Caching
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|webp|woff|woff2|ttf|eot)$ {
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+        access_log off;
     }
 
+    # Pass PHP scripts to FastCGI (PHP 8.2-FPM)
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+        fastcgi_read_timeout 300;
+    }
+
+    # Block Hidden Files
     location ~ /\.(?!well-known).* {
         deny all;
     }
@@ -879,184 +953,153 @@ php artisan view:cache</code></pre>
                 </div>
 
                 <p>Aktifkan virtual host dan reload Nginx:</p>
-
                 <div class="code-container">
                     <div class="code-header">
-                        <span>Bash Command</span>
+                        <span>Terminal VPS (SSH)</span>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
                     </div>
-                    <pre><code># 1. Aktifkan symlink ke sites-enabled
-sudo ln -s /etc/nginx/sites-available/poshub.internatechtion.my.id /etc/nginx/sites-enabled/
-
-# 2. Uji apakah konfigurasi Nginx bebas error
+                    <pre><code>sudo ln -s /etc/nginx/sites-available/poshub.internatechtion.my.id /etc/nginx/sites-enabled/
 sudo nginx -t
-
-# 3. Reload Nginx (Aplikasi CRM tetap berjalan lancar tanpa terhenti)
 sudo systemctl reload nginx</code></pre>
                 </div>
             </section>
 
-            <!-- FASE 7: SSL HTTPS GRATIS -->
+            <!-- FASE 8: SSL -->
             <section id="section-ssl" class="doc-section">
                 <div class="section-header">
                     <div class="section-icon"><i class="fa fa-lock"></i></div>
-                    <h2 class="section-title">7. Setup SSL HTTPS Gratis (Certbot Let's Encrypt)</h2>
+                    <h2 class="section-title">8. Pemasangan SSL HTTPS Let's Encrypt Gratis</h2>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Terminal VPS (SSH)</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
+                    </div>
+                    <pre><code>sudo certbot --nginx -d poshub.internatechtion.my.id</code></pre>
+                </div>
+            </section>
+
+            <!-- FASE 9: LISENSI -->
+            <section id="section-license" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-key"></i></div>
+                    <h2 class="section-title">9. Registrasi Lisensi Domain (RSA-2048 Anti-Bypass)</h2>
                 </div>
                 <p>
-                    Pasang sertifikat SSL TLS/HTTPS gratis otomatis menggunakan Certbot:
+                    Buka browser dan akses: <a href="https://poshub.internatechtion.my.id/license/verify" target="_blank" style="color: var(--primary); font-weight: 600;">https://poshub.internatechtion.my.id/license/verify</a>.
+                </p>
+                <p>Masukkan Serial Key resmi Anda untuk mengaktifkan seluruh fitur secara permanen.</p>
+            </section>
+
+            <!-- FASE 10: SUPERVISOR & CRON -->
+            <section id="section-supervisor" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-clock"></i></div>
+                    <h2 class="section-title">10. Konfigurasi Queue Worker & Cron Job Scheduler</h2>
+                </div>
+                <p>
+                    Agar fitur antrean WhatsApp, notifikasi stok, dan jadwal backup otomatis berjalan di background:
                 </p>
 
                 <div class="code-container">
                     <div class="code-header">
-                        <span>Bash Command</span>
+                        <span>Terminal VPS: sudo nano /etc/supervisor/conf.d/poshub-worker.conf</span>
                         <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
                     </div>
-                    <pre><code>sudo certbot --nginx -d poshub.internatechtion.my.id</code></pre>
+                    <pre><code>[program:poshub-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/poshub/artisan queue:work --sleep=3 --tries=3 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=www-data
+numprocs=2
+redirect_stderr=true
+stdout_logfile=/var/www/poshub/storage/logs/worker.log
+stopwaitsecs=3600</code></pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>Terminal VPS (SSH)</span>
+                        <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
+                    </div>
+                    <pre><code>sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start poshub-worker:*
+
+# Tambahkan Cron Job Laravel Scheduler
+(crontab -l 2>/dev/null; echo "* * * * * cd /var/www/poshub && php artisan schedule:run >> /dev/null 2>&1") | crontab -</code></pre>
+                </div>
+            </section>
+
+            <!-- FASE 11: VERIFIKASI -->
+            <section id="section-verify" class="doc-section">
+                <div class="section-header">
+                    <div class="section-icon"><i class="fa fa-circle-check"></i></div>
+                    <h2 class="section-title">11. Verifikasi Go-Live & Akun Login Demo</h2>
                 </div>
 
                 <div class="alert-box alert-success">
                     <i class="fa fa-circle-check"></i>
                     <div>
-                        Certbot akan otomatis memperbarui konfigurasi Nginx menjadi port 443 (HTTPS) dan mengaktifkan pengalihan otomatis HTTP ke HTTPS (*Auto Redirect*). Sertifikat akan diperpanjang otomatis setiap 90 hari.
+                        <strong>🎉 SELAMAT! POSHUB ACCOUNTING & ERP TELAH AKTIF DI PRODUCTION!</strong><br>
+                        Seluruh sistem berjalan secara mandiri dan aman tanpa ada konflik dengan CRM eksisting.
                     </div>
-                </div>
-            </section>
-
-            <!-- FASE 8: REGISTRASI LISENSI -->
-            <section id="section-license" class="doc-section">
-                <div class="section-header">
-                    <div class="section-icon"><i class="fa fa-key"></i></div>
-                    <h2 class="section-title">8. Registrasi Lisensi Domain Resmi</h2>
-                </div>
-                <p>
-                    Karena aplikasi berada pada server produksi dengan <code>ALLOW_ALL_LICENSE=false</code>, daftarkan domain <code>poshub.internatechtion.my.id</code> ke Google Sheet lisensi pusat Anda.
-                </p>
-
-                <div class="step-timeline">
-                    <div class="step-item">
-                        <div class="step-bubble">1</div>
-                        <div class="step-heading">Generate Signature Lisensi di Komputer Anda</div>
-                        <div class="step-body">
-                            Jalankan perintah ini di terminal komputer author/pengembang:
-                            <div class="code-container">
-                                <div class="code-header">
-                                    <span>Artisan CLI Command</span>
-                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
-                                </div>
-                                <pre><code>php artisan license:generate poshub.internatechtion.my.id --client="POSHUB Production Server"</code></pre>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="step-item">
-                        <div class="step-bubble">2</div>
-                        <div class="step-heading">Tempelkan Baris CSV ke Google Sheet</div>
-                        <div class="step-body">
-                            Buka Google Spreadsheet lisensi Anda, lalu buat baris baru dan salin baris lisensi resmi yang sudah digenerate khusus untuk domain ini:
-                            <div class="code-container" style="margin-top: 8px;">
-                                <div class="code-header">
-                                    <span>Google Sheet CSV Row (poshub.internatechtion.my.id)</span>
-                                    <button class="copy-btn" onclick="copyCode(this)"><i class="fa fa-copy"></i> Salin</button>
-                                </div>
-                                <pre><code>"poshub.internatechtion.my.id","POSHUB-2026-D7C470A6-7788","rA1HsVeIyy8xJj3xw2E8u3+EBfrCTgZYk/oGeXu/VyoVAyE2LD8ozw/US4FhCo+VRGypxESw0Rgodo69TxudkocrGk107PgIa1bbKGC6rr8S9W3EfKY4RO28j+Dc3bcyZV+gRT6/CFTFJGhn2w+Japfzhi52iBcqO2lksZxqTaJFkPy3mMMHq4PpGY+0K67QFsRPd/9rMLby+Ho4u41GwKMb0Q7tPUkl5AmqpnwvQjMO8QenAMGqsXYK47WsoEYWFd358W75WqTOB5ViokDQJfdhk9cAzwXWxFpbdlfaJS7ouYOJmhZGuDQDaHer7eFg3dgJoKNPGjIycOGHTgI3dw==","POSHUB Production Server"</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FASE 9: VERIFIKASI & GO LIVE -->
-            <section id="section-verify" class="doc-section">
-                <div class="section-header">
-                    <div class="section-icon"><i class="fa fa-circle-check"></i></div>
-                    <h2 class="section-title">9. Verifikasi Go-Live & Akses Online</h2>
-                </div>
-                <p>
-                    Buka browser Anda dan akses URL:
-                </p>
-                <div style="text-align: center; margin: 20px 0;">
-                    <a href="https://poshub.internatechtion.my.id" target="_blank" style="display: inline-block; background: var(--primary); color: white; padding: 14px 28px; border-radius: 10px; font-size: 17px; font-weight: 700; text-decoration: none; box-shadow: var(--shadow-md);">
-                        🌐 https://poshub.internatechtion.my.id
-                    </a>
                 </div>
 
                 <table class="doc-table">
                     <thead>
                         <tr>
-                            <th>Akun Pengguna</th>
-                            <th>Email Login</th>
-                            <th>Password Default</th>
-                            <th>Akses Panel</th>
+                            <th>Portal Aplikasi</th>
+                            <th>URL Akses</th>
+                            <th>Kredensial Login Demo</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>👑 Super Administrator</strong></td>
-                            <td><code>admin@poshub.id</code></td>
-                            <td><code>123456</code></td>
-                            <td>Dashboard Manajemen Pusat (ERP & Setting)</td>
+                            <td><strong>Marketplace Storefront</strong></td>
+                            <td><a href="https://poshub.internatechtion.my.id" target="_blank">https://poshub.internatechtion.my.id</a></td>
+                            <td>Akses Publik (Bebas Belanja)</td>
                         </tr>
                         <tr>
-                            <td><strong>🏪 Store Manager & Kasir</strong></td>
-                            <td><code>admin@poshub.id</code></td>
-                            <td><code>123456</code></td>
-                            <td>Panel POS Kasir & Transaksi Toko</td>
+                            <td><strong>Panel Kasir POS</strong></td>
+                            <td><a href="https://poshub.internatechtion.my.id/pos" target="_blank">https://poshub.internatechtion.my.id/pos</a></td>
+                            <td><code>kasir@poshub.id</code> / <code>password123</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dashboard Super Admin</strong></td>
+                            <td><a href="https://poshub.internatechtion.my.id/login" target="_blank">https://poshub.internatechtion.my.id/login</a></td>
+                            <td><code>admin@poshub.id</code> / <code>password123</code></td>
                         </tr>
                     </tbody>
                 </table>
-
-                <div class="alert-box alert-warning">
-                    <i class="fa fa-shield-halved"></i>
-                    <div>
-                        <strong>PENTING:</strong> Segera ubah kata sandi default <code>123456</code> setelah login pertama kali pada menu Profil Pengguna!
-                    </div>
-                </div>
             </section>
-
-            <!-- FOOTER -->
-            <footer class="doc-footer">
-                <div>POSHUB ACCOUNTING & ERP — Multi-Tenant VPS Deployment Guide</div>
-                <div style="margin-top: 4px;">Domainesia VPS &bull; Rumahweb DNS &bull; Production Ready</div>
-            </footer>
 
         </main>
     </div>
 
-    <!-- SCRIPT COPY -->
+    <!-- FOOTER -->
+    <footer class="doc-footer">
+        <p>&copy; 2026 POSHUB ENTERPRISE. All rights reserved. Deployment & Multi-Tenant Isolated Architecture.</p>
+    </footer>
+
     <script>
-        function copyCode(btn) {
-            const pre = btn.closest('.code-container').querySelector('pre code');
-            const text = pre.innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                const origHtml = btn.innerHTML;
-                btn.innerHTML = '<i class="fa fa-check"></i> Tersalin!';
-                btn.style.background = '#059669';
+        function copyCode(button) {
+            const container = button.closest('.code-container');
+            const code = container.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalHtml = button.innerHTML;
+                button.innerHTML = '<i class="fa fa-check"></i> Tersalin!';
+                button.style.background = '#059669';
                 setTimeout(() => {
-                    btn.innerHTML = origHtml;
-                    btn.style.background = '';
+                    button.innerHTML = originalHtml;
+                    button.style.background = '';
                 }, 2000);
             });
         }
-
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('.doc-section, .topology-card');
-            const navLinks = document.querySelectorAll('.nav-link');
-            let current = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 120;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
     </script>
 </body>
 </html>

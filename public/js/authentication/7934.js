@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkposhub_accounting=self.webpackChunkposhub_accounting||[]).push([[7934],{7934:(n,o,c)=>{c.r(o),c.d(o,{default:()=>u});var e=(0,c(6954).Nd)(),i=(c(821),Symbol());var u={install:function(n){var o={require:function(n){e.emit("confirm",n)},close:function(){e.emit("close")}};n.config.globalProperties.$confirm=o,n.provide(i,o)}}}}]);

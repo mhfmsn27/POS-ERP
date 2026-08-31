@@ -39,7 +39,7 @@
         <div class="badge-cat"><i class="fa-solid fa-server"></i> 1. Memulai & Fondasi</div>
         <h1>Setup VPS Multi-Tenant (Domainesia & Rumahweb)</h1>
         <p class="lead">
-          Panduan langkah demi langkah memasang <strong>POSHUB ACCOUNTING</strong> pada VPS Linux yang sudah aktif menjalankan aplikasi CRM. Seluruh komponen (folder aplikasi, database, virtual host Nginx, worker, dan sertifikat SSL) dibuat <strong>100% terisolasi mandiri</strong> tanpa mengganggu layanan CRM yang sedang berjalan.
+          Panduan langkah demi langkah memasang <strong>POSHUB ACCOUNTING</strong> pada VPS Linux Ubuntu yang sudah aktif menjalankan aplikasi CRM. Seluruh komponen (folder aplikasi, dependencies, database MySQL, virtual host Nginx, worker, dan sertifikat SSL) dibuat <strong>100% terisolasi mandiri</strong> tanpa mengganggu layanan CRM yang sedang berjalan.
         </p>
 
         <h2 id="topologi"><i class="fa-solid fa-sitemap" style="color: var(--primary);"></i> 1. Arsitektur Isolasi 1 VPS Bersama</h2>
@@ -63,6 +63,11 @@
               <td><code>/var/www/poshub</code> (Folder Khusus)</td>
             </tr>
             <tr>
+              <td><strong>Dependencies</strong></td>
+              <td>Node.js / PM2 Backend</td>
+              <td>PHP 8.2-FPM & Composer 2.x</td>
+            </tr>
+            <tr>
               <td><strong>Database MySQL</strong></td>
               <td><code>crm_database</code> (TIDAK TERSENTUH)</td>
               <td><code>poshub_accounting</code> (Database Baru)</td>
@@ -80,7 +85,61 @@
           </tbody>
         </table>
 
-        <h2 id="dns"><i class="fa-solid fa-globe" style="color: var(--primary);"></i> 2. Setup DNS Record di Rumahweb</h2>
+        <h2 id="dependencies"><i class="fa-solid fa-cubes" style="color: var(--primary);"></i> 2. Instalasi Dependencies Dasar (PHP 8.2, MySQL, Nginx, Composer, Node.js)</h2>
+        <p>Jalankan perintah berikut di terminal SSH VPS Ubuntu Anda:</p>
+        
+        <div class="step-timeline">
+          <div class="step-item">
+            <div class="step-bubble">1</div>
+            <div class="step-heading">Update Paket Sistem & Pasang Nginx</div>
+            <div class="step-body">
+              <div class="code-container">
+                <div class="code-header"><span>Terminal SSH</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+                <pre><code>sudo apt update && sudo apt upgrade -y
+sudo apt install -y curl wget git unzip zip software-properties-common ufw ca-certificates lsb-release gnupg2 nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-bubble">2</div>
+            <div class="step-heading">Pasang PHP 8.2 & Ekstensi Lengkap Laravel</div>
+            <div class="step-body">
+              <div class="code-container">
+                <div class="code-header"><span>Terminal SSH</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+                <pre><code>sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+sudo apt install -y php8.2-fpm php8.2-cli php8.2-mysql php8.2-mbstring php8.2-xml php8.2-bcmath php8.2-curl php8.2-gd php8.2-zip php8.2-intl php8.2-soap php8.2-imagick php8.2-opcache php8.2-redis
+sudo systemctl enable php8.2-fpm
+sudo systemctl start php8.2-fpm</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-bubble">3</div>
+            <div class="step-heading">Pasang Composer 2.x Global, Node.js & MySQL Server</div>
+            <div class="step-body">
+              <div class="code-container">
+                <div class="code-header"><span>Terminal SSH</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+                <pre><code># Composer 2.x
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+
+# MySQL Server & Node.js 20.x
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y mysql-server nodejs certbot python3-certbot-nginx supervisor
+sudo systemctl enable mysql
+sudo systemctl start mysql</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="dns"><i class="fa-solid fa-globe" style="color: var(--primary);"></i> 3. Setup DNS Record di Rumahweb</h2>
         <div class="step-timeline">
           <div class="step-item">
             <div class="step-bubble">1</div>
@@ -103,7 +162,7 @@
           </div>
         </div>
 
-        <h2 id="database"><i class="fa-solid fa-database" style="color: var(--primary);"></i> 3. Pembuatan Database MySQL Terpisah</h2>
+        <h2 id="database"><i class="fa-solid fa-database" style="color: var(--primary);"></i> 4. Pembuatan Database MySQL Terpisah</h2>
         <p>Login ke SSH VPS Domainesia Anda dan buat database khusus POSHUB:</p>
         <div class="code-container">
           <div class="code-header"><span>SQL Commands (MySQL Console)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
@@ -114,69 +173,65 @@ FLUSH PRIVILEGES;
 EXIT;</code></pre>
         </div>
 
-        <h2 id="folder-permission"><i class="fa-solid fa-folder-tree" style="color: var(--primary);"></i> 4. Upload & Izin Akses Folder</h2>
+        <h2 id="folder-permission"><i class="fa-solid fa-folder-tree" style="color: var(--primary);"></i> 5. Upload & Izin Akses Folder</h2>
         <p>Buat direktori dan atur perizinan hak akses web server:</p>
         <div class="code-container">
           <div class="code-header"><span>Bash Command (VPS SSH)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
           <pre><code>sudo mkdir -p /var/www/poshub
-# Upload source code POSHUB ke /var/www/poshub via SFTP/Git
-
+sudo chown -R $USER:$USER /var/www/poshub
 cd /var/www/poshub
+
+# Clone project atau upload ZIP file:
+git clone https://github.com/username/poshub-accounting.git .
+
+# Install Dependensi Composer & Buat Key
 composer install --no-dev --optimize-autoloader
-sudo chown -R www-data:www-data /var/www/poshub
-sudo chmod -R 755 /var/www/poshub
+php artisan key:generate
+
+# Migrasi Database Beserta Seeder Demo Lengkap
+php artisan migrate --seed --force
+
+# Storage Link & Cache Optimasi Produksi
+php artisan storage:link
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Hak Akses Folder Storage
+sudo chown -R www-data:www-data /var/www/poshub/storage /var/www/poshub/bootstrap/cache
 sudo chmod -R 775 /var/www/poshub/storage /var/www/poshub/bootstrap/cache</code></pre>
         </div>
 
-        <h2 id="env-config"><i class="fa-solid fa-sliders" style="color: var(--primary);"></i> 5. Konfigurasi .env Produksi</h2>
+        <h2 id="nginx-config"><i class="fa-solid fa-network-wired" style="color: var(--primary);"></i> 6. Konfigurasi Nginx Server Block</h2>
+        <p>Buat file virtual host: <code>sudo nano /etc/nginx/sites-available/poshub.internatechtion.my.id</code></p>
         <div class="code-container">
-          <div class="code-header"><span>/var/www/poshub/.env</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
-          <pre><code>APP_NAME="POSHUB ACCOUNTING"
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://poshub.internatechtion.my.id
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=poshub_accounting
-DB_USERNAME=poshub_user
-DB_PASSWORD=PasswordKuatPoshub2026!
-
-LICENSE_SHEET_ID=1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms
-ALLOW_ALL_LICENSE=false
-LICENSE_CACHE_TTL=21600
-LICENSE_OFFLINE_GRACE_PERIOD=604800</code></pre>
-        </div>
-
-        <p>Jalankan inisialisasi aplikasi:</p>
-        <div class="code-container">
-          <div class="code-header"><span>Terminal</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
-          <pre><code>php artisan storage:link
-php artisan migrate --seed --force
-php artisan config:cache && php artisan route:cache && php artisan view:cache</code></pre>
-        </div>
-
-        <h2 id="nginx-vhost"><i class="fa-solid fa-network-wired" style="color: var(--primary);"></i> 6. Nginx Server Block & SSL HTTPS</h2>
-        <div class="code-container">
-          <div class="code-header"><span>/etc/nginx/sites-available/poshub.internatechtion.my.id</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <div class="code-header"><span>Nginx Configuration</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
           <pre><code>server {
     listen 80;
+    listen [::]:80;
     server_name poshub.internatechtion.my.id;
-    root /var/www/poshub/public;
 
+    root /var/www/poshub/public;
     index index.php index.html;
-    charset utf-8;
-    client_max_body_size 64M;
+
+    client_max_body_size 50M;
 
     location / {
         try_files $uri $uri/ /index.php?$query_string;
     }
 
     location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
         fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         include fastcgi_params;
+        fastcgi_read_timeout 300;
+    }
+
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|webp|woff2)$ {
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+        access_log off;
     }
 
     location ~ /\.(?!well-known).* {
@@ -185,30 +240,37 @@ php artisan config:cache && php artisan route:cache && php artisan view:cache</c
 }</code></pre>
         </div>
 
-        <p>Aktifkan vhost dan pasang SSL Let's Encrypt gratis:</p>
+        <p>Aktifkan konfigurasi Nginx dan reload layanan:</p>
         <div class="code-container">
-          <div class="code-header"><span>Terminal</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <div class="code-header"><span>Bash Command</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
           <pre><code>sudo ln -s /etc/nginx/sites-available/poshub.internatechtion.my.id /etc/nginx/sites-enabled/
-sudo nginx -t && sudo systemctl reload nginx
-sudo certbot --nginx -d poshub.internatechtion.my.id</code></pre>
+sudo nginx -t
+sudo systemctl reload nginx</code></pre>
         </div>
 
-        <h2 id="license-entry"><i class="fa-solid fa-key" style="color: var(--primary);"></i> 7. Baris Lisensi Resmi Google Sheet</h2>
-        <p>Salin baris lisensi RSA-2048 resmi ini ke baris baru Google Sheet lisensi Anda:</p>
+        <h2 id="ssl"><i class="fa-solid fa-lock" style="color: var(--primary);"></i> 7. Pasang Sertifikat SSL HTTPS Let's Encrypt</h2>
         <div class="code-container">
-          <div class="code-header"><span>Google Sheet CSV Row (poshub.internatechtion.my.id)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
-          <pre><code>"poshub.internatechtion.my.id","POSHUB-2026-D7C470A6-7788","rA1HsVeIyy8xJj3xw2E8u3+EBfrCTgZYk/oGeXu/VyoVAyE2LD8ozw/US4FhCo+VRGypxESw0Rgodo69TxudkocrGk107PgIa1bbKGC6rr8S9W3EfKY4RO28j+Dc3bcyZV+gRT6/CFTFJGhn2w+Japfzhi52iBcqO2lksZxqTaJFkPy3mMMHq4PpGY+0K67QFsRPd/9rMLby+Ho4u41GwKMb0Q7tPUkl5AmqpnwvQjMO8QenAMGqsXYK47WsoEYWFd358W75WqTOB5ViokDQJfdhk9cAzwXWxFpbdlfaJS7ouYOJmhZGuDQDaHer7eFg3dgJoKNPGjIycOGHTgI3dw==","POSHUB Production Server"</code></pre>
+          <div class="code-header"><span>Bash Command (Certbot)</span><button class="copy-btn" onclick="copyCode(this)"><i class="fa-solid fa-copy"></i> Salin</button></div>
+          <pre><code>sudo certbot --nginx -d poshub.internatechtion.my.id</code></pre>
+        </div>
+
+        <div class="callout callout-success">
+          <i class="fa-solid fa-circle-check"></i>
+          <div>
+            <strong>Status Deployment Selesai!</strong><br>
+            Aplikasi POSHUB kini aktif di <code>https://poshub.internatechtion.my.id</code>. Kredensial demo: <code>admin@poshub.id</code> atau <code>kasir@poshub.id</code> (Password: <code>password123</code>).
+          </div>
         </div>
 
         <!-- PAGINATION -->
         <div class="doc-pagination">
           <a href="overview.html" class="page-btn">
             <div class="page-btn-label">&larr; Sebelumnya</div>
-            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Gambaran Ekosistem v3.5</div>
+            <div class="page-btn-title"><i class="fa-solid fa-arrow-left"></i> Gambaran Sistem v3.5</div>
           </a>
           <a href="pos.html" class="page-btn text-end">
             <div class="page-btn-label">Selanjutnya &rarr;</div>
-            <div class="page-btn-title">Panel Kasir POS Modern <i class="fa-solid fa-arrow-right"></i></div>
+            <div class="page-btn-title">Panel Kasir POS <i class="fa-solid fa-arrow-right"></i></div>
           </a>
         </div>
       </article>
@@ -216,13 +278,13 @@ sudo certbot --nginx -d poshub.internatechtion.my.id</code></pre>
       <!-- RIGHT TOC -->
       <aside class="toc">
         <div class="toc-title">Di Halaman Ini</div>
-        <a href="#topologi" class="toc-link">Topologi 1 VPS</a>
-        <a href="#dns" class="toc-link">Setup DNS Rumahweb</a>
-        <a href="#database" class="toc-link">Database Terpisah</a>
-        <a href="#folder-permission" class="toc-link">Folder & Izin Akses</a>
-        <a href="#env-config" class="toc-link">Konfigurasi .env</a>
-        <a href="#nginx-vhost" class="toc-link">Nginx & SSL HTTPS</a>
-        <a href="#license-entry" class="toc-link">Baris Lisensi Resmi</a>
+        <a href="#topologi" class="toc-link">1. Topologi Multi-Tenant</a>
+        <a href="#dependencies" class="toc-link">2. Instalasi Dependencies</a>
+        <a href="#dns" class="toc-link">3. Setup DNS Rumahweb</a>
+        <a href="#database" class="toc-link">4. Database MySQL Terpisah</a>
+        <a href="#folder-permission" class="toc-link">5. Upload & Hak Akses</a>
+        <a href="#nginx-config" class="toc-link">6. Nginx Virtual Host</a>
+        <a href="#ssl" class="toc-link">7. Sertifikat SSL Gratis</a>
       </aside>
     </div>
   </div>

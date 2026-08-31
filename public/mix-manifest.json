@@ -3,5 +3,6 @@
     "/js/starter.js": "/js/starter.js",
     "/js/pos.js": "/js/pos.js",
     "/js/panel.js": "/js/panel.js",
-    "/js/app.js": "/js/app.js"
+    "/js/app.js": "/js/app.js",
+    "/css/poshub-modern-ui.css": "/css/poshub-modern-ui.css"
 }

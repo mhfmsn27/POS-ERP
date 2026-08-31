@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkposhub_accounting=self.webpackChunkposhub_accounting||[]).push([[533],{533:(e,n,o)=>{o.r(n),o.d(n,{default:()=>u});var c=o(821),r={class:"row mt-6"};const t={},u=(0,o(3744).Z)(t,[["render",function(e,n){var o=(0,c.resolveComponent)("router-view");return(0,c.openBlock)(),(0,c.createElementBlock)("div",r,[(0,c.createVNode)(o)])}]])}}]);

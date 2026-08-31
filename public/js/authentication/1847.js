@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkposhub_accounting=self.webpackChunkposhub_accounting||[]).push([[1847],{1847:(n,u,c)=>{c.r(u),c.d(u,{default:()=>s});const e={},s=(0,c(3744).Z)(e,[["render",function(n,u){return null}]])}}]);
