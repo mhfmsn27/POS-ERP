@@ -9,12 +9,12 @@ class PageController extends Controller
 
     public function index()
     {
-        return view('pages.app', ['page' => 'Faktur Online']);
+        return view('pages.app', ['page' => 'POSHUB ENTERPRISE']);
     }
 
     public function panel()
     {
-        return view('pages.panel', ['page' => 'Faktur Online']);
+        return view('pages.panel', ['page' => 'POSHUB ENTERPRISE']);
     }
 
 
@@ -25,6 +25,6 @@ class PageController extends Controller
 
     public function starter()
     {
-        return view('pages.starter', ['page'     => 'Memulai Faktur Online']);
+        return view('pages.starter', ['page'     => 'Memulai POSHUB ENTERPRISE']);
     }
 }
