@@ -43,10 +43,11 @@
     <script>
         (function($) {
             "use strict";
-            $(window).on("load", function(e) {
-                $("#global-loader").fadeOut("slow");
-            })
-
+            function hideLoader() {
+                $("#global-loader").fadeOut(250);
+            }
+            $(window).on("load", hideLoader);
+            setTimeout(hideLoader, 600); // Safety fallback for fast SPA mount
         })(jQuery);
     </script>
 

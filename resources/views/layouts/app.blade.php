@@ -47,6 +47,17 @@
     <!-- APP JS-->
     <script src="{{asset('newtheme/js/themeColors.js')}}"></script>
     <script src="{{asset('newtheme/js/custom.js')}}"></script>
+
+    <script>
+        (function($) {
+            "use strict";
+            function hideLoader() {
+                $("#global-loader").fadeOut(250);
+            }
+            $(window).on("load", hideLoader);
+            setTimeout(hideLoader, 500); // Safety fallback
+        })(jQuery);
+    </script>
 </body>
 
 </html>
