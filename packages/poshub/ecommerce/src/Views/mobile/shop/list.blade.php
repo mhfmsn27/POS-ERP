@@ -21,7 +21,7 @@
                 @foreach($products as $product)
                 <div class="card-product">
                     <div class="box-img">
-                        <img src="{{asset($product->default_image)}}" alt="">
+                        <img src="{{asset($product->default_image)}}" loading="lazy" alt="{{$product->name ?? ''}}">
                     </div>
                     <div class="content">
                         <h6 class="text-caption text-onSurface"><a href="{{route('ecommerce.mobile.shop_detail',$product->id)}}">{{$product->name ?? ''}}</a></h6>
@@ -66,7 +66,7 @@
 
                 @if($paginate['label'] == 'pagination.next')
                 <li class="page-item">
-                    <a class="page-link" href="#"><i class="fa fa-arrow-right"></i></a>
+                    <a class="page-link" href="{{$paginate['url']}}"><i class="fa fa-arrow-right"></i></a>
                 </li>
                 @endif
 

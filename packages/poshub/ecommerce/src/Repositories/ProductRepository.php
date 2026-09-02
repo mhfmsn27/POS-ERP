@@ -13,21 +13,64 @@ class ProductRepository
 {
       public function getData(Request $request)
       {
-            $query = Product::where(function ($q) use ($request) {
-                  return $request->name ? $q->where('name', 'like', '%' . $request->name . '%')->orWhereHas("variant", function ($q) use ($request) {
-                        return  $q->where('name', 'like', '%' . $request->name . '%');
-                  }) : '';
-            })->where('store_id', session()->get('dfstore'))->where(function ($q) use ($request) {
-                  return $request->category ? $q->where("category_id", $request->category) : '';
+            $search = $request->name ?? $request->search ?? $request->q ?? '';
+            $categoryId = $request->category ?? $request->category_id ?? '';
+
+            $query = Product::where(function ($q) use ($search) {
+                  if (!empty($search)) {
+                        return $q->where('name', 'like', '%' . $search . '%')
+                                 ->orWhere('sku', 'like', '%' . $search . '%')
+                                 ->orWhereHas("variant", function ($vq) use ($search) {
+                                       return $vq->where('name', 'like', '%' . $search . '%')
+                                                 ->orWhere('sku', 'like', '%' . $search . '%');
+                                 });
+                  }
+                  return $q;
+            })->where('store_id', session()->get('dfstore'))
+              ->where(function ($q) use ($categoryId) {
+                  if (!empty($categoryId)) {
+                        return $q->where("category_id", $categoryId);
+                  }
+                  return $q;
             })->where(function ($q) use ($request) {
-                  return $request->min_price ? $q->whereHas("variant", function ($q) use ($request) {
-                        $q->where("selling_price", ">=", $request->min_price);
-                  }) : '';
+                  if ($request->min_price) {
+                        return $q->whereHas("variant", function ($vq) use ($request) {
+                              $vq->where("selling_price", ">=", (float)$request->min_price);
+                        });
+                  }
+                  return $q;
             })->where(function ($q) use ($request) {
-                  return $request->max_price ? $q->whereHas("variant", function ($q) use ($request) {
-                        $q->where("selling_price", "<=", $request->max_price);
-                  }) : '';
-            })->orderBy("name", "asc");
+                  if ($request->max_price) {
+                        return $q->whereHas("variant", function ($vq) use ($request) {
+                              $vq->where("selling_price", "<=", (float)$request->max_price);
+                        });
+                  }
+                  return $q;
+            });
+
+            // Dynamic Sorting based on request
+            $sort = $request->sort ?? 'newest';
+            switch ($sort) {
+                  case 'price_asc':
+                        $query->orderBy('selling_price', 'asc');
+                        break;
+                  case 'price_desc':
+                        $query->orderBy('selling_price', 'desc');
+                        break;
+                  case 'name_desc':
+                        $query->orderBy('name', 'desc');
+                        break;
+                  case 'oldest':
+                        $query->orderBy('id', 'asc');
+                        break;
+                  case 'name_asc':
+                        $query->orderBy('name', 'asc');
+                        break;
+                  case 'newest':
+                  default:
+                        $query->orderBy('id', 'desc');
+                        break;
+            }
 
             if (with_stock() == 'no') {
                   $query->whereHas('variant.stock_in_website', function ($query) {

@@ -3262,3 +3262,23 @@ function playSound(filename) {
   document.getElementById('sound').innerHTML =
     '<audio autoplay="autoplay">' + mp3Source + embedSource + '</audio>'
 }
+
+/**
+ * Global DataTable Helper for POSHUB Enterprise Backoffice
+ * Seamlessly manages filter parameters, pagination state, and search queries
+ */
+function datatable_poshub_callback(d) {
+  if (!d) d = {};
+  if (typeof $ !== 'undefined') {
+    if ($('#store').length && $('#store').val()) d.store = $('#store').val();
+    if ($('#status').length && $('#status').val()) d.status = $('#status').val();
+    if ($('#start_date').length && $('#start_date').val()) d.start_date = $('#start_date').val();
+    if ($('#end_date').length && $('#end_date').val()) d.end_date = $('#end_date').val();
+    if ($('#date_now').length && $('#date_now').val()) d.date_now = $('#date_now').val();
+  }
+  return d;
+}
+
+// Backward compatibility alias
+var datatable_mdhpos_callback = datatable_poshub_callback;
+

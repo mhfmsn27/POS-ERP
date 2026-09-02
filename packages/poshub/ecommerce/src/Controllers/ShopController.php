@@ -26,7 +26,7 @@ class ShopController extends Controller
 
             $data             = $this->productRepository->getData($request);
             $totalProducts    = $data->count();
-            $products         = $data->paginate($limit);
+            $products         = $data->paginate($limit)->withQueryString();
 
             $pagination       = array(
                   'current_page'      => $products->currentPage(),

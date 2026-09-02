@@ -45,43 +45,40 @@
                         <p>Kami Menemukan <strong class="text-brand">{{number_format($totalProducts)}}</strong> Produk Untuk Kamu!</p>
                     </div>
                     <div class="sort-by-product-area">
-                        <!-- <div class="sort-by-cover mr-10">
+                        <div class="sort-by-cover">
                             <div class="sort-by-product-wrap">
                                 <div class="sort-by">
-                                    <span><i class="fi-rs-apps"></i>Show:</span>
+                                    <span><i class="fi-rs-apps-sort"></i>Urutkan:</span>
                                 </div>
                                 <div class="sort-by-dropdown-wrap">
-                                    <span> {{$pagination['per_page']}} <i class="fi-rs-angle-small-down"></i></span>
+                                    <span>
+                                        @if(request('sort') == 'price_asc')
+                                            Harga: Terendah
+                                        @elseif(request('sort') == 'price_desc')
+                                            Harga: Tertinggi
+                                        @elseif(request('sort') == 'name_asc')
+                                            Nama: A-Z
+                                        @elseif(request('sort') == 'name_desc')
+                                            Nama: Z-A
+                                        @elseif(request('sort') == 'oldest')
+                                            Terlama
+                                        @else
+                                            Terbaru
+                                        @endif
+                                        <i class="fi-rs-angle-small-down"></i>
+                                    </span>
                                 </div>
                             </div>
                             <div class="sort-by-dropdown">
                                 <ul>
-                                    <li><a class="active" href="#">20</a></li>
-                                    <li><a href="#">30</a></li>
-                                    <li><a href="#">40</a></li>
-                                    <li><a href="#">50</a></li>
+                                    <li><a class="@if(!request('sort') || request('sort') == 'newest') active @endif" href="{{ request()->fullUrlWithQuery(['sort' => 'newest']) }}">Terbaru</a></li>
+                                    <li><a class="@if(request('sort') == 'price_asc') active @endif" href="{{ request()->fullUrlWithQuery(['sort' => 'price_asc']) }}">Harga: Terendah</a></li>
+                                    <li><a class="@if(request('sort') == 'price_desc') active @endif" href="{{ request()->fullUrlWithQuery(['sort' => 'price_desc']) }}">Harga: Tertinggi</a></li>
+                                    <li><a class="@if(request('sort') == 'name_asc') active @endif" href="{{ request()->fullUrlWithQuery(['sort' => 'name_asc']) }}">Nama: A-Z</a></li>
+                                    <li><a class="@if(request('sort') == 'name_desc') active @endif" href="{{ request()->fullUrlWithQuery(['sort' => 'name_desc']) }}">Nama: Z-A</a></li>
                                 </ul>
                             </div>
-                        </div> -->
-                        <!-- <div class="sort-by-cover">
-                                <div class="sort-by-product-wrap">
-                                    <div class="sort-by">
-                                        <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
-                                    </div>
-                                    <div class="sort-by-dropdown-wrap">
-                                        <span> Featured <i class="fi-rs-angle-small-down"></i></span>
-                                    </div>
-                                </div>
-                                <div class="sort-by-dropdown">
-                                    <ul>
-                                        <li><a class="active" href="#">Featured</a></li>
-                                        <li><a href="#">Price: Low to High</a></li>
-                                        <li><a href="#">Price: High to Low</a></li>
-                                        <li><a href="#">Release Date</a></li>
-                                        <li><a href="#">Avg. Rating</a></li>
-                                    </ul>
-                                </div>
-                            </div> -->
+                        </div>
                     </div>
                 </div>
                 <div class="row product-grid">
@@ -91,17 +88,13 @@
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <a href="{{route('ecommerce.shop_detail',$product->id)}}">
-                                        <img class="default-img" src="{{asset($product->default_image)}}" alt="" />
-                                        <img class="hover-img" src="{{asset($product->default_image)}}" alt="" />
+                                        <img class="default-img" src="{{asset($product->default_image)}}" loading="lazy" alt="{{$product->name}}" />
+                                        <img class="hover-img" src="{{asset($product->default_image)}}" loading="lazy" alt="{{$product->name}}" />
                                     </a>
                                 </div>
                                 <div class="product-action-1">
-
                                     <a aria-label="Lihat Detail" href="{{route('ecommerce.shop_detail',$product->id)}}" class="action-btn"><i class="fi-rs-eye"></i></a>
                                 </div>
-                                <!-- <div class="product-badges product-badges-position product-badges-mrg">
-                                    <span class="hot">Hot</span>
-                                </div> -->
                             </div>
                             <div class="product-content-wrap">
                                 <div class="product-category">
@@ -110,18 +103,12 @@
                                 <h2><a href="{{route('ecommerce.shop_detail',$product->id)}}">{{$product->name ?? ''}}</a></h2>
                                 @if(show_stock() == 'yes')
                                 <div class="product-rate-cover">
-                                    <!-- <div class="product-rate d-inline-block">
-                                                            <div class="product-rating" style="width: 90%"></div>
-                                                      </div>
-                                                      <span class="font-small ml-5 text-muted"> (4.0)</span> -->
-
                                     <span class="font-small ml-5 text-muted"> ({{number_format($product->stock_in_website->sum('qty_available'))}}) Stok</span>
                                 </div>
                                 @endif
                                 <div class="product-card-bottom">
                                     <div class="product-price">
                                         <span>Rp {{$product->price_sell_range}} </span>
-                                        <!-- <span class="old-price">$32.8</span> -->
                                     </div>
                                     <div class="add-cart">
                                         <a class="add" href="{{route('ecommerce.shop_detail',$product->id)}}"><i class="fi-rs-shopping-cart mr-5"></i>Detail </a>
@@ -153,7 +140,7 @@
 
                             @if($paginate['label'] == 'pagination.next')
                             <li class="page-item">
-                                <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
+                                <a class="page-link" href="{{$paginate['url']}}"><i class="fi-rs-arrow-small-right"></i></a>
                             </li>
                             @endif
 

@@ -46,6 +46,7 @@
                                 width="8vh"
                                 style="height: 11vh; object-fit: contain;"
                                 :src="item.image"
+                                loading="lazy"
                                 class="card-img-top img-fluid rounded"
                                 :alt="item.name"
                             />

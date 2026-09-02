@@ -14,8 +14,8 @@
                                           <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
                                                       <a href="{{route('ecommerce.shop_detail',$product->product->id)}}">
-                                                            <img class="default-img" src="{{asset($product->product->default_image)}}" alt="" />
-                                                            <img class="hover-img" src="{{asset($product->product->default_image)}}" alt="" />
+                                                            <img class="default-img" src="{{asset($product->product->default_image)}}" loading="lazy" alt="{{$product->product->name ?? ''}}" />
+                                                            <img class="hover-img" src="{{asset($product->product->default_image)}}" loading="lazy" alt="{{$product->product->name ?? ''}}" />
                                                       </a>
                                                 </div>
                                                 <div class="product-action-1">
