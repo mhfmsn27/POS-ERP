@@ -69,5 +69,19 @@ Promise.all([
         Vue.use(store.default);
 
         Vue.mount("#app");
+
+        // Immediately dismiss loader upon mount
+        const loader = document.getElementById("global-loader");
+        if (loader) {
+            loader.style.transition = "opacity 0.2s ease";
+            loader.style.opacity = "0";
+            setTimeout(() => { loader.style.display = "none"; }, 200);
+        }
     }
-);
+).catch((err) => {
+    console.error("Authentication App Mount Error:", err);
+    const loader = document.getElementById("global-loader");
+    if (loader) {
+        loader.style.display = "none";
+    }
+});
