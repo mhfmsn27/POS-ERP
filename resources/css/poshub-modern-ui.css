@@ -117,6 +117,11 @@ body.login-img,
     overflow: hidden;
 }
 
+.auth-split-container.auth-split-container-wide,
+.auth-split-container-wide {
+    max-width: 1160px;
+}
+
 .auth-form-side {
     flex: 1 1 50%;
     padding: 36px 36px;
@@ -362,6 +367,14 @@ body.login-img,
     box-shadow: var(--poshub-shadow-sm) !important;
 }
 
+.auth-input-with-icon {
+    padding-left: 42px !important;
+}
+
+.auth-input-with-toggle {
+    padding-right: 44px !important;
+}
+
 .input100.no-icon,
 .auth-input.no-icon,
 .form-control.no-icon {
@@ -398,6 +411,46 @@ textarea.form-control {
     padding-left: 14px !important;
     pointer-events: none !important;
     transition: var(--poshub-transition) !important;
+}
+
+.auth-field-icon {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 14px;
+    pointer-events: none;
+    z-index: 2;
+    transition: var(--poshub-transition);
+}
+
+.position-relative:focus-within .auth-field-icon {
+    color: var(--poshub-primary);
+}
+
+.btn-toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 6px 8px;
+    line-height: 1;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: var(--poshub-transition);
+}
+
+.btn-toggle-password:hover {
+    color: var(--poshub-dark);
 }
 
 .input100:focus + .focus-input100 + .symbol-input100,

@@ -1,270 +1,395 @@
 <template>
     <div class="auth-page-wrapper">
-        <!-- Stage 1: Request Password Reset -->
-        <div class="wrap-login100" v-if="stage.first">
-            <!-- Brand Header -->
-            <div class="auth-brand-header">
-                <router-link :to="{ name: 'login' }" class="d-inline-block">
-                    <img
-                        v-lazy="asset.logo"
-                        class="auth-brand-logo"
-                        alt="POSHUB Enterprise"
-                    />
-                </router-link>
-                <div>
-                    <span class="auth-brand-badge">Pemulihan Akun</span>
-                </div>
-            </div>
-
-            <!-- Title & Subtitle -->
-            <h1 class="auth-form-title">Lupa Password?</h1>
-            <p class="auth-form-subtitle">Masukkan alamat email akun POSHUB Anda untuk menerima kode verifikasi pemulihan sandi.</p>
-
-            <Form
-                @submit="sendResetCode()"
-                ref="ValidationCodeReset"
-                class="validate-form"
-            >
-                <div class="form-group mb-4">
-                    <label for="resetEmail" class="auth-label">Alamat Email Terdaftar</label>
-                    <div class="wrap-input100">
-                        <Field
-                            :rules="{
-                                required: true,
-                            }"
-                            v-slot="{ errors, field }"
-                            :name="'Alamat Email'"
-                            v-model="user.email"
-                        >
-                            <input
-                                id="resetEmail"
-                                class="input100"
-                                type="email"
-                                v-model="user.email"
-                                placeholder="name@company.com"
+        <div class="auth-split-container">
+            <!-- Left Side: Form Panel -->
+            <div class="auth-form-side">
+                <!-- Stage 1: Request Password Reset -->
+                <div v-if="stage.first">
+                    <!-- Brand Header -->
+                    <div class="auth-brand-header text-start mb-3">
+                        <router-link :to="{ name: 'login' }" class="d-inline-block text-decoration-none">
+                            <img
+                                v-lazy="asset.logo"
+                                class="auth-brand-logo"
+                                alt="POSHUB Enterprise"
                             />
-                            <div class="fs-sm text-danger mt-1">
-                                {{ errors[0] }}
-                            </div>
-                        </Field>
-                        <span class="symbol-input100">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mt-4">
-                    <button
-                        type="submit"
-                        :disabled="loader.submit"
-                        class="btn-auth-primary"
-                    >
-                        <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
-                        <i v-else class="fa fa-paper-plane me-2"></i>
-                        {{
-                            loader.submit
-                                ? "Mengirim Kode..."
-                                : "Kirim Kode Verifikasi"
-                        }}
-                    </button>
-                </div>
-
-                <div class="text-center pt-4">
-                    <p class="text-muted mb-0" style="font-size: 0.875rem;">
-                        Ingat kata sandi Anda?
-                        <router-link
-                            :to="{ name: 'login' }"
-                            class="text-primary fw-bold text-decoration-none ms-1"
-                        >
-                            Kembali ke Login
                         </router-link>
-                    </p>
-                </div>
-            </Form>
-        </div>
-
-        <!-- Stage 2: Verify Code -->
-        <div class="wrap-login100" v-if="stage.second">
-            <!-- Brand Header -->
-            <div class="auth-brand-header">
-                <router-link :to="{ name: 'login' }" class="d-inline-block">
-                    <img
-                        v-lazy="asset.logo"
-                        class="auth-brand-logo"
-                        alt="POSHUB Enterprise"
-                    />
-                </router-link>
-                <div>
-                    <span class="auth-brand-badge">Verifikasi Token</span>
-                </div>
-            </div>
-
-            <!-- Title & Subtitle -->
-            <h1 class="auth-form-title">Verifikasi Kode Email</h1>
-            <p class="auth-form-subtitle">Masukkan kode otentikasi pemulihan yang dikirimkan ke <strong>{{ user.email }}</strong>.</p>
-
-            <Form
-                @submit="sendVerifyEmail()"
-                ref="ValidationEmailCode"
-                class="validate-form"
-            >
-                <div class="form-group mb-4">
-                    <label for="verifyResetCode" class="auth-label">Kode Verifikasi</label>
-                    <div class="wrap-input100">
-                        <Field
-                            :rules="{
-                                required: true,
-                            }"
-                            v-slot="{ errors, field }"
-                            :name="'Masukkan Kode'"
-                            v-model="verify_email.two_factor_code"
-                        >
-                            <input
-                                id="verifyResetCode"
-                                class="input100 text-center fw-bold"
-                                style="letter-spacing: 4px; font-size: 1.25rem;"
-                                type="text"
-                                maxlength="8"
-                                v-model="verify_email.two_factor_code"
-                                placeholder="• • • • • •"
-                            />
-                            <div class="fs-sm text-danger mt-1">
-                                {{ errors[0] }}
-                            </div>
-                        </Field>
-                        <span class="symbol-input100">
-                            <i class="fa fa-key" aria-hidden="true"></i>
-                        </span>
+                        <div>
+                            <span class="auth-brand-badge">Pemulihan Akun &bull; Langkah 1 dari 3</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="mt-4">
-                    <button
-                        type="submit"
-                        :disabled="loader.submit"
-                        class="btn-auth-primary"
+                    <!-- Title & Subtitle -->
+                    <div class="mb-4">
+                        <h1 class="auth-form-title text-start mb-1">Lupa Kata Sandi?</h1>
+                        <p class="auth-form-subtitle text-start mb-0">Masukkan alamat email akun Anda untuk menerima kode verifikasi pemulihan sandi.</p>
+                    </div>
+
+                    <Form
+                        @submit="sendResetCode()"
+                        ref="ValidationCodeReset"
+                        class="validate-form"
                     >
-                        <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
-                        <i v-else class="fa fa-check-circle me-2"></i>
-                        {{
-                            loader.submit
-                                ? "Memverifikasi..."
-                                : "Validasi Kode"
-                        }}
-                    </button>
+                        <div class="form-group mb-3">
+                            <label for="resetEmail" class="auth-label">Alamat Email Terdaftar <span class="text-danger">*</span></label>
+                            <div class="position-relative">
+                                <Field
+                                    :rules="{
+                                        required: true,
+                                    }"
+                                    v-slot="{ errors, field }"
+                                    :name="'Alamat Email'"
+                                    v-model="user.email"
+                                >
+                                    <input
+                                        id="resetEmail"
+                                        class="form-control auth-input-with-icon"
+                                        type="email"
+                                        v-model="user.email"
+                                        placeholder="contoh: admin@poshub.id"
+                                        autofocus
+                                    />
+                                    <div class="fs-sm text-danger mt-1" v-if="errors && errors.length">
+                                        <i class="fa fa-exclamation-circle me-1"></i>{{ errors[0] }}
+                                    </div>
+                                </Field>
+                                <span class="auth-field-icon">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button
+                                type="submit"
+                                :disabled="loader.submit"
+                                class="btn-auth-primary"
+                            >
+                                <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
+                                <i v-else class="fa fa-paper-plane me-2"></i>
+                                {{
+                                    loader.submit
+                                        ? "Mengirim Kode Verifikasi..."
+                                        : "Kirim Kode Verifikasi"
+                                }}
+                            </button>
+                        </div>
+
+                        <div class="auth-footer-text text-start mt-4 pt-2 border-top">
+                            <p class="mb-1 text-muted" style="font-size: 13.5px;">
+                                Ingat kata sandi Anda?
+                                <router-link
+                                    :to="{ name: 'login' }"
+                                    class="auth-link fw-bold ms-1"
+                                >
+                                    &larr; Kembali ke Login
+                                </router-link>
+                            </p>
+                            <small class="text-muted d-block mt-2" style="font-size: 11.5px;">
+                                &copy; POSHUB ENTERPRISE. Hak Cipta Dilindungi.
+                            </small>
+                        </div>
+                    </Form>
                 </div>
 
-                <div class="text-center pt-4">
-                    <p class="text-muted mb-0" style="font-size: 0.875rem;">
-                        Kembali ke
-                        <router-link
-                            :to="{ name: 'login' }"
-                            class="text-primary fw-bold text-decoration-none ms-1"
-                        >
-                            Halaman Login
+                <!-- Stage 2: Verify Code -->
+                <div v-if="stage.second">
+                    <!-- Brand Header -->
+                    <div class="auth-brand-header text-start mb-3">
+                        <router-link :to="{ name: 'login' }" class="d-inline-block text-decoration-none">
+                            <img
+                                v-lazy="asset.logo"
+                                class="auth-brand-logo"
+                                alt="POSHUB Enterprise"
+                            />
                         </router-link>
-                    </p>
-                </div>
-            </Form>
-        </div>
+                        <div>
+                            <span class="auth-brand-badge">Verifikasi Token &bull; Langkah 2 dari 3</span>
+                        </div>
+                    </div>
 
-        <!-- Stage 3: New Password -->
-        <div class="wrap-login100" v-if="stage.finish">
-            <!-- Brand Header -->
-            <div class="auth-brand-header">
-                <router-link :to="{ name: 'login' }" class="d-inline-block">
-                    <img
-                        v-lazy="asset.logo"
-                        class="auth-brand-logo"
-                        alt="POSHUB Enterprise"
-                    />
-                </router-link>
-                <div>
-                    <span class="auth-brand-badge">Sandi Baru</span>
+                    <!-- Title & Subtitle -->
+                    <div class="mb-4">
+                        <h1 class="auth-form-title text-start mb-1">Verifikasi Kode Email</h1>
+                        <p class="auth-form-subtitle text-start mb-0">
+                            Masukkan kode verifikasi 6-digit yang telah dikirim ke <strong>{{ user.email }}</strong>.
+                        </p>
+                    </div>
+
+                    <Form
+                        @submit="sendVerifyEmail()"
+                        ref="ValidationEmailCode"
+                        class="validate-form"
+                    >
+                        <div class="form-group mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label for="verifyResetCode" class="auth-label mb-0">Kode Verifikasi Email <span class="text-danger">*</span></label>
+                                <a
+                                    href="javascript:void(0)"
+                                    @click="backToEmailStep"
+                                    class="auth-link"
+                                    style="font-size: 12px;"
+                                >
+                                    Ubah Email
+                                </a>
+                            </div>
+                            <div class="position-relative">
+                                <Field
+                                    :rules="{
+                                        required: true,
+                                    }"
+                                    v-slot="{ errors, field }"
+                                    :name="'Kode Verifikasi'"
+                                    v-model="verify_email.two_factor_code"
+                                >
+                                    <input
+                                        id="verifyResetCode"
+                                        class="form-control auth-input-with-icon text-center fw-bold"
+                                        style="letter-spacing: 4px; font-size: 1.15rem;"
+                                        type="text"
+                                        maxlength="8"
+                                        v-model="verify_email.two_factor_code"
+                                        placeholder="• • • • • •"
+                                        autofocus
+                                    />
+                                    <div class="fs-sm text-danger mt-1" v-if="errors && errors.length">
+                                        <i class="fa fa-exclamation-circle me-1"></i>{{ errors[0] }}
+                                    </div>
+                                </Field>
+                                <span class="auth-field-icon">
+                                    <i class="fa fa-key"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button
+                                type="submit"
+                                :disabled="loader.submit"
+                                class="btn-auth-primary"
+                            >
+                                <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
+                                <i v-else class="fa fa-check-circle me-2"></i>
+                                {{
+                                    loader.submit
+                                        ? "Memverifikasi Kode..."
+                                        : "Validasi Kode &amp; Lanjutkan"
+                                }}
+                            </button>
+                        </div>
+
+                        <div class="auth-footer-text text-start mt-4 pt-2 border-top">
+                            <p class="mb-1 text-muted" style="font-size: 13.5px;">
+                                Belum menerima kode?
+                                <a
+                                    href="javascript:void(0)"
+                                    @click="resendResetCode"
+                                    class="auth-link fw-bold ms-1"
+                                >
+                                    Kirim Ulang Kode
+                                </a>
+                            </p>
+                            <p class="mb-0 text-muted" style="font-size: 12.5px;">
+                                <router-link
+                                    :to="{ name: 'login' }"
+                                    class="auth-link"
+                                >
+                                    &larr; Batalkan &amp; Kembali ke Login
+                                </router-link>
+                            </p>
+                        </div>
+                    </Form>
+                </div>
+
+                <!-- Stage 3: New Password -->
+                <div v-if="stage.finish">
+                    <!-- Brand Header -->
+                    <div class="auth-brand-header text-start mb-3">
+                        <router-link :to="{ name: 'login' }" class="d-inline-block text-decoration-none">
+                            <img
+                                v-lazy="asset.logo"
+                                class="auth-brand-logo"
+                                alt="POSHUB Enterprise"
+                            />
+                        </router-link>
+                        <div>
+                            <span class="auth-brand-badge">Sandi Baru &bull; Langkah 3 dari 3</span>
+                        </div>
+                    </div>
+
+                    <!-- Title & Subtitle -->
+                    <div class="mb-4">
+                        <h1 class="auth-form-title text-start mb-1">Buat Kata Sandi Baru</h1>
+                        <p class="auth-form-subtitle text-start mb-0">Buat kombinasi kata sandi baru yang kuat untuk akun POSHUB Anda.</p>
+                    </div>
+
+                    <Form
+                        @submit="resetPassword()"
+                        ref="ValidationResetPassword"
+                        class="validate-form"
+                    >
+                        <!-- Password Baru -->
+                        <div class="form-group mb-3">
+                            <label for="newPassword" class="auth-label">Kata Sandi Baru <span class="text-danger">*</span></label>
+                            <div class="position-relative">
+                                <Field
+                                    :rules="{
+                                        required: true,
+                                    }"
+                                    v-slot="{ errors, field }"
+                                    :name="'Password Baru'"
+                                    v-model="reset_password.password"
+                                >
+                                    <input
+                                        id="newPassword"
+                                        class="form-control auth-input-with-icon auth-input-with-toggle"
+                                        :type="showNewPassword ? 'text' : 'password'"
+                                        v-model="reset_password.password"
+                                        placeholder="Minimal 8 karakter kombinasi"
+                                        autofocus
+                                    />
+                                    <div class="fs-sm text-danger mt-1" v-if="errors && errors.length">
+                                        <i class="fa fa-exclamation-circle me-1"></i>{{ errors[0] }}
+                                    </div>
+                                </Field>
+                                <span class="auth-field-icon">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <button
+                                    type="button"
+                                    class="btn-toggle-password"
+                                    @click="showNewPassword = !showNewPassword"
+                                    tabindex="-1"
+                                    :title="showNewPassword ? 'Sembunyikan sandi' : 'Tampilkan sandi'"
+                                >
+                                    <i :class="showNewPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Konfirmasi Password Baru -->
+                        <div class="form-group mb-3">
+                            <label for="newPasswordConfirm" class="auth-label">Konfirmasi Kata Sandi Baru <span class="text-danger">*</span></label>
+                            <div class="position-relative">
+                                <Field
+                                    :rules="{
+                                        required: true,
+                                    }"
+                                    v-slot="{ errors, field }"
+                                    :name="'Konfirmasi Password'"
+                                    v-model="reset_password.password_confirmation"
+                                >
+                                    <input
+                                        id="newPasswordConfirm"
+                                        class="form-control auth-input-with-icon auth-input-with-toggle"
+                                        :type="showConfirmPassword ? 'text' : 'password'"
+                                        v-model="reset_password.password_confirmation"
+                                        placeholder="Ulangi kata sandi baru"
+                                    />
+                                    <div class="fs-sm text-danger mt-1" v-if="errors && errors.length">
+                                        <i class="fa fa-exclamation-circle me-1"></i>{{ errors[0] }}
+                                    </div>
+                                </Field>
+                                <span class="auth-field-icon">
+                                    <i class="fa fa-shield"></i>
+                                </span>
+                                <button
+                                    type="button"
+                                    class="btn-toggle-password"
+                                    @click="showConfirmPassword = !showConfirmPassword"
+                                    tabindex="-1"
+                                    :title="showConfirmPassword ? 'Sembunyikan konfirmasi' : 'Tampilkan konfirmasi'"
+                                >
+                                    <i :class="showConfirmPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button
+                                type="submit"
+                                :disabled="loader.submit"
+                                class="btn-auth-primary"
+                            >
+                                <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
+                                <i v-else class="fa fa-save me-2"></i>
+                                {{
+                                    loader.submit
+                                        ? "Menyimpan Kata Sandi..."
+                                        : "Simpan &amp; Masuk ke Sistem"
+                                }}
+                            </button>
+                        </div>
+
+                        <div class="auth-footer-text text-start mt-4 pt-2 border-top">
+                            <p class="mb-1 text-muted" style="font-size: 13.5px;">
+                                <router-link
+                                    :to="{ name: 'login' }"
+                                    class="auth-link fw-bold"
+                                >
+                                    &larr; Kembali ke Login
+                                </router-link>
+                            </p>
+                        </div>
+                    </Form>
                 </div>
             </div>
 
-            <!-- Title & Subtitle -->
-            <h1 class="auth-form-title">Buat Password Baru</h1>
-            <p class="auth-form-subtitle">Buat kombinasi kata sandi baru yang aman untuk akun POSHUB Anda.</p>
-
-            <Form
-                @submit="resetPassword()"
-                ref="ValidationResetPassword"
-                class="validate-form"
-            >
-                <div class="form-group mb-3">
-                    <label for="newPassword" class="auth-label">Password Baru</label>
-                    <div class="wrap-input100">
-                        <Field
-                            :rules="{
-                                required: true,
-                            }"
-                            v-slot="{ errors, field }"
-                            :name="'Password Baru'"
-                            v-model="reset_password.password"
-                        >
-                            <input
-                                id="newPassword"
-                                class="input100"
-                                type="password"
-                                v-model="reset_password.password"
-                                placeholder="Minimal 8 karakter kombinasi"
-                            />
-                            <div class="fs-sm text-danger mt-1">
-                                {{ errors[0] }}
-                            </div>
-                        </Field>
-                        <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
+            <!-- Right Side: Feature Showcase Panel -->
+            <div class="auth-showcase-side">
+                <div>
+                    <div>
+                        <span class="auth-showcase-badge">
+                            <i class="fa fa-shield me-1 text-info"></i> KEAMANAN AKUN TERJAMIN
                         </span>
+                    </div>
+                    <h2 class="auth-showcase-title">Pemulihan Akun Aman &amp; Terverifikasi</h2>
+                    <p class="auth-showcase-subtitle">POSHUB menerapkan otentikasi bertingkat untuk memastikan perlindungan penuh terhadap data bisnis dan aset finansial Anda.</p>
+
+                    <!-- Feature Grid -->
+                    <div class="auth-feature-grid">
+                        <div class="auth-feature-item">
+                            <div class="auth-feature-icon">
+                                <i class="fa fa-envelope-open"></i>
+                            </div>
+                            <div class="auth-feature-heading">Verifikasi Email</div>
+                            <p class="auth-feature-desc">Kode unik sekali pakai (OTP) dikirim langsung ke email resmi terdaftar.</p>
+                        </div>
+
+                        <div class="auth-feature-item">
+                            <div class="auth-feature-icon">
+                                <i class="fa fa-lock"></i>
+                            </div>
+                            <div class="auth-feature-heading">Enkripsi Password</div>
+                            <p class="auth-feature-desc">Password diamankan dengan algoritma hashing bcrypt berstandar industri.</p>
+                        </div>
+
+                        <div class="auth-feature-item">
+                            <div class="auth-feature-icon">
+                                <i class="fa fa-history"></i>
+                            </div>
+                            <div class="auth-feature-heading">Audit Trail</div>
+                            <p class="auth-feature-desc">Setiap aktivitas pemulihan kata sandi tercatat otomatis di log sistem.</p>
+                        </div>
+
+                        <div class="auth-feature-item">
+                            <div class="auth-feature-icon">
+                                <i class="fa fa-life-ring"></i>
+                            </div>
+                            <div class="auth-feature-heading">Bantuan 24/7</div>
+                            <p class="auth-feature-desc">Tim dukungan teknis siap membantu jika ada kendala akses akun.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group mb-4">
-                    <label for="newPasswordConfirm" class="auth-label">Konfirmasi Password Baru</label>
-                    <div class="wrap-input100">
-                        <Field
-                            :rules="{
-                                required: true,
-                            }"
-                            v-slot="{ errors, field }"
-                            :name="'Konfirmasi Password'"
-                            v-model="reset_password.password_confirmation"
-                        >
-                            <input
-                                id="newPasswordConfirm"
-                                class="input100"
-                                type="password"
-                                v-model="reset_password.password_confirmation"
-                                placeholder="Ulangi password baru"
-                            />
-                            <div class="fs-sm text-danger mt-1">
-                                {{ errors[0] }}
-                            </div>
-                        </Field>
-                        <span class="symbol-input100">
-                            <i class="fa fa-shield-alt" aria-hidden="true"></i>
-                        </span>
-                    </div>
+                <!-- Showcase Footer -->
+                <div class="auth-showcase-footer">
+                    <span class="auth-security-pill">
+                        <i class="fa fa-lock me-1"></i> Bank-Grade 256-Bit Data Security
+                    </span>
+                    <span class="text-white-50">High-Availability Cloud Architecture</span>
                 </div>
-
-                <div class="mt-4">
-                    <button
-                        type="submit"
-                        :disabled="loader.submit"
-                        class="btn-auth-primary"
-                    >
-                        <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
-                        <i v-else class="fa fa-save me-2"></i>
-                        {{
-                            loader.submit
-                                ? "Menyimpan Sandi..."
-                                : "Simpan &amp; Masuk ke Sistem"
-                        }}
-                    </button>
-                </div>
-            </Form>
+            </div>
         </div>
     </div>
 </template>
@@ -274,10 +399,13 @@ import { ApiData } from "@/api/server";
 import NProgress from "nprogress";
 import appLogo from "@/assets/images/logo.webp";
 import { TokenService } from "@/services";
+
 export default {
-    name: "login",
+    name: "forgetpass",
     data() {
         return {
+            showNewPassword: false,
+            showConfirmPassword: false,
             stage: {
                 first: true,
                 second: false,
@@ -306,13 +434,22 @@ export default {
         };
     },
     methods: {
+        backToEmailStep() {
+            this.stage.second = false;
+            this.stage.first = true;
+        },
+
+        resendResetCode() {
+            this.sendResetCode();
+        },
+
         sendResetCode() {
             this.$refs.ValidationCodeReset.validate().then((success) => {
                 if (!success) {
                     this.$toast.add({
                         severity: "error",
                         summary: "Terjadi kesalahan",
-                        detail: "Silahkan Check kembali form inputan anda",
+                        detail: "Silahkan periksa kembali form inputan Anda",
                         life: 3000,
                     });
                 } else {
@@ -345,7 +482,7 @@ export default {
                     this.$toast.add({
                         severity: "error",
                         summary: "Terjadi kesalahan",
-                        detail: "Silahkan Check kembali form inputan anda",
+                        detail: "Silahkan periksa kembali form inputan Anda",
                         life: 3000,
                     });
                 } else {
@@ -369,7 +506,6 @@ export default {
                         })
                         .catch((error) => {
                             NProgress.done();
-                            var data = error.response.data;
                             this.$handleErrorResponse(error);
                             this.loader.submit = false;
                         });
@@ -383,7 +519,7 @@ export default {
                     this.$toast.add({
                         severity: "error",
                         summary: "Terjadi kesalahan",
-                        detail: "Silahkan Check kembali form inputan anda",
+                        detail: "Silahkan periksa kembali form inputan Anda",
                         life: 3000,
                     });
                 } else {
@@ -398,7 +534,6 @@ export default {
                             NProgress.done();
                             this.loader.submit = false;
                             var detail = response.data;
-                            
 
                             TokenService.saveToken(detail.token);
                             TokenService.saveProfile(detail.data);

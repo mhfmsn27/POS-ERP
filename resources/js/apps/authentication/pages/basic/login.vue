@@ -4,8 +4,8 @@
             <!-- Left Side: Form Panel -->
             <div class="auth-form-side">
                 <!-- Brand Header -->
-                <div class="auth-brand-header text-start mb-4">
-                    <router-link :to="{ name: 'login' }" class="d-inline-block">
+                <div class="auth-brand-header text-start mb-3">
+                    <router-link :to="{ name: 'login' }" class="d-inline-block text-decoration-none">
                         <img
                             v-lazy="asset.logo"
                             class="auth-brand-logo"
@@ -18,19 +18,19 @@
                 </div>
 
                 <!-- Title & Subtitle -->
-                <h1 class="auth-form-title text-start mb-1">Masuk ke Akun Anda</h1>
-                <p class="auth-form-subtitle text-start mb-4">Silakan masukkan email dan kata sandi resmi untuk mengakses panel operasional.</p>
+                <div class="mb-4">
+                    <h1 class="auth-form-title text-start mb-1">Masuk ke Akun Anda</h1>
+                    <p class="auth-form-subtitle text-start mb-0">Silakan masukkan kredensial resmi untuk mengakses panel operasional.</p>
+                </div>
 
                 <Form
                     @submit="loginValidation()"
                     ref="ValidationSignin"
                     class="validate-form"
                 >
-                    <div
-                        class="wrap-input100 validate-input"
-                        data-validate="Valid email is required: ex@abc.xyz"
-                    >
-                        <label for="emailInput" class="auth-label">Alamat Email</label>
+                    <!-- Email Input -->
+                    <div class="form-group mb-3">
+                        <label for="emailInput" class="auth-label">Alamat Email <span class="text-danger">*</span></label>
                         <div class="position-relative">
                             <Field
                                 :rules="{
@@ -42,34 +42,33 @@
                             >
                                 <input
                                     id="emailInput"
-                                    class="input100"
+                                    class="form-control auth-input-with-icon"
                                     type="email"
                                     v-model="user.email"
                                     placeholder="contoh: admin@poshub.id"
+                                    autofocus
                                 />
-                                <div class="fs-sm text-danger mt-1">
-                                    {{ errors[0] }}
+                                <div class="fs-sm text-danger mt-1" v-if="errors && errors.length">
+                                    <i class="fa fa-exclamation-circle me-1"></i>{{ errors[0] }}
                                 </div>
                             </Field>
-
-                            <span class="symbol-input100">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <span class="auth-field-icon">
+                                <i class="fa fa-envelope"></i>
                             </span>
                         </div>
                     </div>
 
-                    <div
-                        class="wrap-input100 validate-input"
-                        data-validate="Password is required"
-                    >
+                    <!-- Password Input -->
+                    <div class="form-group mb-3">
                         <div class="d-flex justify-content-between align-items-center mb-1">
-                            <label for="passwordInput" class="auth-label mb-0">Kata Sandi</label>
+                            <label for="passwordInput" class="auth-label mb-0">Kata Sandi <span class="text-danger">*</span></label>
                             <router-link
                                 :to="{ name: 'forgetpass' }"
-                                class="auth-link"
+                                class="auth-link fw-semibold"
                                 style="font-size: 12.5px;"
-                                >Lupa Sandi?</router-link
                             >
+                                Lupa Sandi?
+                            </router-link>
                         </div>
                         <div class="position-relative">
                             <Field
@@ -77,27 +76,37 @@
                                     required: true,
                                 }"
                                 v-slot="{ errors, field }"
-                                :name="'Password'"
+                                :name="'Kata Sandi'"
                                 v-model="user.password"
                             >
                                 <input
                                     id="passwordInput"
-                                    class="input100"
-                                    type="password"
+                                    class="form-control auth-input-with-icon auth-input-with-toggle"
+                                    :type="showPassword ? 'text' : 'password'"
                                     v-model="user.password"
                                     placeholder="Masukkan kata sandi"
                                 />
-                                <div class="fs-sm text-danger mt-1">
-                                    {{ errors[0] }}
+                                <div class="fs-sm text-danger mt-1" v-if="errors && errors.length">
+                                    <i class="fa fa-exclamation-circle me-1"></i>{{ errors[0] }}
                                 </div>
                             </Field>
-                            <span class="symbol-input100">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            <span class="auth-field-icon">
+                                <i class="fa fa-lock"></i>
                             </span>
+                            <button
+                                type="button"
+                                class="btn-toggle-password"
+                                @click="showPassword = !showPassword"
+                                tabindex="-1"
+                                :title="showPassword ? 'Sembunyikan sandi' : 'Tampilkan sandi'"
+                            >
+                                <i :class="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <div class="container-login100-form-btn mt-2">
+                    <!-- Submit Button -->
+                    <div class="mt-4">
                         <button
                             type="submit"
                             :disabled="loader.submit"
@@ -113,16 +122,18 @@
                         </button>
                     </div>
 
-                    <div class="auth-footer-text text-start">
-                        <p class="mb-0">
+                    <!-- Footer Link to Register -->
+                    <div class="auth-footer-text text-start mt-4 pt-2 border-top">
+                        <p class="mb-1 text-muted" style="font-size: 13.5px;">
                             Belum memiliki akun operasional?
                             <router-link
                                 :to="{ name: 'register' }"
-                                class="auth-link"
-                                >Daftar Sekarang</router-link
+                                class="auth-link fw-bold ms-1"
                             >
+                                Daftar Sekarang &rarr;
+                            </router-link>
                         </p>
-                        <small class="text-muted d-block mt-2" style="font-size: 11px;">
+                        <small class="text-muted d-block mt-2" style="font-size: 11.5px;">
                             &copy; POSHUB ENTERPRISE. Hak Cipta Dilindungi.
                         </small>
                     </div>
@@ -196,6 +207,7 @@ export default {
     name: "login",
     data() {
         return {
+            showPassword: false,
             loader: {
                 submit: false,
             },
@@ -215,7 +227,7 @@ export default {
                     this.$toast.add({
                         severity: "error",
                         summary: "Terjadi kesalahan",
-                        detail: "Silahkan Check kembali form inputan anda",
+                        detail: "Silahkan periksa kembali form inputan Anda",
                         life: 3000,
                     });
                 } else {
