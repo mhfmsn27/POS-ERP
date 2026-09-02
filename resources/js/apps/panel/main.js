@@ -81,15 +81,20 @@ Promise.all([
         // Immediately dismiss loader upon mount
         const loader = document.getElementById("global-loader") || document.getElementById("loading");
         if (loader) {
-            loader.style.transition = "opacity 0.2s ease";
             loader.style.opacity = "0";
-            setTimeout(() => { loader.style.display = "none"; }, 200);
+            loader.style.pointerEvents = "none";
+            if (loader.parentNode) {
+                loader.parentNode.removeChild(loader);
+            }
         }
     }
 ).catch((err) => {
     console.error("Panel App Mount Error:", err);
     const loader = document.getElementById("global-loader") || document.getElementById("loading");
     if (loader) {
-        loader.style.display = "none";
+        loader.style.pointerEvents = "none";
+        if (loader.parentNode) {
+            loader.parentNode.removeChild(loader);
+        }
     }
 });
