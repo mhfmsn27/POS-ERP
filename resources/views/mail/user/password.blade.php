@@ -41,12 +41,12 @@
         <!-- Email Container -->
         <div style="max-width: 560px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
 
-            <!-- Top Gradient Bar -->
-            <div style="height: 5px; background: linear-gradient(90deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);"></div>
+            <!-- Top Accent Bar (Solid Corporate Blue) -->
+            <div style="height: 5px; background-color: #1e40af;"></div>
 
             <!-- Header: Logo -->
             <div style="background: #0f172a; padding: 28px 36px; text-align: center;">
-                <img src="{{ asset('assets/images/logo-faktur.webp') }}" alt="POSHUB ACCOUNTING" style="max-height: 40px; width: auto;" />
+                <img src="{{ asset('images/logo.webp') }}" alt="POSHUB ACCOUNTING" style="max-height: 40px; width: auto;" />
                 <div style="margin-top: 8px; font-family: Inter, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #94a3b8;">ENTERPRISE ACCOUNTING</div>
             </div>
 
