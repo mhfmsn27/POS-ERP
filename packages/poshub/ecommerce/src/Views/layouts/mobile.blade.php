@@ -281,6 +281,27 @@
         function changeStore(id) {
             window.location = '/m-ecommerce/change-session/' + id
         }
+
+        (function() {
+            "use strict";
+            function hideMobilePreload() {
+                var preload = document.querySelector(".preload");
+                if (preload) {
+                    preload.style.transition = "opacity 0.25s ease";
+                    preload.style.opacity = "0";
+                    setTimeout(function() {
+                        preload.style.display = "none";
+                    }, 250);
+                }
+            }
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                setTimeout(hideMobilePreload, 200);
+            } else {
+                window.addEventListener("load", hideMobilePreload);
+                document.addEventListener("DOMContentLoaded", hideMobilePreload);
+            }
+            setTimeout(hideMobilePreload, 600); // Safety fallback
+        })();
     </script>
 </body>
 

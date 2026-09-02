@@ -49,14 +49,26 @@
     <script src="{{asset('newtheme/js/custom.js')}}"></script>
 
     <script>
-        (function($) {
+        (function() {
             "use strict";
             function hideLoader() {
-                $("#global-loader").fadeOut(250);
+                var loader = document.getElementById("global-loader");
+                if (loader) {
+                    loader.style.transition = "opacity 0.25s ease";
+                    loader.style.opacity = "0";
+                    setTimeout(function() {
+                        loader.style.display = "none";
+                    }, 250);
+                }
             }
-            $(window).on("load", hideLoader);
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                setTimeout(hideLoader, 200);
+            } else {
+                window.addEventListener("load", hideLoader);
+                document.addEventListener("DOMContentLoaded", hideLoader);
+            }
             setTimeout(hideLoader, 500); // Safety fallback
-        })(jQuery);
+        })();
     </script>
 </body>
 

@@ -65,6 +65,29 @@
       <script src="{{asset('ecommerce/js/custom.js')}}"></script>
       <script src="{{ asset('js/pwa-manager.js') }}"></script>
 
+      <script>
+            (function() {
+                  "use strict";
+                  function hidePreloader() {
+                        var preloader = document.getElementById("preloader-active");
+                        if (preloader) {
+                              preloader.style.transition = "opacity 0.25s ease";
+                              preloader.style.opacity = "0";
+                              setTimeout(function() {
+                                    preloader.style.display = "none";
+                              }, 250);
+                        }
+                  }
+                  if (document.readyState === "complete" || document.readyState === "interactive") {
+                        setTimeout(hidePreloader, 200);
+                  } else {
+                        window.addEventListener("load", hidePreloader);
+                        document.addEventListener("DOMContentLoaded", hidePreloader);
+                  }
+                  setTimeout(hidePreloader, 600); // Safety fallback
+            })();
+      </script>
+
       @yield('scripts')
 </body>
 

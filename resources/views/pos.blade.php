@@ -14,5 +14,5 @@
 
 
 @section('scripts')
-<script src="/js/pos.js"></script>
+<script src="{{ asset('js/pos.js') }}"></script>
 @endsection

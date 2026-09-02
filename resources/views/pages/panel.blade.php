@@ -39,20 +39,30 @@
     <script src="{{asset('newtheme/plugins/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('newtheme/plugins/bootstrap/js/popper.min.js')}}"></script>
     <script src="{{asset('newtheme/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('js/panel.js') }}"></script>
 
     <script>
-        (function($) {
+        (function() {
             "use strict";
-
-            // ______________ PAGE LOADING
-            $(window).on("load", function(e) {
-                $("#global-loader").fadeOut("slow");
-            })
-
-        })(jQuery);
+            function hideLoader() {
+                var loader = document.getElementById("global-loader");
+                if (loader) {
+                    loader.style.transition = "opacity 0.25s ease";
+                    loader.style.opacity = "0";
+                    setTimeout(function() {
+                        loader.style.display = "none";
+                    }, 250);
+                }
+            }
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                setTimeout(hideLoader, 200);
+            } else {
+                window.addEventListener("load", hideLoader);
+                document.addEventListener("DOMContentLoaded", hideLoader);
+            }
+            setTimeout(hideLoader, 500); // Safety fallback
+        })();
     </script>
-    <script src="/js/app.js"></script>
-
 </body>
 
 </html>

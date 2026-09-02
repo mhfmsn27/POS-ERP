@@ -98,6 +98,12 @@
             if (printWin) printWin.focus();
         };
     </script>
+    <script>
+        (function() {
+            var loading = document.getElementById("loading");
+            if (loading) loading.style.display = "none";
+        })();
+    </script>
     @yield('scripts')
 
 

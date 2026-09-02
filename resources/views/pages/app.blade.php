@@ -65,8 +65,30 @@
     <script src="{{ asset('assets/vendors/sweetalert/sweetalert2.all.min.js')}}"></script>
     <script src="{{ asset('assets/vendors/sweetalert/evolution.js')}}"></script>
 
-    <script src="/js/panel.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
+    <script>
+        (function() {
+            "use strict";
+            function hideLoader() {
+                var loader = document.getElementById("global-loader");
+                if (loader) {
+                    loader.style.transition = "opacity 0.25s ease";
+                    loader.style.opacity = "0";
+                    setTimeout(function() {
+                        loader.style.display = "none";
+                    }, 250);
+                }
+            }
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                setTimeout(hideLoader, 200);
+            } else {
+                window.addEventListener("load", hideLoader);
+                document.addEventListener("DOMContentLoaded", hideLoader);
+            }
+            setTimeout(hideLoader, 500); // Safety fallback
+        })();
+    </script>
 </body>
 
 </html>

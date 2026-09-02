@@ -1,14 +1,28 @@
-// Loader
-
-document.onreadystatechange = function() {
-  if (document.readyState !== "complete") {
-      document.querySelector("body").style.visibility = "hidden";
-      document.querySelector("#loading").style.visibility = "visible";
-  } else {
-      document.querySelector("#loading").style.display = "none";
-      document.querySelector("body").style.visibility = "visible";
+// Safe Loader Handler
+(function() {
+  function dismissBackofficeLoader() {
+    var loading = document.getElementById("loading");
+    if (loading) {
+      loading.style.display = "none";
+    }
+    if (document.body) {
+      document.body.style.visibility = "visible";
+    }
   }
-};
+
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    dismissBackofficeLoader();
+  } else {
+    document.addEventListener("readystatechange", function() {
+      if (document.readyState === "complete") {
+        dismissBackofficeLoader();
+      }
+    });
+    window.addEventListener("load", dismissBackofficeLoader);
+    document.addEventListener("DOMContentLoaded", dismissBackofficeLoader);
+  }
+  setTimeout(dismissBackofficeLoader, 500);
+})();
 
 /**
  *  Offline & Online Detection
