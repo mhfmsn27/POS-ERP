@@ -51,7 +51,7 @@
                 </ul>
             </div>
             <div class="card-footer text-center border-top-0 pt-1">
-                <button class="btn btn-lg btn-primary-gradient text-white btn-block">
+                <button class="btn btn-lg btn-primary text-white btn-block shadow-sm">
                     <span class="ms-4 me-4">Pilih Layanan</span>
                 </button>
             </div>

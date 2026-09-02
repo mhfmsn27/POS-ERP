@@ -1,36 +1,52 @@
 @extends('layouts.app')
 @section('content')
-<div class="">
-    <!-- CONTAINER OPEN -->
-    <div class="col col-login mx-auto mt-7">
-        <div class="text-center">
-            <a href="{{url('index')}}">
-                <img src="{{asset('assets/images/logo-signin.png')}}" class="header-brand-img" alt="logo">
+<div class="auth-page-wrapper">
+    <div class="wrap-login100">
+        <!-- Brand Header -->
+        <div class="auth-brand-header">
+            <a href="{{ url('/') }}" class="d-inline-block">
+                <img src="{{ asset('images/logo.png') }}" class="auth-brand-logo" alt="POSHUB Enterprise">
             </a>
+            <div>
+                <span class="auth-brand-badge">Verifikasi Email Akun</span>
+            </div>
         </div>
-    </div>
-    <div class="container-login100">
-        <div class="wrap-login100 p-6">
-            <form class="login100-form validate-form" method="POST" action="{{ route('verification.resend') }}">
+
+        <!-- Form Title -->
+        <h1 class="auth-form-title">Verifikasi Alamat Email</h1>
+        <p class="auth-form-subtitle">Sebelum melanjutkan, periksa kotak masuk atau folder spam email Anda untuk tautan verifikasi resmi.</p>
+
+        @if (session('resent'))
+        <div class="alert alert-success" role="alert" style="background-color: var(--poshub-success-light); border: 1px solid var(--poshub-success-border); color: var(--poshub-success); font-size: 13.5px; border-radius: 8px; margin-bottom: 20px;">
+            <i class="fe fe-check-circle me-1"></i> Tautan verifikasi baru telah berhasil dikirim ke alamat email Anda.
+        </div>
+        @endif
+
+        <div style="background-color: #f8fafc; border: 1px solid var(--poshub-border); border-radius: 8px; padding: 18px; margin-bottom: 24px;">
+            <p style="font-size: 13.5px; color: var(--poshub-slate); margin-bottom: 0; line-height: 1.6;">
+                Jika Anda belum menerima email verifikasi, Anda dapat meminta sistem untuk mengirim ulang email aktivasi baru.
+            </p>
+        </div>
+
+        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+            @csrf
+            <div class="container-login100-form-btn">
+                <button type="submit" class="btn-auth-primary">
+                    <i class="fe fe-mail me-2"></i> Kirim Ulang Email Verifikasi
+                </button>
+            </div>
+        </form>
+
+        <div class="auth-footer-text">
+            <p class="mb-0">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="auth-link">
+                    <i class="fe fe-log-out me-1"></i> Keluar / Ganti Akun
+                </a>
+            </p>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
-                <span class="login100-form-title">
-                    Verifikasi Alamat Email
-                </span>
-                @if (session('resent'))
-                <div class="alert alert-success" role="alert">
-                    Tautan verifikasi baru telah dikirim ke alamat email Anda.
-                </div>
-                @endif
-                <p>
-                    Sebelum melanjutkan, silakan periksa email Anda untuk tautan verifikasi. Jika Anda tidak menerima email tersebut,
-                </p>
-                <form class="d-inline" method="POST" action="">
-                    @csrf
-                    <button type="submit" class="btn btn-link p-0 m-0 align-baseline">klik di sini untuk meminta yang lain</button>.
-                </form>
             </form>
         </div>
     </div>
-    <!-- CONTAINER CLOSED -->
 </div>
 @endsection

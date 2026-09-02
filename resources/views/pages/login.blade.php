@@ -22,6 +22,7 @@
     <link id="style" href="{{asset('newtheme/css/style.css')}}" rel="stylesheet">
     <link id="style" href="{{asset('newtheme/css/plugins.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('theme/css/theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/poshub-modern-ui.css') }}">
 </head>
 
 <body class="login-img">

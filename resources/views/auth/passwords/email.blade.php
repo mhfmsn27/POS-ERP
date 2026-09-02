@@ -1,39 +1,59 @@
 @extends('layouts.app')
 @section('content')
-<div class="">
-    <!-- CONTAINER OPEN -->
-    <div class="col col-login mx-auto mt-7">
-        <div class="text-center">
-            <a href="{{url('index')}}">
-                <img src="{{asset('assets/images/logo-signin.png')}}" class="header-brand-img" alt="logo">
+<div class="auth-page-wrapper">
+    <div class="wrap-login100">
+        <!-- Brand Header -->
+        <div class="auth-brand-header">
+            <a href="{{ url('/') }}" class="d-inline-block">
+                <img src="{{ asset('images/logo.png') }}" class="auth-brand-logo" alt="POSHUB Enterprise">
             </a>
+            <div>
+                <span class="auth-brand-badge">Pemulihan Kata Sandi</span>
+            </div>
         </div>
-    </div>
-    <div class="container-login100">
-        <div class="wrap-login100 p-6">
-            <form class="login100-form validate-form" method="POST" action="{{ route('password.email') }}">
-                @csrf
-                <span class="login100-form-title">
-                    Minta Reset Password
-                </span>
-                <x-admin.validation-component></x-admin.validation-component>
-                <div class="wrap-input100 validate-input mb-4" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="email" required placeholder="Masukkan Alamat Email">
-                    <span class="focus-input100"></span>
+
+        <!-- Form Title -->
+        <h1 class="auth-form-title">Lupa Kata Sandi?</h1>
+        <p class="auth-form-subtitle">Masukkan alamat email akun Anda. Kami akan mengirimkan tautan untuk mengatur ulang kata sandi.</p>
+
+        <!-- Status & Validation -->
+        @if (session('status'))
+            <div class="alert alert-success" role="alert" style="background-color: var(--poshub-success-light); border: 1px solid var(--poshub-success-border); color: var(--poshub-success); font-size: 13.5px; border-radius: 8px;">
+                <i class="fe fe-check-circle me-1"></i> {{ session('status') }}
+            </div>
+        @endif
+        <x-admin.validation-component></x-admin.validation-component>
+
+        <!-- Password Request Form -->
+        <form class="validate-form" method="POST" action="{{ route('password.email') }}">
+            @csrf
+            
+            <div class="wrap-input100 validate-input" data-validate="Alamat email wajib diisi dengan benar">
+                <label for="email" class="auth-label">Alamat Email Terdaftar</label>
+                <div class="position-relative">
+                    <input class="input100" type="email" id="email" name="email" value="{{ old('email') }}" required autofocus placeholder="contoh: user@poshub.id">
                     <span class="symbol-input100">
-                        <i class="zmdi zmdi-email" aria-hidden="true"></i>
+                        <i class="fe fe-mail" aria-hidden="true"></i>
                     </span>
-                </div> 
-                <div class="container-login100-form-btn">
-                    <button type="submit" class="login100-form-btn btn-primary">
-                        Minta Reset Password
-                    </button>
                 </div>
-                <div class="text-center pt-3">
-                    <p class="text-dark mb-0">Ingat Password ?<a href="{{route('login')}}" class="text-primary mx-1">Ke Halaman Login</a></p>
-                </div>
-            </form>
-        </div>
+            </div> 
+
+            <div class="container-login100-form-btn mt-2">
+                <button type="submit" class="btn-auth-primary">
+                    <i class="fe fe-send me-2" style="font-size: 15px;"></i> Kirim Tautan Reset
+                </button>
+            </div>
+
+            <div class="auth-footer-text">
+                <p class="mb-0">
+                    Sudah ingat kata sandi Anda? 
+                    <a href="{{ route('login') }}" class="auth-link">Kembali ke Halaman Masuk</a>
+                </p>
+                <small class="text-muted d-block mt-2" style="font-size: 11px;">
+                    &copy; {{ date('Y') }} POSHUB ENTERPRISE. Hak Cipta Dilindungi.
+                </small>
+            </div>
+        </form>
     </div> 
 </div>
 @endsection

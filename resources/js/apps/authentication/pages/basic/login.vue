@@ -1,28 +1,35 @@
 <template>
-    <div class="">
-        <div class="col col-login mx-auto mt-7">
-            <div class="text-center">
-                <router-link :to="{ name: 'login' }">
+    <div class="auth-page-wrapper">
+        <div class="wrap-login100">
+            <!-- Brand Header -->
+            <div class="auth-brand-header">
+                <router-link :to="{ name: 'login' }" class="d-inline-block">
                     <img
                         v-lazy="asset.logo"
-                        class="header-brand-img"
-                        alt="logo"
+                        class="auth-brand-logo"
+                        alt="POSHUB Enterprise"
                     />
                 </router-link>
+                <div>
+                    <span class="auth-brand-badge">Sistem Kasir &amp; Akuntansi Enterprise</span>
+                </div>
             </div>
-        </div>
-        <div class="container-login100">
-            <div class="wrap-login100 p-6">
-                <Form
-                    @submit="loginValidation()"
-                    ref="ValidationSignin"
-                    class="login100-form validate-form"
+
+            <!-- Title & Subtitle -->
+            <h1 class="auth-form-title">Masuk ke Akun Anda</h1>
+            <p class="auth-form-subtitle">Silakan masukkan email dan kata sandi resmi untuk mengakses panel operasional.</p>
+
+            <Form
+                @submit="loginValidation()"
+                ref="ValidationSignin"
+                class="validate-form"
+            >
+                <div
+                    class="wrap-input100 validate-input"
+                    data-validate="Valid email is required: ex@abc.xyz"
                 >
-                    <span class="login100-form-title"> Login </span>
-                    <div
-                        class="wrap-input100 validate-input mb-4"
-                        data-validate="Valid email is required: ex@abc.xyz"
-                    >
+                    <label for="emailInput" class="auth-label">Alamat Email</label>
+                    <div class="position-relative">
                         <Field
                             :rules="{
                                 required: true,
@@ -32,25 +39,37 @@
                             v-model="user.email"
                         >
                             <input
+                                id="emailInput"
                                 class="input100"
                                 type="email"
                                 v-model="user.email"
-                                placeholder="Masukkan Alamat Email"
+                                placeholder="contoh: admin@poshub.id"
                             />
-                            <div class="fs-sm text-danger">
+                            <div class="fs-sm text-danger mt-1">
                                 {{ errors[0] }}
                             </div>
                         </Field>
 
-                        <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div
-                        class="wrap-input100 validate-input"
-                        data-validate="Password is required"
-                    >
+                </div>
+
+                <div
+                    class="wrap-input100 validate-input"
+                    data-validate="Password is required"
+                >
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="passwordInput" class="auth-label mb-0">Kata Sandi</label>
+                        <router-link
+                            :to="{ name: 'forgetpass' }"
+                            class="auth-link"
+                            style="font-size: 12.5px;"
+                            >Lupa Sandi?</router-link
+                        >
+                    </div>
+                    <div class="position-relative">
                         <Field
                             :rules="{
                                 required: true,
@@ -60,55 +79,53 @@
                             v-model="user.password"
                         >
                             <input
+                                id="passwordInput"
                                 class="input100"
                                 type="password"
                                 v-model="user.password"
-                                placeholder="Masukkan Password"
+                                placeholder="Masukkan kata sandi"
                             />
-                            <div class="fs-sm text-danger">
+                            <div class="fs-sm text-danger mt-1">
                                 {{ errors[0] }}
                             </div>
                         </Field>
-                        <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div class="text-end pt-1">
-                        <p class="mb-0">
-                            <router-link
-                                :to="{ name: 'forgetpass' }"
-                                class="text-primary ms-1"
-                                >Lupa Password?</router-link
-                            >
-                        </p>
-                    </div>
-                    <div class="container-login100-form-btn">
-                        <button
-                            type="submit"
-                            :disabled="loader.submit"
-                            class="login100-form-btn btn-primary"
+                </div>
+
+                <div class="container-login100-form-btn mt-2">
+                    <button
+                        type="submit"
+                        :disabled="loader.submit"
+                        class="btn-auth-primary"
+                    >
+                        <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
+                        <i v-else class="fa fa-sign-in me-2"></i>
+                        {{
+                            loader.submit
+                                ? "Memproses Autentikasi..."
+                                : "Masuk ke Sistem"
+                        }}
+                    </button>
+                </div>
+
+                <div class="auth-footer-text">
+                    <p class="mb-0">
+                        Belum memiliki akun operasional?
+                        <router-link
+                            :to="{ name: 'register' }"
+                            class="auth-link"
+                            >Daftar Sekarang</router-link
                         >
-                            {{
-                                loader.submit
-                                    ? "Mohon Menunggu...."
-                                    : "Login Sekarang"
-                            }}
-                        </button>
-                    </div>
-                    <div class="text-center pt-3">
-                        <p class="text-dark mb-0">
-                            Belum Punya Akun ?<router-link
-                                :to="{ name: 'register' }"
-                                class="text-primary mx-1"
-                                >Daftar Sekarang</router-link
-                            >
-                        </p>
-                    </div>
-                </Form>
-            </div>
+                    </p>
+                    <small class="text-muted d-block mt-2" style="font-size: 11px;">
+                        &copy; POSHUB ENTERPRISE. Hak Cipta Dilindungi.
+                    </small>
+                </div>
+            </Form>
         </div>
-        <!-- CONTAINER CLOSED -->
     </div>
 </template>
 

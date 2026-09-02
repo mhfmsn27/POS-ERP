@@ -1,31 +1,32 @@
 <template>
-    <div class="">
-        <div class="col col-login mx-auto mt-7">
-            <div class="text-center">
-                <router-link :to="{ name: 'login' }">
+    <div class="auth-page-wrapper">
+        <div class="wrap-login100">
+            <!-- Brand Header -->
+            <div class="auth-brand-header">
+                <router-link :to="{ name: 'login' }" class="d-inline-block">
                     <img
                         v-lazy="asset.logo"
-                        class="header-brand-img"
-                        alt="logo"
+                        class="auth-brand-logo"
+                        alt="POSHUB Enterprise"
                     />
                 </router-link>
+                <div>
+                    <span class="auth-brand-badge">Keamanan Akun</span>
+                </div>
             </div>
-        </div>
-        <div class="container-login100">
-            <div class="wrap-login100 p-6">
-                <Form
-                    @submit="ValidationVerfy()"
-                    ref="ValidationVerfy"
-                    class="login100-form validate-form"
-                >
-                    <span class="login100-form-title">
-                        Verifikasi Alamat Email
-                    </span>
 
-                    <div
-                        class="wrap-input100 validate-input mb-4"
-                        data-validate="Valid email is required: ex@abc.xyz"
-                    >
+            <!-- Title & Subtitle -->
+            <h1 class="auth-form-title">Verifikasi Alamat Email</h1>
+            <p class="auth-form-subtitle">Masukkan 6 digit kode verifikasi yang telah kami kirimkan ke alamat email Anda.</p>
+
+            <Form
+                @submit="ValidationVerfy()"
+                ref="ValidationVerfy"
+                class="validate-form"
+            >
+                <div class="form-group mb-4">
+                    <label for="twoFactorCode" class="auth-label">Kode Verifikasi</label>
+                    <div class="wrap-input100">
                         <Field
                             :rules="{
                                 required: true,
@@ -35,50 +36,56 @@
                             v-model="user.two_factor_code"
                         >
                             <input
-                                class="input100"
-                                type="number"
+                                id="twoFactorCode"
+                                class="input100 text-center fw-bold"
+                                style="letter-spacing: 4px; font-size: 1.25rem;"
+                                type="text"
+                                maxlength="8"
                                 v-model="user.two_factor_code"
-                                placeholder="Masukkan Kode Verifikasi"
+                                placeholder="• • • • • •"
                             />
-                            <div class="fs-sm text-danger">
+                            <div class="fs-sm text-danger mt-1">
                                 {{ errors[0] }}
                             </div>
                         </Field>
-
-                        <span class="focus-input100"></span>
                         <span class="symbol-input100">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <i class="fa fa-key" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div class="container-login100-form-btn">
-                        <button
-                            type="submit"
-                            :disabled="loader.submit"
-                            class="login100-form-btn btn-primary"
+                </div>
+
+                <div class="mt-4">
+                    <button
+                        type="submit"
+                        :disabled="loader.submit"
+                        class="btn-auth-primary"
+                    >
+                        <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
+                        <i v-else class="fa fa-check-circle me-2"></i>
+                        {{
+                            loader.submit
+                                ? "Memverifikasi..."
+                                : "Verifikasi Email Sekarang"
+                        }}
+                    </button>
+                </div>
+
+                <div class="text-center pt-4">
+                    <p class="text-muted mb-0" style="font-size: 0.875rem;">
+                        Tidak menerima kode email?
+                        <a
+                            class="text-primary fw-bold text-decoration-none ms-1"
+                            href="javascript:void(0)"
+                            @click="reSend"
+                            :disabled="loader.resend"
                         >
-                            {{
-                                loader.submit
-                                    ? "Mohon Menunggu...."
-                                    : "Verifikasi Email"
-                            }}
-                        </button>
-                    </div>
-                    <div class="text-center pt-3">
-                        <p>
-                            Tidak menerima email ?
-                            <a
-                                class="forgot-link"
-                                href="javascript:void(0)"
-                                @click="reSend"
-                                :disabled="loader.resend"
-                                >Minta Kembali</a
-                            >
-                        </p>
-                    </div>
-                </Form>
-            </div>
+                            <i v-if="loader.resend" class="fa fa-spinner fa-spin me-1"></i>
+                            Kirim Ulang Kode
+                        </a>
+                    </p>
+                </div>
+            </Form>
         </div>
-        <!-- CONTAINER CLOSED -->
     </div>
 </template>
 

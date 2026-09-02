@@ -1,30 +1,33 @@
 <template>
-    <div class="">
-        <div class="col col-login mx-auto mt-7">
-            <div class="text-center">
-                <router-link :to="{ name: 'login' }">
+    <div class="auth-page-wrapper">
+        <!-- Stage 1: Request Password Reset -->
+        <div class="wrap-login100" v-if="stage.first">
+            <!-- Brand Header -->
+            <div class="auth-brand-header">
+                <router-link :to="{ name: 'login' }" class="d-inline-block">
                     <img
                         v-lazy="asset.logo"
-                        class="header-brand-img"
-                        alt="logo"
+                        class="auth-brand-logo"
+                        alt="POSHUB Enterprise"
                     />
                 </router-link>
+                <div>
+                    <span class="auth-brand-badge">Pemulihan Akun</span>
+                </div>
             </div>
-        </div>
-        <div class="container-login100" v-if="stage.first">
-            <div class="wrap-login100 p-6">
-                <Form
-                    @submit="sendResetCode()"
-                    ref="ValidationCodeReset"
-                    class="login100-form validate-form"
-                >
-                    <span class="login100-form-title">
-                        Minta Reset Password
-                    </span>
-                    <div
-                        class="wrap-input100 validate-input mb-4"
-                        data-validate="Valid email is required: ex@abc.xyz"
-                    >
+
+            <!-- Title & Subtitle -->
+            <h1 class="auth-form-title">Lupa Password?</h1>
+            <p class="auth-form-subtitle">Masukkan alamat email akun POSHUB Anda untuk menerima kode verifikasi pemulihan sandi.</p>
+
+            <Form
+                @submit="sendResetCode()"
+                ref="ValidationCodeReset"
+                class="validate-form"
+            >
+                <div class="form-group mb-4">
+                    <label for="resetEmail" class="auth-label">Alamat Email Terdaftar</label>
+                    <div class="wrap-input100">
                         <Field
                             :rules="{
                                 required: true,
@@ -34,59 +37,80 @@
                             v-model="user.email"
                         >
                             <input
+                                id="resetEmail"
                                 class="input100"
                                 type="email"
                                 v-model="user.email"
-                                placeholder="Masukkan Alamat Email"
+                                placeholder="name@company.com"
                             />
-                            <div class="fs-sm text-danger">
+                            <div class="fs-sm text-danger mt-1">
                                 {{ errors[0] }}
                             </div>
                         </Field>
-
-                        <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div class="container-login100-form-btn">
-                        <button
-                            type="submit"
-                            :disabled="loader.submit"
-                            class="login100-form-btn btn-primary"
+                </div>
+
+                <div class="mt-4">
+                    <button
+                        type="submit"
+                        :disabled="loader.submit"
+                        class="btn-auth-primary"
+                    >
+                        <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
+                        <i v-else class="fa fa-paper-plane me-2"></i>
+                        {{
+                            loader.submit
+                                ? "Mengirim Kode..."
+                                : "Kirim Kode Verifikasi"
+                        }}
+                    </button>
+                </div>
+
+                <div class="text-center pt-4">
+                    <p class="text-muted mb-0" style="font-size: 0.875rem;">
+                        Ingat kata sandi Anda?
+                        <router-link
+                            :to="{ name: 'login' }"
+                            class="text-primary fw-bold text-decoration-none ms-1"
                         >
-                            {{
-                                loader.submit
-                                    ? "Mohon Menunggu...."
-                                    : "Kirim Permintaan"
-                            }}
-                        </button>
-                    </div>
-                    <div class="text-center pt-3">
-                        <p class="text-dark mb-0">
-                            Kembali ke halaman
-                            <router-link
-                                :to="{ name: 'login' }"
-                                class="text-primary mx-1"
-                                >Login</router-link
-                            >
-                        </p>
-                    </div>
-                </Form>
-            </div>
+                            Kembali ke Login
+                        </router-link>
+                    </p>
+                </div>
+            </Form>
         </div>
 
-        <div class="container-login100" v-if="stage.second">
-            <div class="wrap-login100 p-6">
-                <Form
-                    @submit="sendVerifyEmail()"
-                    ref="ValidationEmailCode"
-                    class="login100-form validate-form"
-                >
-                    <span class="login100-form-title">
-                        Verifikasi Kode Email
-                    </span>
-                    <div class="wrap-input100 validate-input mb-4">
+        <!-- Stage 2: Verify Code -->
+        <div class="wrap-login100" v-if="stage.second">
+            <!-- Brand Header -->
+            <div class="auth-brand-header">
+                <router-link :to="{ name: 'login' }" class="d-inline-block">
+                    <img
+                        v-lazy="asset.logo"
+                        class="auth-brand-logo"
+                        alt="POSHUB Enterprise"
+                    />
+                </router-link>
+                <div>
+                    <span class="auth-brand-badge">Verifikasi Token</span>
+                </div>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <h1 class="auth-form-title">Verifikasi Kode Email</h1>
+            <p class="auth-form-subtitle">Masukkan kode otentikasi pemulihan yang dikirimkan ke <strong>{{ user.email }}</strong>.</p>
+
+            <Form
+                @submit="sendVerifyEmail()"
+                ref="ValidationEmailCode"
+                class="validate-form"
+            >
+                <div class="form-group mb-4">
+                    <label for="verifyResetCode" class="auth-label">Kode Verifikasi</label>
+                    <div class="wrap-input100">
                         <Field
                             :rules="{
                                 required: true,
@@ -96,54 +120,82 @@
                             v-model="verify_email.two_factor_code"
                         >
                             <input
-                                class="form-control"
+                                id="verifyResetCode"
+                                class="input100 text-center fw-bold"
+                                style="letter-spacing: 4px; font-size: 1.25rem;"
                                 type="text"
+                                maxlength="8"
                                 v-model="verify_email.two_factor_code"
-                                placeholder="Masukkan Kode Verifikasi"
+                                placeholder="• • • • • •"
                             />
-                            <div class="fs-sm text-danger">
+                            <div class="fs-sm text-danger mt-1">
                                 {{ errors[0] }}
                             </div>
                         </Field>
+                        <span class="symbol-input100">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                        </span>
                     </div>
-                    <div class="container-login100-form-btn">
-                        <button
-                            type="submit"
-                            :disabled="loader.submit"
-                            class="login100-form-btn btn-primary"
+                </div>
+
+                <div class="mt-4">
+                    <button
+                        type="submit"
+                        :disabled="loader.submit"
+                        class="btn-auth-primary"
+                    >
+                        <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
+                        <i v-else class="fa fa-check-circle me-2"></i>
+                        {{
+                            loader.submit
+                                ? "Memverifikasi..."
+                                : "Validasi Kode"
+                        }}
+                    </button>
+                </div>
+
+                <div class="text-center pt-4">
+                    <p class="text-muted mb-0" style="font-size: 0.875rem;">
+                        Kembali ke
+                        <router-link
+                            :to="{ name: 'login' }"
+                            class="text-primary fw-bold text-decoration-none ms-1"
                         >
-                            {{
-                                loader.submit
-                                    ? "Mohon Menunggu...."
-                                    : "Verifikasi Email"
-                            }}
-                        </button>
-                    </div>
-                    <div class="text-center pt-3">
-                        <p class="text-dark mb-0">
-                            Kembali ke halaman
-                            <router-link
-                                :to="{ name: 'login' }"
-                                class="text-primary mx-1"
-                                >Login</router-link
-                            >
-                        </p>
-                    </div>
-                </Form>
-            </div>
+                            Halaman Login
+                        </router-link>
+                    </p>
+                </div>
+            </Form>
         </div>
 
-        <div class="container-login100" v-if="stage.finish">
-            <div class="wrap-login100 p-6">
-                <Form
-                    @submit="resetPassword()"
-                    ref="ValidationResetPassword"
-                    class="login100-form validate-form"
-                >
-                    <span class="login100-form-title">
-                        Masukkan Password Baru
-                    </span>
-                    <div class="wrap-input100 validate-input mb-4">
+        <!-- Stage 3: New Password -->
+        <div class="wrap-login100" v-if="stage.finish">
+            <!-- Brand Header -->
+            <div class="auth-brand-header">
+                <router-link :to="{ name: 'login' }" class="d-inline-block">
+                    <img
+                        v-lazy="asset.logo"
+                        class="auth-brand-logo"
+                        alt="POSHUB Enterprise"
+                    />
+                </router-link>
+                <div>
+                    <span class="auth-brand-badge">Sandi Baru</span>
+                </div>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <h1 class="auth-form-title">Buat Password Baru</h1>
+            <p class="auth-form-subtitle">Buat kombinasi kata sandi baru yang aman untuk akun POSHUB Anda.</p>
+
+            <Form
+                @submit="resetPassword()"
+                ref="ValidationResetPassword"
+                class="validate-form"
+            >
+                <div class="form-group mb-3">
+                    <label for="newPassword" class="auth-label">Password Baru</label>
+                    <div class="wrap-input100">
                         <Field
                             :rules="{
                                 required: true,
@@ -153,18 +205,25 @@
                             v-model="reset_password.password"
                         >
                             <input
-                                class="form-control"
+                                id="newPassword"
+                                class="input100"
                                 type="password"
                                 v-model="reset_password.password"
-                                placeholder="Password Baru"
+                                placeholder="Minimal 8 karakter kombinasi"
                             />
-                            <div class="fs-sm text-danger">
+                            <div class="fs-sm text-danger mt-1">
                                 {{ errors[0] }}
                             </div>
                         </Field>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
                     </div>
+                </div>
 
-                    <div class="wrap-input100 validate-input mb-4">
+                <div class="form-group mb-4">
+                    <label for="newPasswordConfirm" class="auth-label">Konfirmasi Password Baru</label>
+                    <div class="wrap-input100">
                         <Field
                             :rules="{
                                 required: true,
@@ -174,34 +233,39 @@
                             v-model="reset_password.password_confirmation"
                         >
                             <input
-                                class="form-control"
+                                id="newPasswordConfirm"
+                                class="input100"
                                 type="password"
                                 v-model="reset_password.password_confirmation"
-                                placeholder="Konfirmasi Password Baru"
+                                placeholder="Ulangi password baru"
                             />
-                            <div class="fs-sm text-danger">
+                            <div class="fs-sm text-danger mt-1">
                                 {{ errors[0] }}
                             </div>
                         </Field>
+                        <span class="symbol-input100">
+                            <i class="fa fa-shield-alt" aria-hidden="true"></i>
+                        </span>
                     </div>
+                </div>
 
-                    <div class="container-login100-form-btn">
-                        <button
-                            type="submit"
-                            :disabled="loader.submit"
-                            class="login100-form-btn btn-primary"
-                        >
-                            {{
-                                loader.submit
-                                    ? "Mohon Menunggu...."
-                                    : "Reset Password"
-                            }}
-                        </button>
-                    </div>
-                </Form>
-            </div>
+                <div class="mt-4">
+                    <button
+                        type="submit"
+                        :disabled="loader.submit"
+                        class="btn-auth-primary"
+                    >
+                        <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
+                        <i v-else class="fa fa-save me-2"></i>
+                        {{
+                            loader.submit
+                                ? "Menyimpan Sandi..."
+                                : "Simpan &amp; Masuk ke Sistem"
+                        }}
+                    </button>
+                </div>
+            </Form>
         </div>
-        <!-- CONTAINER CLOSED -->
     </div>
 </template>
 

@@ -1,184 +1,198 @@
 <template>
-    <div class="">
-        <div class="col col-login mx-auto mt-7">
-            <div class="text-center">
-                <router-link :to="{ name: 'login' }">
+    <div class="auth-page-wrapper">
+        <div class="wrap-login100 auth-card-wide">
+            <!-- Brand Header -->
+            <div class="auth-brand-header">
+                <router-link :to="{ name: 'login' }" class="d-inline-block">
                     <img
                         v-lazy="asset.logo"
-                        class="header-brand-img"
-                        alt="logo"
+                        class="auth-brand-logo"
+                        alt="POSHUB Enterprise"
                     />
                 </router-link>
+                <div>
+                    <span class="auth-brand-badge">Pendaftaran Akun Baru</span>
+                </div>
             </div>
-        </div>
-        <div class="container-login100 register">
-            <div class="wrap-login100 p-6">
-                <span class="login100-form-title"> Daftar Akun </span>
 
-                <Form
-                    @submit="ValidationSignup()"
-                    ref="ValidationSignup"
-                    class="validate-form row"
-                >
-                    <div class="col-lg-6 col-sm-12">
-                        <div class="form-group">
-                            <label for="emailAddress">Nama Lengkap</label>
-                            <Field
-                                :rules="{
-                                    required: true,
-                                }"
-                                v-slot="{ errors, field }"
-                                :name="'Nama Lengkap'"
-                                v-model="user.name"
-                            >
-                                <input
-                                    class="form-control"
-                                    type="text"
-                                    v-model="user.name"
-                                    placeholder="Masukkan Nama Anda"
-                                />
-                                <div class="fs-sm text-danger">
-                                    {{ errors[0] }}
-                                </div>
-                            </Field>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            <label for="emailAddress">Alamat Email</label>
-                            <Field
-                                :rules="{
-                                    required: true,
-                                }"
-                                v-slot="{ errors, field }"
-                                :name="'Alamat Email'"
-                                v-model="user.email"
-                            >
-                                <input
-                                    class="form-control"
-                                    type="email"
-                                    v-model="user.email"
-                                    placeholder="Masukkan Alamat Email"
-                                />
-                                <div class="fs-sm text-danger">
-                                    {{ errors[0] }}
-                                </div>
-                            </Field>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            <label for="phoneNumber">Nomor WhatsApp</label>
-                            <Field
-                                :rules="{
-                                    required: true,
-                                }"
-                                v-slot="{ errors, field }"
-                                :name="'Nomor WhatsApp'"
-                                v-model="user.phone"
-                            >
-                                <input
-                                    class="form-control"
-                                    type="number"
-                                    v-model="user.phone"
-                                    placeholder="Masukkan Nomor Anda"
-                                />
-                                <div class="fs-sm text-danger">
-                                    {{ errors[0] }}
-                                </div>
-                            </Field>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            <label for="gender">Jenis Kelamin</label>
-                            <select
-                                class="form-control"
-                                name="jk"
-                                id="gender"
-                                v-model="user.jk"
-                            >
-                                <option value="pria">Pria</option>
-                                <option value="wanita">Wanita</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <Field
-                                :rules="{
-                                    required: true,
-                                }"
-                                v-slot="{ errors, field }"
-                                :name="'Password'"
-                                v-model="user.password"
-                            >
-                                <input
-                                    class="form-control"
-                                    type="password"
-                                    v-model="user.password"
-                                    placeholder="Masukkan Password"
-                                />
-                                <div class="fs-sm text-danger">
-                                    {{ errors[0] }}
-                                </div>
-                            </Field>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            <label for="password">Konfirmasi Password</label>
-                            <Field
-                                :rules="{
-                                    required: true,
-                                }"
-                                v-slot="{ errors, field }"
-                                :name="'Konfirmasi Password'"
-                                v-model="user.password_confirmation"
-                            >
-                                <input
-                                    class="form-control"
-                                    type="password"
-                                    v-model="user.password_confirmation"
-                                    placeholder="Konfirmasi Password"
-                                />
-                                <div class="fs-sm text-danger">
-                                    {{ errors[0] }}
-                                </div>
-                            </Field>
-                        </div>
-                    </div>
+            <!-- Title & Subtitle -->
+            <h1 class="auth-form-title">Daftar Akun Enterprise</h1>
+            <p class="auth-form-subtitle">Buat akun staf atau pemilik baru untuk mengelola transaksi POS dan laporan akuntansi.</p>
 
-                    <div class="col-12 d-flex justify-content-center mt-4">
-                        <button
-                            type="submit"
-                            :disabled="loader.submit"
-                            class="btn btn-primary btn-block float-right"
+            <Form
+                @submit="ValidationSignup()"
+                ref="ValidationSignup"
+                class="validate-form row g-3"
+            >
+                <div class="col-lg-6 col-sm-12">
+                    <div class="form-group mb-0">
+                        <label for="fullName" class="auth-label">Nama Lengkap <span class="text-danger">*</span></label>
+                        <Field
+                            :rules="{
+                                required: true,
+                            }"
+                            v-slot="{ errors, field }"
+                            :name="'Nama Lengkap'"
+                            v-model="user.name"
                         >
-                            {{
-                                loader.submit
-                                    ? "Mohon Tunggu...."
-                                    : "Daftar Sekarang"
-                            }}
-                        </button>
+                            <input
+                                id="fullName"
+                                class="form-control no-icon"
+                                type="text"
+                                v-model="user.name"
+                                placeholder="Masukkan nama lengkap"
+                            />
+                            <div class="fs-sm text-danger mt-1">
+                                {{ errors[0] }}
+                            </div>
+                        </Field>
                     </div>
+                </div>
 
-                    <div class="col-12 text-center mt-2">
-                        <div class="sign-info">
-                            <span
-                                class="dark-color d-inline-block line-height-2"
-                                >Kembali Ke Halaman
-                                <router-link :to="{ name: 'login' }"
-                                    >Login</router-link
-                                ></span
-                            >
-                        </div>
+                <div class="col-sm-12 col-lg-6">
+                    <div class="form-group mb-0">
+                        <label for="emailAddr" class="auth-label">Alamat Email <span class="text-danger">*</span></label>
+                        <Field
+                            :rules="{
+                                required: true,
+                            }"
+                            v-slot="{ errors, field }"
+                            :name="'Alamat Email'"
+                            v-model="user.email"
+                        >
+                            <input
+                                id="emailAddr"
+                                class="form-control no-icon"
+                                type="email"
+                                v-model="user.email"
+                                placeholder="contoh: user@perusahaan.com"
+                            />
+                            <div class="fs-sm text-danger mt-1">
+                                {{ errors[0] }}
+                            </div>
+                        </Field>
                     </div>
-                </Form>
-            </div>
+                </div>
+
+                <div class="col-sm-12 col-lg-6">
+                    <div class="form-group mb-0">
+                        <label for="phoneNumber" class="auth-label">Nomor WhatsApp / HP <span class="text-danger">*</span></label>
+                        <Field
+                            :rules="{
+                                required: true,
+                            }"
+                            v-slot="{ errors, field }"
+                            :name="'Nomor WhatsApp'"
+                            v-model="user.phone"
+                        >
+                            <input
+                                id="phoneNumber"
+                                class="form-control no-icon"
+                                type="tel"
+                                v-model="user.phone"
+                                placeholder="contoh: 081234567890"
+                            />
+                            <div class="fs-sm text-danger mt-1">
+                                {{ errors[0] }}
+                            </div>
+                        </Field>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-lg-6">
+                    <div class="form-group mb-0">
+                        <label for="gender" class="auth-label">Jenis Kelamin</label>
+                        <select
+                            class="form-control no-icon"
+                            name="jk"
+                            id="gender"
+                            v-model="user.jk"
+                        >
+                            <option value="pria">Laki-laki (Pria)</option>
+                            <option value="wanita">Perempuan (Wanita)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-lg-6">
+                    <div class="form-group mb-0">
+                        <label for="regPassword" class="auth-label">Kata Sandi <span class="text-danger">*</span></label>
+                        <Field
+                            :rules="{
+                                required: true,
+                            }"
+                            v-slot="{ errors, field }"
+                            :name="'Password'"
+                            v-model="user.password"
+                        >
+                            <input
+                                id="regPassword"
+                                class="form-control no-icon"
+                                type="password"
+                                v-model="user.password"
+                                placeholder="Minimal 8 karakter"
+                            />
+                            <div class="fs-sm text-danger mt-1">
+                                {{ errors[0] }}
+                            </div>
+                        </Field>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-lg-6">
+                    <div class="form-group mb-0">
+                        <label for="confirmPassword" class="auth-label">Konfirmasi Kata Sandi <span class="text-danger">*</span></label>
+                        <Field
+                            :rules="{
+                                required: true,
+                            }"
+                            v-slot="{ errors, field }"
+                            :name="'Konfirmasi Password'"
+                            v-model="user.password_confirmation"
+                        >
+                            <input
+                                id="confirmPassword"
+                                class="form-control no-icon"
+                                type="password"
+                                v-model="user.password_confirmation"
+                                placeholder="Ulangi kata sandi"
+                            />
+                            <div class="fs-sm text-danger mt-1">
+                                {{ errors[0] }}
+                            </div>
+                        </Field>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <button
+                        type="submit"
+                        :disabled="loader.submit"
+                        class="btn-auth-primary"
+                    >
+                        <i v-if="loader.submit" class="fa fa-spinner fa-spin me-2"></i>
+                        <i v-else class="fa fa-user-plus me-2"></i>
+                        {{
+                            loader.submit
+                                ? "Mendaftarkan Akun..."
+                                : "Daftar Akun Baru"
+                        }}
+                    </button>
+                </div>
+
+                <div class="col-12 auth-footer-text">
+                    <p class="mb-0">
+                        Sudah memiliki akun?
+                        <router-link :to="{ name: 'login' }" class="auth-link"
+                            >Masuk ke Akun</router-link
+                        >
+                    </p>
+                    <small class="text-muted d-block mt-2" style="font-size: 11px;">
+                        &copy; POSHUB ENTERPRISE. Hak Cipta Dilindungi.
+                    </small>
+                </div>
+            </Form>
         </div>
-        <!-- CONTAINER CLOSED -->
     </div>
 </template>
 

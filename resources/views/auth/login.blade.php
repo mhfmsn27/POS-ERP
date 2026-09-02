@@ -1,45 +1,75 @@
 @extends('layouts.app')
 @section('content')
-<div class="">
-    <!-- CONTAINER OPEN -->
-    <div class="col col-login mx-auto mt-7">
-        <div class="text-center">
-            <a href="{{url('index')}}">
-                <img src="{{asset('assets/images/logo-signin.png')}}" class="header-brand-img" alt="logo">
+<div class="auth-page-wrapper">
+    <div class="wrap-login100">
+        <!-- Brand Header -->
+        <div class="auth-brand-header">
+            <a href="{{ url('/') }}" class="d-inline-block">
+                <img src="{{ asset('images/logo.png') }}" class="auth-brand-logo" alt="POSHUB Enterprise">
             </a>
+            <div>
+                <span class="auth-brand-badge">Sistem Kasir &amp; Akuntansi Enterprise</span>
+            </div>
         </div>
-    </div>
-    <div class="container-login100">
-        <div class="wrap-login100 p-6">
-            <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
-                @csrf
-                <span class="login100-form-title">
-                    Login
-                </span>
-                <x-admin.validation-component></x-admin.validation-component>
-                <div class="wrap-input100 validate-input mb-4" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="email" required placeholder="Email">
-                    <span class="focus-input100"></span>
+
+        <!-- Form Title -->
+        <h1 class="auth-form-title">Masuk ke Akun Anda</h1>
+        <p class="auth-form-subtitle">Silakan masukkan email dan kata sandi resmi untuk mengakses panel operasional.</p>
+
+        <!-- Validation Errors -->
+        <x-admin.validation-component></x-admin.validation-component>
+
+        <!-- Login Form -->
+        <form class="validate-form" method="POST" action="{{ route('login') }}">
+            @csrf
+            
+            <!-- Email Input -->
+            <div class="wrap-input100 validate-input" data-validate="Alamat email wajib diisi dengan benar">
+                <label for="email" class="auth-label">Alamat Email</label>
+                <div class="position-relative">
+                    <input class="input100" type="email" id="email" name="email" value="{{ old('email') }}" required autofocus placeholder="contoh: admin@poshub.id">
                     <span class="symbol-input100">
                         <i class="fe fe-mail" aria-hidden="true"></i>
                     </span>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate="Password is required">
-                    <input class="input100" type="password" required name="password" placeholder="Password">
-                    <span class="focus-input100"></span>
+            </div>
+
+            <!-- Password Input -->
+            <div class="wrap-input100 validate-input" data-validate="Kata sandi wajib diisi">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label for="password" class="auth-label mb-0">Kata Sandi</label>
+                    @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}" class="auth-link" style="font-size: 12.5px;">
+                        Lupa Sandi?
+                    </a>
+                    @endif
+                </div>
+                <div class="position-relative">
+                    <input class="input100" type="password" id="password" required name="password" placeholder="Masukkan kata sandi">
                     <span class="symbol-input100">
                         <i class="fe fe-lock" aria-hidden="true"></i>
                     </span>
                 </div>
-                
-                <div class="container-login100-form-btn">
-                    <button type="submit" class="login100-form-btn btn-primary">
-                        Login
-                    </button>
-                </div> 
-            </form>
-        </div>
+            </div>
+            
+            <!-- Submit Button (Solid Royal Blue) -->
+            <div class="container-login100-form-btn mt-2">
+                <button type="submit" class="btn-auth-primary">
+                    <i class="fe fe-log-in me-2" style="font-size: 16px;"></i> Masuk ke Sistem
+                </button>
+            </div>
+
+            <!-- Footer Text / Links -->
+            <div class="auth-footer-text">
+                <p class="mb-0">
+                    Belum memiliki akun operasional? 
+                    <a href="{{ route('register') }}" class="auth-link">Hubungi Administrator</a>
+                </p>
+                <small class="text-muted d-block mt-2" style="font-size: 11px;">
+                    &copy; {{ date('Y') }} POSHUB ENTERPRISE. Hak Cipta Dilindungi.
+                </small>
+            </div>
+        </form>
     </div>
-    <!-- CONTAINER CLOSED -->
 </div>
 @endsection
