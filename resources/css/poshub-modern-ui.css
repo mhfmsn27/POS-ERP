@@ -1,6 +1,6 @@
 /* ==========================================================================
-   POSHUB ACCOUNTING - MODERN DESIGN SYSTEM & UI/UX TOKENS (PRODUCTION)
-   100% Solid Color Palette & Zero Gradients (Modern, Clean & Enterprise-Grade)
+   POSHUB ACCOUNTING - MODERN ENTERPRISE DESIGN SYSTEM & UI/UX TOKENS
+   State-of-the-Art SaaS & Point-of-Sale Aesthetics (Clean, Responsive & Fast)
    ========================================================================== */
 
 :root {
@@ -14,6 +14,7 @@
     --poshub-slate: #334155;
     --poshub-muted: #64748b;
     --poshub-border: #e2e8f0;
+    --poshub-border-focus: #3b82f6;
     --poshub-bg-page: #f8fafc;
     --poshub-card-bg: #ffffff;
 
@@ -31,13 +32,16 @@
     --poshub-danger-light: #fef2f2;
     --poshub-danger-border: #fecaca;
 
-    --poshub-card-radius: 12px;
+    --poshub-card-radius: 16px;
+    --poshub-card-radius-sm: 10px;
     --poshub-input-radius: 8px;
     --poshub-btn-radius: 8px;
-    --poshub-transition: all 0.2s ease-in-out;
+    --poshub-transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    
     --poshub-shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
     --poshub-shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
-    --poshub-shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    --poshub-shadow-lg: 0 20px 35px -10px rgba(15, 23, 42, 0.1), 0 0 1px 1px rgba(15, 23, 42, 0.04);
+    --poshub-shadow-xl: 0 25px 50px -12px rgba(15, 23, 42, 0.18);
 }
 
 /* ==========================================================================
@@ -79,132 +83,175 @@
 }
 
 /* ==========================================================================
-   AUTHENTICATION PAGES (LOGIN, REGISTER, FORGOT, VERIFY, CHOOSE STORE)
+   AUTHENTICATION LAYOUT & BACKGROUND
    ========================================================================== */
 
 body.login-img, 
 .page.bg-img {
     background-color: var(--poshub-bg-page) !important;
-    background-image: none !important;
+    background-image: 
+        radial-gradient(at 15% 15%, rgba(30, 64, 175, 0.05) 0px, transparent 45%),
+        radial-gradient(at 85% 85%, rgba(15, 23, 42, 0.04) 0px, transparent 45%),
+        radial-gradient(at 50% 50%, rgba(241, 245, 249, 0.6) 0px, transparent 100%) !important;
+    background-attachment: fixed !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
     color: var(--poshub-dark) !important;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-/* Auth Page Wrapper */
+/* Auth Page Wrapper - Perfect Centering */
 .auth-page-wrapper {
     min-height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 24px 16px;
-    background-color: var(--poshub-bg-page);
+    padding: 32px 16px;
     box-sizing: border-box;
 }
 
-/* Enterprise 2-Column Auth Split Layout */
+/* Enterprise 2-Column Auth Split Container */
 .auth-split-container {
     width: 100%;
-    max-width: 1080px;
+    max-width: 1040px;
+    min-height: 580px;
     margin: auto;
     display: flex;
     flex-direction: row;
+    align-items: stretch;
     background: #ffffff;
     border-radius: var(--poshub-card-radius);
     border: 1px solid var(--poshub-border);
     box-shadow: var(--poshub-shadow-lg);
     overflow: hidden;
+    position: relative;
 }
 
 .auth-split-container.auth-split-container-wide,
 .auth-split-container-wide {
-    max-width: 1160px;
+    max-width: 1140px;
 }
 
+/* Left/Primary Form Side */
 .auth-form-side {
-    flex: 1 1 50%;
-    padding: 36px 36px;
+    flex: 1 1 52%;
+    padding: 38px 44px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background: #ffffff;
+    box-sizing: border-box;
+    z-index: 1;
 }
 
+/* Right Showcase Side */
 .auth-showcase-side {
-    flex: 1 1 50%;
-    background: #0f172a; /* Solid Deep Corporate Navy */
+    flex: 1 1 48%;
+    background: linear-gradient(155deg, #0f172a 0%, #1e293b 100%);
     color: #ffffff;
-    padding: 36px 36px;
+    padding: 38px 36px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.auth-showcase-side::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.auth-showcase-side::after {
+    content: "";
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .auth-showcase-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: #1e293b;
-    color: #60a5fa;
+    gap: 7px;
+    background: rgba(30, 41, 59, 0.85);
+    color: #93c5fd;
     border: 1px solid #334155;
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    padding: 4px 12px;
+    padding: 5px 12px;
     border-radius: 20px;
     margin-bottom: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .auth-showcase-title {
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 800;
     color: #ffffff;
     line-height: 1.35;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     letter-spacing: -0.3px;
 }
 
 .auth-showcase-subtitle {
     font-size: 13px;
     color: #94a3b8;
-    line-height: 1.6;
-    margin-bottom: 24px;
+    line-height: 1.55;
+    margin-bottom: 22px;
 }
 
 .auth-feature-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .auth-feature-item {
-    background: #1e293b;
+    background: rgba(30, 41, 59, 0.6);
     border: 1px solid #334155;
     border-radius: 10px;
-    padding: 14px;
+    padding: 13px;
     transition: var(--poshub-transition);
+    backdrop-filter: blur(4px);
 }
 
 .auth-feature-item:hover {
     border-color: #3b82f6;
-    background: #1e293b;
+    background: rgba(30, 41, 59, 0.9);
+    transform: translateY(-2px);
 }
 
 .auth-feature-icon {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border-radius: 8px;
     background: #1e40af;
     color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 13.5px;
     margin-bottom: 8px;
+    box-shadow: 0 2px 5px rgba(30, 64, 175, 0.35);
 }
 
 .auth-feature-heading {
@@ -225,8 +272,8 @@ body.login-img,
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 18px;
-    border-top: 1px solid #1e293b;
+    padding-top: 16px;
+    border-top: 1px solid rgba(51, 65, 85, 0.7);
     font-size: 11.5px;
     color: #64748b;
 }
@@ -236,24 +283,14 @@ body.login-img,
     align-items: center;
     gap: 6px;
     color: #10b981;
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 600;
 }
 
-@media (max-width: 991.98px) {
-    .auth-split-container {
-        flex-direction: column;
-        max-width: 460px;
-    }
-    .auth-showcase-side {
-        display: none;
-    }
-    .auth-form-side {
-        padding: 32px 24px;
-    }
-}
+/* ==========================================================================
+   STANDALONE FOCUSED AUTH CARD (FORGOT, RESET, VERIFY, CONFIRM)
+   ========================================================================== */
 
-/* Container Login override */
 .container-login100 {
     min-height: auto !important;
     display: flex !important;
@@ -264,41 +301,54 @@ body.login-img,
     background: transparent !important;
 }
 
-/* Modern Auth Card */
 .wrap-login100,
 .auth-card {
-    width: 440px !important;
+    width: 480px !important;
     max-width: 100% !important;
     background: var(--poshub-card-bg) !important;
     border-radius: var(--poshub-card-radius) !important;
     border: 1px solid var(--poshub-border) !important;
     box-shadow: var(--poshub-shadow-lg) !important;
-    padding: 36px 32px !important;
+    padding: 40px 38px !important;
     position: relative !important;
     overflow: hidden !important;
     margin: 0 auto !important;
+    box-sizing: border-box;
 }
 
 .wrap-login100.auth-card-wide,
 .auth-card-wide {
-    width: 920px !important;
+    width: 860px !important;
+    max-width: 100% !important;
 }
 
-/* Brand Header */
+/* ==========================================================================
+   BRAND & FORM HEADERS
+   ========================================================================== */
+
 .auth-brand-header {
-    text-align: center;
-    margin-bottom: 28px;
+    text-align: left;
+    margin-bottom: 16px;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .auth-brand-logo {
-    max-height: 52px;
+    max-height: 42px;
+    max-width: 180px;
+    height: auto;
     width: auto;
-    margin-bottom: 12px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     transition: var(--poshub-transition);
 }
 
 .auth-brand-badge {
-    display: inline-block;
+    display: inline-block !important;
     background-color: var(--poshub-primary-light);
     color: var(--poshub-primary);
     border: 1px solid var(--poshub-primary-border);
@@ -306,32 +356,40 @@ body.login-img,
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    padding: 3px 10px;
+    padding: 4px 10px;
     border-radius: 20px;
 }
 
-/* Form Titles */
+/* Titles & Subtitles */
 .login100-form-title,
 .auth-form-title {
-    font-size: 20px !important;
+    font-size: 21px !important;
     font-weight: 800 !important;
     color: var(--poshub-dark) !important;
-    text-align: center !important;
-    margin-bottom: 6px !important;
+    text-align: left !important;
+    margin-bottom: 4px !important;
     display: block !important;
     letter-spacing: -0.3px !important;
     line-height: 1.3 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .auth-form-subtitle {
-    font-size: 13.5px;
-    color: var(--poshub-muted);
-    text-align: center;
-    margin-bottom: 24px;
-    line-height: 1.5;
+    font-size: 13px !important;
+    color: var(--poshub-muted) !important;
+    text-align: left !important;
+    margin-bottom: 22px !important;
+    line-height: 1.55 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
-/* Form Labels */
+/* ==========================================================================
+   FORM CONTROLS & INPUTS
+   ========================================================================== */
+
 .auth-label,
 .wrap-input100 label,
 .form-group label {
@@ -342,7 +400,6 @@ body.login-img,
     display: block !important;
 }
 
-/* Modern Inputs */
 .wrap-input100 {
     position: relative !important;
     width: 100% !important;
@@ -365,6 +422,7 @@ body.login-img,
     border: 1px solid #cbd5e1 !important;
     transition: var(--poshub-transition) !important;
     box-shadow: var(--poshub-shadow-sm) !important;
+    box-sizing: border-box;
 }
 
 .auth-input-with-icon {
@@ -386,16 +444,17 @@ body.login-img,
 .form-control:focus {
     border-color: var(--poshub-primary) !important;
     outline: none !important;
-    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12) !important;
+    box-shadow: 0 0 0 3.5px rgba(30, 64, 175, 0.12) !important;
     background: #ffffff !important;
 }
 
 textarea.form-control {
     height: auto !important;
     padding: 12px 16px !important;
+    min-height: 90px;
 }
 
-/* Input Icons */
+/* Field Icons */
 .symbol-input100,
 .auth-input-icon {
     font-size: 15px !important;
@@ -403,12 +462,11 @@ textarea.form-control {
     display: flex !important;
     align-items: center !important;
     position: absolute !important;
-    border-radius: 25px !important;
     bottom: 0 !important;
     left: 0 !important;
-    width: 100% !important;
+    width: 42px !important;
     height: 100% !important;
-    padding-left: 14px !important;
+    justify-content: center;
     pointer-events: none !important;
     transition: var(--poshub-transition) !important;
 }
@@ -425,46 +483,150 @@ textarea.form-control {
     transition: var(--poshub-transition);
 }
 
-.position-relative:focus-within .auth-field-icon {
-    color: var(--poshub-primary);
+.position-relative:focus-within .auth-field-icon,
+.position-relative:focus-within .symbol-input100 {
+    color: var(--poshub-primary) !important;
 }
 
+/* Password Toggle Eye Button */
 .btn-toggle-password {
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: 8px;
     transform: translateY(-50%);
     background: transparent;
     border: none;
     color: #94a3b8;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
-    padding: 6px 8px;
+    padding: 6px 10px;
     line-height: 1;
     z-index: 3;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
+    border-radius: 6px;
     transition: var(--poshub-transition);
 }
 
 .btn-toggle-password:hover {
     color: var(--poshub-dark);
+    background-color: #f1f5f9;
 }
 
-.input100:focus + .focus-input100 + .symbol-input100,
-.input100:focus ~ .symbol-input100 {
-    color: var(--poshub-primary) !important;
+.btn-toggle-password:focus {
+    outline: none;
+    color: var(--poshub-primary);
 }
 
-/* Primary Action Buttons (Solid Color - Zero Gradients) */
+/* Custom Modern Checkbox */
+.form-check-input {
+    width: 17px !important;
+    height: 17px !important;
+    margin-top: 0.15rem !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: var(--poshub-transition) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--poshub-primary) !important;
+    border-color: var(--poshub-primary) !important;
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12) !important;
+}
+
+.form-check-label {
+    font-size: 13px !important;
+    color: var(--poshub-slate) !important;
+    cursor: pointer !important;
+    user-select: none !important;
+}
+
+/* Quick Demo Role Pills */
+.auth-demo-section {
+    background-color: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+}
+
+.auth-demo-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.btn-demo-pill {
+    background: #ffffff;
+    border: 1px solid var(--poshub-border);
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--poshub-slate);
+    padding: 3px 9px;
+    cursor: pointer;
+    transition: var(--poshub-transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-demo-pill:hover {
+    background: var(--poshub-primary-light);
+    border-color: var(--poshub-primary-border);
+    color: var(--poshub-primary);
+}
+
+/* Back Link Button */
+.auth-nav-top {
+    width: 100%;
+    max-width: 1040px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.auth-link-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--poshub-muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--poshub-border);
+    backdrop-filter: blur(4px);
+    transition: var(--poshub-transition);
+}
+
+.auth-link-back:hover {
+    color: var(--poshub-primary);
+    border-color: var(--poshub-primary-border);
+    background: #ffffff;
+    transform: translateX(-2px);
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
 .container-login100-form-btn {
     width: 100% !important;
     display: flex !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
-    padding-top: 8px !important;
+    padding-top: 4px !important;
 }
 
 .login100-form-btn,
@@ -498,7 +660,7 @@ textarea.form-control {
     background: var(--poshub-primary-hover) !important;
     background-image: none !important;
     color: #ffffff !important;
-    box-shadow: 0 4px 8px rgba(30, 64, 175, 0.3) !important;
+    box-shadow: 0 4px 10px rgba(30, 64, 175, 0.3) !important;
     transform: translateY(-1px) !important;
 }
 
@@ -509,7 +671,6 @@ textarea.form-control {
     transform: translateY(0) !important;
 }
 
-/* Solid Secondary Button */
 .btn-auth-secondary,
 .btn-secondary {
     background: #ffffff !important;
@@ -519,6 +680,9 @@ textarea.form-control {
     height: 44px !important;
     border-radius: var(--poshub-btn-radius) !important;
     transition: var(--poshub-transition) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .btn-auth-secondary:hover,
@@ -528,7 +692,6 @@ textarea.form-control {
     border-color: #94a3b8 !important;
 }
 
-/* Auth Links */
 .auth-link {
     color: var(--poshub-primary) !important;
     font-weight: 600 !important;
@@ -545,12 +708,60 @@ textarea.form-control {
     text-align: center;
     font-size: 13px;
     color: var(--poshub-muted);
-    margin-top: 20px;
+    margin-top: 18px;
     padding-top: 16px;
     border-top: 1px solid var(--poshub-border);
 }
 
-/* Solid Branch / Store Selection Cards */
+/* ==========================================================================
+   BRANCH & STORE SELECTION (CHOOSE STORE & CREATE STORE)
+   ========================================================================== */
+
+.store-select-wrapper {
+    width: 100%;
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+.store-header-bar {
+    background: #ffffff;
+    border: 1px solid var(--poshub-border);
+    border-radius: var(--poshub-card-radius);
+    padding: 16px 24px;
+    box-shadow: var(--poshub-shadow-sm);
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.store-search-box {
+    position: relative;
+    max-width: 320px;
+    width: 100%;
+}
+
+.store-search-box input {
+    padding-left: 36px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 13px;
+    border: 1px solid var(--poshub-border);
+    width: 100%;
+}
+
+.store-search-box .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+    font-size: 14px;
+}
+
 .store-card {
     border-radius: var(--poshub-card-radius) !important;
     border: 1px solid var(--poshub-border) !important;
@@ -558,10 +769,13 @@ textarea.form-control {
     box-shadow: var(--poshub-shadow-sm) !important;
     transition: var(--poshub-transition) !important;
     overflow: hidden !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .store-card:hover {
-    transform: translateY(-3px) !important;
+    transform: translateY(-4px) !important;
     box-shadow: var(--poshub-shadow-lg) !important;
     border-color: var(--poshub-primary-border) !important;
 }
@@ -593,12 +807,85 @@ textarea.form-control {
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
+    text-decoration: none !important;
 }
 
 .btn-choose-store:hover {
     background: var(--poshub-primary-hover) !important;
     color: #ffffff !important;
     box-shadow: 0 4px 10px rgba(30, 64, 175, 0.25) !important;
+    text-decoration: none !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 991.98px) {
+    .auth-page-wrapper {
+        padding: 20px 12px;
+        justify-content: center;
+    }
+
+    .auth-split-container {
+        flex-direction: column;
+        max-width: 520px;
+        min-height: auto;
+    }
+
+    .auth-showcase-side {
+        display: none;
+    }
+
+    .auth-form-side {
+        padding: 32px 24px;
+    }
+
+    .wrap-login100.auth-card-wide,
+    .auth-card-wide {
+        width: 100% !important;
+        padding: 32px 24px !important;
+    }
+
+    .store-header-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .store-search-box {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .auth-page-wrapper {
+        padding: 12px 8px;
+    }
+
+    .auth-form-side {
+        padding: 26px 18px;
+    }
+
+    .wrap-login100,
+    .auth-card {
+        padding: 26px 18px !important;
+        border-radius: 12px !important;
+    }
+
+    .auth-form-title {
+        font-size: 19px !important;
+    }
+
+    .auth-form-subtitle {
+        font-size: 12.5px !important;
+        margin-bottom: 18px !important;
+    }
+
+    .btn-auth-primary,
+    .login100-form-btn {
+        font-size: 14px !important;
+        height: 42px !important;
+    }
 }
 
 /* ==========================================================================

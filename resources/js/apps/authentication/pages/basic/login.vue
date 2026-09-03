@@ -1,5 +1,12 @@
 <template>
     <div class="auth-page-wrapper">
+        <!-- Top Navigation Link -->
+        <div class="auth-nav-top">
+            <a href="/" class="auth-link-back">
+                <i class="fa fa-arrow-left"></i> Kembali ke Beranda
+            </a>
+        </div>
+
         <div class="auth-split-container">
             <!-- Left Side: Form Panel -->
             <div class="auth-form-side">
@@ -7,7 +14,7 @@
                 <div class="auth-brand-header text-start mb-3">
                     <router-link :to="{ name: 'login' }" class="d-inline-block text-decoration-none">
                         <img
-                            v-lazy="asset.logo"
+                            :src="asset.logo"
                             class="auth-brand-logo"
                             alt="POSHUB Enterprise"
                         />
@@ -102,6 +109,16 @@
                             >
                                 <i :class="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
                             </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me Checkbox -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check d-flex align-items-center mb-0">
+                            <input class="form-check-input me-2" type="checkbox" id="rememberMe" v-model="user.remember">
+                            <label class="form-check-label" for="rememberMe">
+                                Ingat Sesi Saya
+                            </label>
                         </div>
                     </div>
 

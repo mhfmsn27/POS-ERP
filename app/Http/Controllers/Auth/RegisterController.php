@@ -18,16 +18,26 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        return view('auth.register', ['page' => 'Daftar Pengguna']);
+    }
+
     public function index()
     {
         return view('auth.register', ['page' => 'Daftar Pengguna']);
     }
 
+    public function register(RegisterRequest $request)
+    {
+        return $this->create($request);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
-     * @return \App\Models\User
+     * @param  RegisterRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     protected function create(RegisterRequest $request)
     {

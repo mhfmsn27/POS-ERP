@@ -1,36 +1,48 @@
 @extends('layouts.app')
 @section('content')
 <div class="auth-page-wrapper">
+    <!-- Top Navigation Link -->
+    <div class="auth-nav-top" style="max-width: 480px;">
+        <a href="{{ url()->previous() ?: route('login') }}" class="auth-link-back">
+            <i class="fe fe-arrow-left"></i> Kembali ke Halaman Sebelumnya
+        </a>
+    </div>
+
     <div class="wrap-login100">
         <!-- Brand Header -->
-        <div class="auth-brand-header">
-            <a href="{{ url('/') }}" class="d-inline-block">
+        <div class="auth-brand-header text-center mb-3">
+            <a href="{{ url('/') }}" class="d-inline-block text-decoration-none">
                 <img src="{{ asset('images/logo.png') }}" class="auth-brand-logo" alt="POSHUB Enterprise">
             </a>
             <div>
-                <span class="auth-brand-badge">Konfirmasi Keamanan</span>
+                <span class="auth-brand-badge">Konfirmasi Keamanan Sesi</span>
             </div>
         </div>
 
         <!-- Form Title -->
-        <h1 class="auth-form-title">Konfirmasi Kata Sandi</h1>
-        <p class="auth-form-subtitle">Harap konfirmasi kata sandi Anda sebelum melanjutkan ke area sensitif ini.</p>
+        <div class="text-center mb-3">
+            <h1 class="auth-form-title text-center mb-1">Konfirmasi Kata Sandi</h1>
+            <p class="auth-form-subtitle text-center mb-0">Harap masukkan kata sandi Anda kembali sebelum mengakses area pengaturan dan data sensitif ini.</p>
+        </div>
 
         <!-- Form -->
         <form class="validate-form" method="POST" action="{{ route('password.confirm') }}">
             @csrf
 
             <div class="wrap-input100 validate-input" data-validate="Kata sandi wajib diisi">
-                <label for="password" class="auth-label">Kata Sandi</label>
+                <label for="password" class="auth-label">Kata Sandi Akun <span class="text-danger">*</span></label>
                 <div class="position-relative">
-                    <input id="password" type="password" class="input100 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Masukkan kata sandi Anda">
+                    <input id="password" type="password" class="input100 auth-input-with-icon auth-input-with-toggle @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" autofocus placeholder="Masukkan kata sandi akun Anda">
                     <span class="symbol-input100">
                         <i class="fe fe-lock" aria-hidden="true"></i>
                     </span>
+                    <button type="button" class="btn-toggle-password" data-target="password" title="Tampilkan kata sandi" tabindex="-1">
+                        <i class="fe fe-eye"></i>
+                    </button>
                 </div>
                 @error('password')
                     <span class="text-danger d-block mt-1" style="font-size: 12.5px;">
-                        <strong>{{ $message }}</strong>
+                        <i class="fe fe-alert-circle me-1"></i><strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
@@ -41,15 +53,16 @@
                 </button>
             </div>
 
-            @if (Route::has('password.request'))
-            <div class="auth-footer-text">
-                <p class="mb-0">
-                    <a href="{{ route('password.request') }}" class="auth-link">
-                        Lupa Kata Sandi Anda?
-                    </a>
-                </p>
+            <div class="d-flex justify-content-between align-items-center auth-footer-text text-start mt-4 pt-3 border-top">
+                <a href="{{ url()->previous() ?: route('login') }}" class="auth-link text-muted small">
+                    <i class="fe fe-x me-1"></i> Batal
+                </a>
+                @if (Route::has('password.request'))
+                <a href="{{ route('password.request') }}" class="auth-link small fw-bold">
+                    Lupa Sandi?
+                </a>
+                @endif
             </div>
-            @endif
         </form>
     </div>
 </div>

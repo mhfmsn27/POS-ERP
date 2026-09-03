@@ -1,5 +1,12 @@
 <template>
     <div class="auth-page-wrapper">
+        <!-- Top Navigation Link -->
+        <div class="auth-nav-top auth-split-container-wide">
+            <a href="/" class="auth-link-back">
+                <i class="fa fa-arrow-left"></i> Kembali ke Beranda
+            </a>
+        </div>
+
         <div class="auth-split-container auth-split-container-wide">
             <!-- Left Side: Form Panel -->
             <div class="auth-form-side">
@@ -7,7 +14,7 @@
                 <div class="auth-brand-header text-start mb-3">
                     <router-link :to="{ name: 'login' }" class="d-inline-block text-decoration-none">
                         <img
-                            v-lazy="asset.logo"
+                            :src="asset.logo"
                             class="auth-brand-logo"
                             alt="POSHUB Enterprise"
                         />
@@ -223,8 +230,18 @@
                         </div>
                     </div>
 
+                    <!-- Terms & Conditions Checkbox -->
+                    <div class="col-12 mt-2">
+                        <div class="form-check d-flex align-items-center">
+                            <input class="form-check-input me-2" type="checkbox" id="agreeTerms" v-model="user.agree" required>
+                            <label class="form-check-label" for="agreeTerms">
+                                Saya menyetujui <a href="#" class="auth-link">Syarat &amp; Ketentuan</a> serta <a href="#" class="auth-link">Kebijakan Privasi</a> POSHUB
+                            </label>
+                        </div>
+                    </div>
+
                     <!-- Submit Button -->
-                    <div class="col-12 mt-4">
+                    <div class="col-12 mt-3">
                         <button
                             type="submit"
                             :disabled="loader.submit"

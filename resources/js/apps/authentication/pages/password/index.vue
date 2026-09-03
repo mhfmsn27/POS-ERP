@@ -1,5 +1,12 @@
 <template>
     <div class="auth-page-wrapper">
+        <!-- Top Navigation Link -->
+        <div class="auth-nav-top">
+            <router-link :to="{ name: 'login' }" class="auth-link-back">
+                <i class="fa fa-arrow-left"></i> Kembali ke Login
+            </router-link>
+        </div>
+
         <div class="auth-split-container">
             <!-- Left Side: Form Panel -->
             <div class="auth-form-side">
@@ -9,7 +16,7 @@
                     <div class="auth-brand-header text-start mb-3">
                         <router-link :to="{ name: 'login' }" class="d-inline-block text-decoration-none">
                             <img
-                                v-lazy="asset.logo"
+                                :src="asset.logo"
                                 class="auth-brand-logo"
                                 alt="POSHUB Enterprise"
                             />
@@ -98,7 +105,7 @@
                     <div class="auth-brand-header text-start mb-3">
                         <router-link :to="{ name: 'login' }" class="d-inline-block text-decoration-none">
                             <img
-                                v-lazy="asset.logo"
+                                :src="asset.logo"
                                 class="auth-brand-logo"
                                 alt="POSHUB Enterprise"
                             />
@@ -207,7 +214,7 @@
                     <div class="auth-brand-header text-start mb-3">
                         <router-link :to="{ name: 'login' }" class="d-inline-block text-decoration-none">
                             <img
-                                v-lazy="asset.logo"
+                                :src="asset.logo"
                                 class="auth-brand-logo"
                                 alt="POSHUB Enterprise"
                             />

@@ -71,6 +71,29 @@
                 document.addEventListener("DOMContentLoaded", hideLoader);
             }
             setTimeout(hideLoader, 400); // Safety fallback
+
+            // Universal Password Visibility Toggle Handler
+            document.addEventListener("click", function(e) {
+                var btn = e.target.closest(".btn-toggle-password");
+                if (!btn) return;
+                e.preventDefault();
+                var targetId = btn.getAttribute("data-target");
+                var input = targetId ? document.getElementById(targetId) : btn.parentElement.querySelector("input[type='password'], input[type='text']");
+                if (input) {
+                    var isPassword = input.getAttribute("type") === "password";
+                    input.setAttribute("type", isPassword ? "text" : "password");
+                    var icon = btn.querySelector("i");
+                    if (icon) {
+                        if (isPassword) {
+                            icon.className = icon.className.replace("fe-eye", "fe-eye-off");
+                            btn.setAttribute("title", "Sembunyikan kata sandi");
+                        } else {
+                            icon.className = icon.className.replace("fe-eye-off", "fe-eye");
+                            btn.setAttribute("title", "Tampilkan kata sandi");
+                        }
+                    }
+                }
+            });
         })();
     </script>
 </body>

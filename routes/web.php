@@ -41,6 +41,11 @@ if ($installed == false) {
 
     Route::get('/home', [HomeController::class, 'redirect'])->middleware(['auth', 'verified'])->name('redirect');
 
+    Route::middleware(['auth', 'verified'])->group(function () {
+        Route::get('/business-register', [\App\Http\Controllers\Auth\BusinessRegisterController::class, 'index'])->name('business.register');
+        Route::post('/business-register/create', [\App\Http\Controllers\Auth\BusinessRegisterController::class, 'businessCreate'])->name('business.register.create');
+    });
+
     Route::get('locale/{locale}', function ($locale) {
         Session::put('locale', $locale);
         return redirect()->back();
